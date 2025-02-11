@@ -1,29 +1,38 @@
-'use client';
-
 import React, { useState, useEffect } from "react";
 import { Menu, X, LogIn, LogOut, User, Settings, UserCircle } from 'lucide-react';
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import { Link as ScrollLink, Events, scrollSpy } from "react-scroll";
 import supabase from './SupabaseClient';
 import Logo from './Logo.png';
 import './Navbar.css';
 
-const Navbar = ({ 
-  isLoggedIn, 
-  onLogin, 
-  onLogout, 
-  userProfile 
-}) => {
+const Navbar = ({ isLoggedIn, onLogin, onLogout, userProfile }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [fullName, setFullName] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  useEffect(() => {
+    Events.scrollEvent.register('begin', () => {});
+    Events.scrollEvent.register('end', () => {});
+    scrollSpy.update();
+
+    return () => {
+      Events.scrollEvent.remove('begin');
+      Events.scrollEvent.remove('end');
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    if (showUserMenu) setShowUserMenu(false);
   };
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
     onLogout();
     setShowUserMenu(false);
     setFullName('');
@@ -31,19 +40,21 @@ const Navbar = ({
 
   const closeMenu = () => {
     setIsOpen(false);
+    setShowUserMenu(false);
   };
 
-  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const scrollPosition = window.scrollY;
+      setScrolled(scrollPosition > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fetch user's full name from Supabase
   useEffect(() => {
     const fetchUserFullName = async () => {
       if (isLoggedIn && userProfile?.email) {
@@ -58,11 +69,8 @@ const Navbar = ({
           if (data?.full_name) {
             setFullName(data.full_name);
           } else {
-            // Fallback to username from email
             setFullName(userProfile.email.split('@')[0]);
           }
-  
-          console.log('Full Name Fetch Result:', { data, error });
         } catch (err) {
           console.error('Error fetching full name:', err);
           setFullName(userProfile.email.split('@')[0]);
@@ -76,100 +84,95 @@ const Navbar = ({
   
     fetchUserFullName();
   }, [isLoggedIn, userProfile]);
+
+  const renderNavLink = (to, text) => {
+    if (isHomePage) {
+      return (
+        <ScrollLink
+          to={to}
+          spy={true}
+          smooth={true}
+          offset={-70}
+          duration={500}
+          className="nav-link"
+          onClick={closeMenu}
+        >
+          {text}
+        </ScrollLink>
+      );
+    }
+    return (
+      <RouterLink to={`/#${to}`} className="nav-link" onClick={closeMenu}>
+        {text}
+      </RouterLink>
+    );
+  };
+
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
-        {/* Logo with routing */}
         <RouterLink to="/" className="logo" onClick={closeMenu}>
-          <img src={Logo || "/placeholder.svg"} alt="PhysioHealth Logo" className="logo-image" />
+          <img src={Logo} alt="PhysioHealth Logo" className="logo-image" />
         </RouterLink>
 
-        {/* Hamburger Menu */}
-        <button className="hamburger" onClick={toggleMenu}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        <button className={`hamburger ${isOpen ? 'active' : ''}`} onClick={toggleMenu}>
+          {isOpen ? <X /> : <Menu />}
         </button>
 
-        {/* Navigation Menu */}
-        <ul className={`nav-menu ${isOpen ? "active" : ""}`}>
-          <li className="nav-item">
-            <RouterLink to="/" onClick={closeMenu}>Home</RouterLink>
-          </li>
-          <li className="nav-item">
-            <RouterLink to="/about" onClick={closeMenu}>About Us</RouterLink>
-          </li>
-          <li className="nav-item">
-            <RouterLink to="/services" onClick={closeMenu}>Services</RouterLink>
-          </li>
-          <li className="nav-item">
-            <RouterLink to="/appointment" onClick={closeMenu}>Appointment Booking</RouterLink>
-          </li>
-          <li className="nav-item">
-            <RouterLink to="/contact" onClick={closeMenu}>Contact Us</RouterLink>
-          </li>
-          <li className="nav-item">
-            <RouterLink to="/faq" onClick={closeMenu}>FAQs</RouterLink>
-          </li>
-          <li className="nav-item">
-            <RouterLink to="/testimonials" onClick={closeMenu}></RouterLink>
-          </li>
-          <li className="nav-item">
-            <RouterLink to="/media_upload" onClick={closeMenu}></RouterLink>
-          </li>
-          <li className="nav-item">
-            <RouterLink to="/Media" onClick={closeMenu}>Media</RouterLink>
-          </li>
-          <li className="nav-item">
-            <RouterLink to="/blog" onClick={closeMenu}>Blog</RouterLink>
-          </li>
-          <li className="nav-item">
-            <RouterLink to="/mainadmin" onClick={closeMenu}></RouterLink>
-          </li>
+        <div className={`nav-menu ${isOpen ? "active" : ""}`}>
+          <ul className="nav-links">
+            <li>{renderNavLink("home", "Home")}</li>
+            <li>{renderNavLink("about", "About Us")}</li>
+            <li>{renderNavLink("services", "Services")}</li>
+            <li>{renderNavLink("appointment", "Book Now")}</li>
+            <li>{renderNavLink("contact", "Contact")}</li>
+            <li>{renderNavLink("faq", "FAQs")}</li>
+            <li>
+              <RouterLink to="/media" className="nav-link" onClick={closeMenu}>
+                Media
+              </RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/blog" className="nav-link" onClick={closeMenu}>
+                Blog
+              </RouterLink>
+            </li>
+          </ul>
 
-          {/* Authentication and User Menu */}
-          <li className="nav-item auth-item min-height-100vh">
+          <div className="auth-section">
             {isLoggedIn ? (
-              <div
-                className="user-profile"
-                onClick={() => setShowUserMenu(!showUserMenu)}
-              >
+              <div className="user-profile" onClick={() => setShowUserMenu(!showUserMenu)}>
                 <div className="user-avatar">
-                  <UserCircle size={24} />
+                  <UserCircle />
                 </div>
                 <span className="username">
-                  {isLoading 
-                    ? "Loading..." 
-                    : fullName || userProfile?.email || "User"}
+                  {isLoading ? "Loading..." : fullName}
                 </span>
                 {showUserMenu && (
                   <div className="user-dropdown">
                     <RouterLink to="/profile" className="dropdown-item" onClick={closeMenu}>
-                      <User size={16} />
-                      <span>My Profile</span>
+                      <User />
+                      <span>Profile</span>
                     </RouterLink>
                     <RouterLink to="/settings" className="dropdown-item" onClick={closeMenu}>
-                      <Settings size={16} />
+                      <Settings />
                       <span>Settings</span>
                     </RouterLink>
-                    <div className="dropdown-divider"></div>
-                    <a
-                      href="#"
-                      onClick={handleLogout}
-                      className="dropdown-item logout"
-                    >
-                      <LogOut size={16} />
+                    <button onClick={handleLogout} className="dropdown-item logout">
+                      <LogOut />
                       <span>Sign Out</span>
-                    </a>
+                    </button>
                   </div>
                 )}
               </div>
             ) : (
               <button className="login-button" onClick={onLogin}>
-                <LogIn size={20} />
+                <LogIn />
                 <span>Sign In</span>
               </button>
             )}
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </nav>
   );

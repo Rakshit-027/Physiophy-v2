@@ -40,3 +40,23 @@
 .read-the-docs {
   color: #888;
 }
+.sections-container {
+  padding-top: 70px; /* Adjust based on your navbar height */
+}
+
+.element {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  scroll-margin-top: 70px; /* Adjust based on your navbar height */
+}
+
+@media (max-width: 768px) {
+  .sections-container {
+    padding-top: 60px;
+  }
+  
+  .element {
+    padding: 3rem 1rem;
+    scroll-margin-top: 60px;
+  }
+}

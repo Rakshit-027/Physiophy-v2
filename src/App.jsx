@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { Element, Events, scrollSpy } from 'react-scroll';
 import supabase from './components/SupabaseClient';
 import Navbar from './components/Navbar';
 import Home from './components/Home.jsx';
@@ -18,8 +19,7 @@ import MediaGallery from './components/MediaGallery.jsx';
 import MediaUpload from './components/MediaUpload.jsx';
 import ClinicPhotos from './components/ClinicPhotos.jsx';
 import ClinicVideos from './components/ClinicVideos.jsx';
-import MainAdmin from './components/MainAdmin.jsx'; 
-
+import MainAdmin from './components/MainAdmin.jsx';
 
 function App() {
   const [showAuth, setShowAuth] = useState(null);
@@ -27,6 +27,11 @@ function App() {
   const [userProfile, setUserProfile] = useState(null);
 
   useEffect(() => {
+    // Initialize react-scroll
+    Events.scrollEvent.register('begin', () => {});
+    Events.scrollEvent.register('end', () => {});
+    scrollSpy.update();
+
     // Check current session on app load
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
@@ -53,8 +58,10 @@ function App() {
       }
     );
 
-    // Cleanup subscription
+    // Cleanup
     return () => {
+      Events.scrollEvent.remove('begin');
+      Events.scrollEvent.remove('end');
       authListener.subscription.unsubscribe();
     };
   }, []);
@@ -98,7 +105,7 @@ function App() {
               )}
             </motion.div>
           ) : (
-            <Content isLoggedIn={isLoggedIn} />
+            <ScrollContent isLoggedIn={isLoggedIn} />
           )}
         </AnimatePresence>
       </div>
@@ -106,7 +113,34 @@ function App() {
   );
 }
 
-function Content({ isLoggedIn }) {
+// Separate HomePage component for scroll sections
+const HomePage = ({ isLoggedIn }) => (
+  <div className="sections-container">
+    <Element name="home" className="element">
+      <Home />
+    </Element>
+    <Element name="about" className="element">
+      <About />
+    </Element>
+    <Element name="services" className="element">
+      <Services />
+    </Element>
+    {isLoggedIn && (
+      <Element name="appointment" className="element">
+        <Appointment />
+      </Element>
+      
+    )}
+    <Element name="contact" className="element">
+      <Contact />
+    </Element>
+    <Element name="faq" className="element">
+      <FAQ />
+    </Element>
+  </div>
+);
+
+function ScrollContent({ isLoggedIn }) {
   const location = useLocation();
 
   return (
@@ -119,20 +153,20 @@ function Content({ isLoggedIn }) {
         transition={{ duration: 0.5 }}
       >
         <Routes location={location}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/appointment" element={isLoggedIn ? <Appointment /> : <Home />} />
           <Route path="/testimonials" element={<Testimonials />} />
-          <Route path='/media' element={<MediaGallery/>}/>
+          <Route path="/media" element={<MediaGallery/>} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/profile" element={<PatientPanel />} />
           <Route path="/media_upload" element={<MediaUpload />} />
-          <Route path='ClinicsPhotos' element={<ClinicPhotos/>}/>
-          <Route path='/ClinicVideos' element={<ClinicVideos/>}/>
-          <Route path='/mainadmin' element={<MainAdmin/>}/>
+          <Route path="/ClinicsPhotos" element={<ClinicPhotos/>} />
+          <Route path="/ClinicVideos" element={<ClinicVideos/>} />
+          <Route path="/mainadmin" element={<MainAdmin/>} />
         </Routes>
       </motion.div>
     </AnimatePresence>

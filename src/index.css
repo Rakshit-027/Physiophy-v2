@@ -27,7 +27,7 @@ body {
 }
 
 /* Enhanced Navbar Styles */
-.navbar {
+/* .navbar {
   background-color: var(--white);
   padding: 0.8rem 2rem;
   position: fixed;
@@ -90,7 +90,7 @@ body {
 }
 .logo-image {
   height: 30px; /* Adjust based on your logo size */
-  width: 85%;
+  /* width: 85%;
   transition: transform var(--transition-speed) ease;
 }
 
@@ -100,7 +100,7 @@ body {
 }
 
 /* Update existing logo hover styles */
-.logo:hover {
+/*.logo:hover {
   transform: scale(1.05);
 }
 
@@ -109,18 +109,18 @@ body {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
   .logo-image {
     height: 32px; /* Slightly smaller on mobile */
-  }
+ /* }  */
   
-  .logo-text {
+  /* .logo-text {
     font-size: 1.2rem; /* Smaller text on mobile */
-  }
-}
+  /* }
+}  */
 
 
-.nav-item a {
+/* .nav-item a {
   color: var(--dark-green);
   text-decoration: none;
   font-weight: 500;
@@ -128,9 +128,9 @@ body {
   transition: color var(--transition-speed) ease;
   font-size: 1rem;
   letter-spacing: 0.5px;
-}
+} */
 
-.nav-item a::after {
+/* .nav-item a::after {
   content: '';
   position: absolute;
   width: 0;
@@ -139,17 +139,17 @@ body {
   left: 0;
   background-color: black;
   transition: width var(--transition-speed) ease;
-}
+} */
 
-.nav-item a:hover {
+/* .nav-item a:hover {
   color: var(--dark-green);
 }
 
 .nav-item a:hover::after {
   width: 100%;
-}
+} */
 
-.hamburger {
+/* .hamburger {
   display: none;
   cursor: pointer;
   background: none;
@@ -157,11 +157,11 @@ body {
   color: var(--dark-green);
   padding: 0.5rem;
   transition: transform var(--transition-speed) ease;
-}
+} */
 
-.hamburger:hover {
+/* .hamburger:hover {
   transform: scale(1.1);
-}
+} */ 
 
 /* Home Page Styles */
 /* .home {
@@ -228,7 +228,7 @@ body {
 } */
 
 /* Enhanced Responsive Design */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .nav-menu {
     display: none;
     position: absolute;
@@ -325,4 +325,4 @@ body {
 
 .dropdown-menu a:hover {
   background-color: var(--light-green);
-}
+}  */
