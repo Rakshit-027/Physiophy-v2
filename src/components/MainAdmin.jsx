@@ -9,7 +9,11 @@ import {
   Bell,
   Plus,
   Menu,
-  X
+  X,
+  TimerIcon,
+  Camera,
+  Pointer,
+  User
 } from 'lucide-react';
 import './MainAdmin.css';
 
@@ -19,6 +23,7 @@ import AdminPanel from './AdminPanel';
 import Testimonials from './Testimonials';
 import MediaUpload from './MediaUpload';
 import SettingsPage from './SettingsPage';
+import AdminAppointment from './AdminAppointment';
 
 function MainAdmin() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -26,10 +31,10 @@ function MainAdmin() {
 
   const sidebarItems = [
     { id: 'Home', icon: <LayoutDashboard size={20} />, label: 'Home', component: <Home /> },
-    { id: 'Users', icon: <Calendar size={20} />, label: 'User', component: <AdminPanel /> },
+    { id: 'Users', icon: <User size={20} />, label: 'User', component: <AdminPanel /> },
     { id: 'Testimonial', icon: <Users size={20} />, label: 'Testimonial', component: <Testimonials /> },
-    { id: 'Media Upload', icon: <MessageSquare size={20} />, label: 'Media Upload', component: <MediaUpload /> },
-    { id: 'Settings', icon: <Settings size={20} />, label: 'Settings', component: <SettingsPage /> }
+    { id: 'Media Upload', icon: <Camera size={20} />, label: 'Media Upload', component: <MediaUpload /> },
+    { id: 'Apointments', icon: <Pointer size={20} />, label: 'Appointments', component: <AdminAppointment /> }
   ];
 
   const toggleTab = (id) => {

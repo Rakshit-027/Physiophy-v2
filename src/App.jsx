@@ -20,6 +20,7 @@ import MediaUpload from './components/MediaUpload.jsx';
 import ClinicPhotos from './components/ClinicPhotos.jsx';
 import ClinicVideos from './components/ClinicVideos.jsx';
 import MainAdmin from './components/MainAdmin.jsx';
+import AdminAppointment from './components/AdminAppointment.jsx';
 
 function App() {
   const [showAuth, setShowAuth] = useState(null);
@@ -167,6 +168,7 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="/ClinicsPhotos" element={<ClinicPhotos/>} />
           <Route path="/ClinicVideos" element={<ClinicVideos/>} />
           <Route path="/mainadmin" element={<MainAdmin/>} />
+          <Route path="/AdminA" element={<AdminAppointment/>}/> 
         </Routes>
       </motion.div>
     </AnimatePresence>

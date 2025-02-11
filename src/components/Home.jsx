@@ -4,7 +4,9 @@ import './Home.css';
 import Card from './Mini/Card';
 import { div } from 'framer-motion/client';
 import Homept2 from './Homept2';
-
+import BlurText from './Mini/BlurText/Blurtext';
+import DecryptedText from './Mini/DecryptedText/DecryptedText';
+import ShinyText from './Mini/ShinyText/ShinyText';
 const Home = () => {
   useEffect(() => {
     const cards = document.querySelectorAll('.medical-service-card');
@@ -31,15 +33,13 @@ const Home = () => {
         <div className="medical-hero-content">
           <div className="medical-title-container">
             <h1>
-              <span className="medical-destination-text">Destination</span>
-              <span className="medical-for-text">For</span>
-              <span className="medical-relief-text">Relief & Wellness</span>
+              <span className="medical-destination-text"><BlurText text="Your Destination" delay={100}/></span>
+              <span className="medical-for-text"><BlurText text="For" delay={300}/></span>
+              <span className="medical-destination-text"><BlurText text='Relief & Wellness' delay={500}/></span>
             </h1>
           </div>
           <p className="medical-hero-description">
-            Experience exceptional healthcare tailored to your needs. Our dedicated team
-            of professionals is committed to providing personalized care and innovative
-            treatments for your optimal well-being.
+           <ShinyText text= " Experience exceptional healthcare tailored to your needs. Our dedicated team of professionals is committed to providing personalized care and innovative treatments for your optimal well-being.Discover a new standard of care today."/>
           </p>
           <div className="medical-button-group">
             <button className="medical-explore-button">

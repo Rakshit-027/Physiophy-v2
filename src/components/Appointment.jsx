@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
 import { Calendar, Clock, User, Phone, Mail, FileText, CheckCircle } from 'lucide-react';
 import './Appointment.css';
+
+// Supabase setup
+const supabaseUrl = 'https://your-project-id.supabase.co'; // Replace with your Supabase URL
+const supabaseAnonKey = 'your-anon-key'; // Replace with your Supabase Anon Key
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const Appointment = () => {
   const [selectedDate, setSelectedDate] = useState('');
@@ -19,38 +25,39 @@ const Appointment = () => {
     '14:00', '14:30', '15:00', '15:30', '16:00', '16:30'
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log('Appointment booked:', { ...formData, date: selectedDate, time: selectedTime });
-    setShowConfirmation(true);
+    if (!selectedDate || !selectedTime) return alert('Please select date and time.');
+
+    // Save to Supabase
+    const { data, error } = await supabase.from('appointments').insert([
+      { ...formData, date: selectedDate, time: selectedTime }
+    ]);
+
+    if (error) {
+      console.error('Error saving appointment:', error);
+      alert('Failed to book appointment. Please try again.');
+    } else {
+      console.log('Appointment booked:', data);
+      setShowConfirmation(true);
+    }
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Get next 14 days for date selection
+  // Generate available dates (next 14 days, skipping weekends)
   const getAvailableDates = () => {
     const dates = [];
     const today = new Date();
-    
     for (let i = 1; i <= 14; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
-      
-      // Skip weekends
       if (date.getDay() !== 0 && date.getDay() !== 6) {
         dates.push({
           date: date.toISOString().split('T')[0],
-          display: date.toLocaleDateString('en-US', { 
-            weekday: 'short', 
-            month: 'short', 
-            day: 'numeric' 
-          })
+          display: date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
         });
       }
     }
@@ -107,55 +114,28 @@ const Appointment = () => {
                 <div className="form-group">
                   <label>
                     <User className="input-icon" />
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Your Full Name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
+                    <input type="text" name="name" placeholder="Your Full Name" value={formData.name} onChange={handleChange} required />
                   </label>
                 </div>
 
                 <div className="form-group">
                   <label>
                     <Mail className="input-icon" />
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Your Email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
+                    <input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} required />
                   </label>
                 </div>
 
                 <div className="form-group">
                   <label>
                     <Phone className="input-icon" />
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Your Phone Number"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                    />
+                    <input type="tel" name="phone" placeholder="Your Phone Number" value={formData.phone} onChange={handleChange} required />
                   </label>
                 </div>
 
                 <div className="form-group">
                   <label>
                     <FileText className="input-icon" />
-                    <textarea
-                      name="problem"
-                      placeholder="Please describe your condition or reason for visit"
-                      value={formData.problem}
-                      onChange={handleChange}
-                      required
-                    ></textarea>
+                    <textarea name="problem" placeholder="Please describe your condition or reason for visit" value={formData.problem} onChange={handleChange} required />
                   </label>
                 </div>
 
@@ -172,12 +152,7 @@ const Appointment = () => {
           <h2>Appointment Confirmed!</h2>
           <p>Thank you for booking with us. We've sent a confirmation to your email.</p>
           <div className="appointment-details">
-            <p><strong>Date:</strong> {new Date(selectedDate).toLocaleDateString('en-US', { 
-              weekday: 'long', 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}</p>
+            <p><strong>Date:</strong> {new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
             <p><strong>Time:</strong> {selectedTime}</p>
             <p><strong>Name:</strong> {formData.name}</p>
             <p><strong>Email:</strong> {formData.email}</p>
