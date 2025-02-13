@@ -4,7 +4,7 @@ Reset and base styles
 
 
 body{
-  background-image: url("./bg.jpg");
+  background-image: url("..src/assets/bg.jpg");
 }
 :root {
   --primary-green: #1abc9c;;

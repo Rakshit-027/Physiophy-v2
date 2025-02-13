@@ -1,21 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { 
-  Menu, 
-  X, 
-  LogIn, 
-  LogOut, 
-  User, 
-  Settings, 
-  UserCircle,
-  Home,
-  Info,
-  Stethoscope,
-  Calendar,
-  Phone,
-  HelpCircle,
-  Image,
-  BookOpen
-} from 'lucide-react';
+import { Menu, X, LogIn, LogOut, User, Settings, UserCircle } from 'lucide-react';
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { Link as ScrollLink, Events, scrollSpy } from "react-scroll";
 import supabase from './SupabaseClient';
@@ -28,7 +12,6 @@ const Navbar = ({ isLoggedIn, onLogin, onLogout, userProfile }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [fullName, setFullName] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [showPopup, setShowPopup] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -59,9 +42,7 @@ const Navbar = ({ isLoggedIn, onLogin, onLogout, userProfile }) => {
     setIsOpen(false);
     setShowUserMenu(false);
   };
-  const closePopup = () => {
-    setShowPopup(false);
-  };
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -104,21 +85,7 @@ const Navbar = ({ isLoggedIn, onLogin, onLogout, userProfile }) => {
     fetchUserFullName();
   }, [isLoggedIn, userProfile]);
 
-  const handleBookNowClick = () => {
-    if (!isLoggedIn) {
-      setShowPopup(true);
-    }
-  };
-
-  const renderNavLink = (to, text, icon) => {
-    const IconComponent = icon;
-    const content = (
-      <>
-        <IconComponent className="nav-icon" size={18} />
-        {text}
-      </>
-    );
-
+  const renderNavLink = (to, text) => {
     if (isHomePage) {
       return (
         <ScrollLink
@@ -128,15 +95,15 @@ const Navbar = ({ isLoggedIn, onLogin, onLogout, userProfile }) => {
           offset={-70}
           duration={500}
           className="nav-link"
-          onClick={to === "appointment" ? handleBookNowClick : closeMenu}
+          onClick={closeMenu}
         >
-          {content}
+          {text}
         </ScrollLink>
       );
     }
     return (
       <RouterLink to={`/#${to}`} className="nav-link" onClick={closeMenu}>
-        {content}
+        {text}
       </RouterLink>
     );
   };
@@ -154,53 +121,59 @@ const Navbar = ({ isLoggedIn, onLogin, onLogout, userProfile }) => {
 
         <div className={`nav-menu ${isOpen ? "active" : ""}`}>
           <ul className="nav-links">
-            <li>{renderNavLink("home", "Home", Home)}</li>
-            <li>{renderNavLink("about", "About Us", Info)}</li>
-            <li>{renderNavLink("services", "Services", Stethoscope)}</li>
-            <li>{renderNavLink("appointment", "Book Now", Calendar)}</li>
-            <li>{renderNavLink("contact", "Contact", Phone)}</li>
-            <li>{renderNavLink("faq", "FAQs", HelpCircle)}</li>
+            <li>{renderNavLink("home", "Home")}</li>
+            <li>{renderNavLink("about", "About Us")}</li>
+            <li>{renderNavLink("services", "Services")}</li>
+            <li>{renderNavLink("appointment", "Book Now")}</li>
+            <li>{renderNavLink("contact", "Contact")}</li>
+            <li>{renderNavLink("faq", "FAQs")}</li>
             <li>
               <RouterLink to="/media" className="nav-link" onClick={closeMenu}>
-                <Image className="nav-icon" size={18} />
                 Media
               </RouterLink>
             </li>
             <li>
               <RouterLink to="/blog" className="nav-link" onClick={closeMenu}>
-                <BookOpen className="nav-icon" size={18} />
                 Blog
               </RouterLink>
             </li>
           </ul>
+
           <div className="auth-section">
             {isLoggedIn ? (
               <div className="user-profile" onClick={() => setShowUserMenu(!showUserMenu)}>
-                <UserCircle />
-                <span className="username">{isLoading ? "Loading..." : fullName}</span>
+                <div className="user-avatar">
+                  <UserCircle />
+                </div>
+                <span className="username">
+                  {isLoading ? "Loading..." : fullName}
+                </span>
                 {showUserMenu && (
                   <div className="user-dropdown">
-                    <RouterLink to="/profile" className="dropdown-item" onClick={closeMenu}><User /><span>Profile</span></RouterLink>
-                    <RouterLink to="/settings" className="dropdown-item" onClick={closeMenu}><Settings /><span>Settings</span></RouterLink>
-                    <button onClick={handleLogout} className="dropdown-item logout"><LogOut /><span>Sign Out</span></button>
+                    <RouterLink to="/profile" className="dropdown-item" onClick={closeMenu}>
+                      <User />
+                      <span>Profile</span>
+                    </RouterLink>
+                    <RouterLink to="/settings" className="dropdown-item" onClick={closeMenu}>
+                      <Settings />
+                      <span>Settings</span>
+                    </RouterLink>
+                    <button onClick={handleLogout} className="dropdown-item logout">
+                      <LogOut />
+                      <span>Sign Out</span>
+                    </button>
                   </div>
                 )}
               </div>
             ) : (
-              <button className="login-button" onClick={onLogin}><LogIn /><span>Sign In</span></button>
+              <button className="login-button" onClick={onLogin}>
+                <LogIn />
+                <span>Sign In</span>
+              </button>
             )}
           </div>
         </div>
       </div>
-      {showPopup &&  <div className="popup-overlay">
-          <div className="popup-box">
-            <h2>Sign In Required</h2>
-            <p>You need to sign in to book an appointment.</p>
-            <button onClick={closePopup} className="close-button">
-              Close
-            </button>
-          </div>
-        </div>}
     </nav>
   );
 };

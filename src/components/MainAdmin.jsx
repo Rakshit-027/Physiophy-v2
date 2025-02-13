@@ -1,20 +1,16 @@
 import { useState } from 'react';
 import {
   LayoutDashboard,
-  Calendar,
   Users,
-  MessageSquare,
-  Settings,
-  Search,
-  Bell,
-  Plus,
-  Menu,
-  X,
-  TimerIcon,
   Camera,
   Pointer,
-  User
+  User,
+  Menu,
+  X,
+  LogOut,
+  GraduationCap
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import './MainAdmin.css';
 
 // ✅ Ensure correct imports
@@ -22,23 +18,30 @@ import Home from './Home';
 import AdminPanel from './AdminPanel';
 import Testimonials from './Testimonials';
 import MediaUpload from './MediaUpload';
-import SettingsPage from './SettingsPage';
 import AdminAppointment from './AdminAppointment';
+import Doctors from './Doctors';
 
 function MainAdmin() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeTab, setActiveTab] = useState('Home'); // Store only one active tab at a time
+  const navigate = useNavigate();
 
   const sidebarItems = [
     { id: 'Home', icon: <LayoutDashboard size={20} />, label: 'Home', component: <Home /> },
     { id: 'Users', icon: <User size={20} />, label: 'User', component: <AdminPanel /> },
     { id: 'Testimonial', icon: <Users size={20} />, label: 'Testimonial', component: <Testimonials /> },
     { id: 'Media Upload', icon: <Camera size={20} />, label: 'Media Upload', component: <MediaUpload /> },
-    { id: 'Apointments', icon: <Pointer size={20} />, label: 'Appointments', component: <AdminAppointment /> }
+    { id: 'Appointments', icon: <Pointer size={20} />, label: 'Appointments', component: <AdminAppointment /> },
+    { id: 'Doctors Section', icon: <GraduationCap size={20} />, label: 'Doctors Section', component: <Doctors /> }
   ];
 
   const toggleTab = (id) => {
     setActiveTab(id); // Set only one active tab
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("admin_email"); // Remove admin session
+    navigate("/#Home"); // Redirect to sign-in page
   };
 
   return (
@@ -66,6 +69,12 @@ function MainAdmin() {
                 </button>
               ))}
             </nav>
+
+            {/* Logout Button */}
+            <button onClick={handleLogout} className="zd-logout-btn">
+              <LogOut size={20} />
+              <span>Logout</span>
+            </button>
           </div>
         </aside>
 

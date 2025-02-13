@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
+// import { createClient } from '@supabase/supabase-js';
 import { Calendar, Clock, User, Phone, Mail, FileText, CheckCircle } from 'lucide-react';
 import './Appointment.css';
 
 // Supabase setup
-const supabaseUrl = 'https://your-project-id.supabase.co'; // Replace with your Supabase URL
-const supabaseAnonKey = 'your-anon-key'; // Replace with your Supabase Anon Key
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+import supabase from './SupabaseClient';
 const Appointment = () => {
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import { Element, Events, scrollSpy } from 'react-scroll';
 import supabase from './components/SupabaseClient';
 import Navbar from './components/Navbar';
@@ -21,19 +21,22 @@ import ClinicPhotos from './components/ClinicPhotos.jsx';
 import ClinicVideos from './components/ClinicVideos.jsx';
 import MainAdmin from './components/MainAdmin.jsx';
 import AdminAppointment from './components/AdminAppointment.jsx';
+import AdminSignIn from './components/AdminSignIn';
+import AdminSignUp from './components/AdminSignUp';
+import BookNowPopup from './components/BookNowPopup.jsx';
+import Doctors from './components/Doctors.jsx';
 
 function App() {
   const [showAuth, setShowAuth] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
+  const [showAdminAuth, setShowAdminAuth] = useState(null);
 
   useEffect(() => {
-    // Initialize react-scroll
     Events.scrollEvent.register('begin', () => {});
     Events.scrollEvent.register('end', () => {});
     scrollSpy.update();
 
-    // Check current session on app load
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       
@@ -45,13 +48,13 @@ function App() {
 
     checkSession();
 
-    // Listen for auth state changes
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (event === 'SIGNED_IN' && session) {
           setUserProfile(session.user);
           setIsLoggedIn(true);
           setShowAuth(null);
+          setShowAdminAuth(null);
         } else if (event === 'SIGNED_OUT') {
           setUserProfile(null);
           setIsLoggedIn(false);
@@ -59,7 +62,6 @@ function App() {
       }
     );
 
-    // Cleanup
     return () => {
       Events.scrollEvent.remove('begin');
       Events.scrollEvent.remove('end');
@@ -105,6 +107,26 @@ function App() {
                 />
               )}
             </motion.div>
+          ) : showAdminAuth ? (
+            <motion.div
+              key="admin-auth"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50"
+            >
+              {showAdminAuth === 'signin' ? (
+                <AdminSignIn
+                  onClose={() => setShowAdminAuth(null)}
+                  onSignUp={() => setShowAdminAuth('signup')}
+                />
+              ) : (
+                <AdminSignUp
+                  onClose={() => setShowAdminAuth(null)}
+                  onSignIn={() => setShowAdminAuth('signin')}
+                />
+              )}
+            </motion.div>
           ) : (
             <ScrollContent isLoggedIn={isLoggedIn} />
           )}
@@ -114,7 +136,48 @@ function App() {
   );
 }
 
-// Separate HomePage component for scroll sections
+// 🔐 Protected Admin Route
+const ProtectedAdminRoute = ({ children }) => {
+  const [admin, setAdmin] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAdminSession = async () => {
+      try {
+        const adminEmail = localStorage.getItem('admin_email'); // Get stored admin email
+
+        if (adminEmail) {
+          const { data, error } = await supabase
+            .from('admin_auth') // Ensure your table is named correctly
+            .select('role')
+            .eq('email', adminEmail)
+            .single();
+
+          if (error) {
+            console.error("Error fetching admin:", error);
+          }
+
+          if (data?.role === 'admin') {
+            setAdmin(data);
+          }
+        }
+      } catch (err) {
+        console.error("Unexpected error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAdminSession();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
+  return admin ? children : <Navigate to="/admin-signin" replace />;
+};
+
+
+// 📌 HomePage remains the same
 const HomePage = ({ isLoggedIn }) => (
   <div className="sections-container">
     <Element name="home" className="element">
@@ -130,7 +193,6 @@ const HomePage = ({ isLoggedIn }) => (
       <Element name="appointment" className="element">
         <Appointment />
       </Element>
-      
     )}
     <Element name="contact" className="element">
       <Contact />
@@ -155,20 +217,24 @@ function ScrollContent({ isLoggedIn }) {
       >
         <Routes location={location}>
           <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
+          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/admin-signin" element={<AdminSignIn />} />
+          <Route path="/admin-signup" element={<AdminSignUp />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/appointment" element={isLoggedIn ? <Appointment /> : <Home />} />
-          <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/media" element={<MediaGallery/>} />
+          <Route path="/appointment" element={isLoggedIn ? <Appointment /> : <BookNowPopup />} />
+          <Route path="/testimonials" element={<ProtectedAdminRoute><Testimonials /></ProtectedAdminRoute>} />
+          <Route path="/media" element={<MediaGallery />} />
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/admin" element={<ProtectedAdminRoute><AdminPanel /></ProtectedAdminRoute>} />
           <Route path="/profile" element={<PatientPanel />} />
-          <Route path="/media_upload" element={<MediaUpload />} />
-          <Route path="/ClinicsPhotos" element={<ClinicPhotos/>} />
-          <Route path="/ClinicVideos" element={<ClinicVideos/>} />
-          <Route path="/mainadmin" element={<MainAdmin/>} />
-          <Route path="/AdminA" element={<AdminAppointment/>}/> 
+          <Route path="/media_upload" element={<ProtectedAdminRoute><MediaUpload /></ProtectedAdminRoute>} />
+          <Route path="/ClinicsPhotos" element={<ClinicPhotos />} />
+          <Route path="/ClinicVideos" element={<ClinicVideos />} />
+          <Route path="/admin-dashboard" element={<ProtectedAdminRoute><MainAdmin /></ProtectedAdminRoute>} />
+          <Route path="/AdminA" element={<ProtectedAdminRoute><AdminAppointment /></ProtectedAdminRoute>} />
+          <Route path="/Doctors" element={<ProtectedAdminRoute><Doctors/></ProtectedAdminRoute>}/>
         </Routes>
       </motion.div>
     </AnimatePresence>

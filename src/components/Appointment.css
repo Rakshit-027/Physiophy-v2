@@ -3,6 +3,7 @@
     max-width: 1200px;
     margin: 8rem auto;
     padding: 40px 20px;
+    background: linear-gradient(135deg,#F9FAFB 0%, #E0FBE2 100%);
   }
   
   /* Header Styles */

@@ -1,63 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Award, Heart, Users } from 'lucide-react';
+import { Award, Heart, Users, ChevronRight } from 'lucide-react';
 import { Element } from 'react-scroll';
-import './About.css'
+import supabase from './SupabaseClient';
+import './About.css';
+
+const getImageUrl = (imagePath) => {
+  return `https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/doctor-photos/${imagePath}`;
+};
 
 const About = () => {
-  const teamMembers = [
-    {
-      name: 'Dr. Tanvi Katariya',
-      role: 'Senior Physiotherapist',
-      specialization: 'Neuro',
-      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300',
-      experience: '15+ years'
-    },
-    {
-      name: 'Dr. Urvashi',
-      role: 'Clinical Director',
-      specialization: 'Orthopedic Rehabilitation',
-      image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300',
-      experience: '20+ years'
-    },
-    {
-      name: 'Dr. navya',
-      role: 'Physiotherapist',
-      specialization: 'Neurological Rehabilitation',
-      image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=300&h=300',
-      experience: '10+ years'
-    },
-    {
-        name: 'Dr. Sagar',
-        role: 'Physiotherapist',
-        specialization: 'Neurological Rehabilitation',
-        image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=300&h=300',
-        experience: '10+ years'
-    },
-    {
-        name: 'Dr. karnik',
-        role: 'Physiotherapist',
-        specialization: 'Neurological Rehabilitation',
-        image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=300&h=300',
-        experience: '10+ years'
-      },
-      {
-        name: 'Dr. dont know',
-        role: 'Physiotherapist',
-        specialization: 'Neurological Rehabilitation',
-        image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=300&h=300',
-        experience: '10+ years'
+  const [teamMembers, setTeamMembers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      try {
+        const { data, error } = await supabase.from('doctors').select('*');
+        if (error) throw error;
+        setTeamMembers(data);
+      } catch (error) {
+        console.error('Error fetching team members:', error);
+      } finally {
+        setIsLoading(false);
       }
-  ];
+    };
+    fetchTeamMembers();
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const itemVariants = {
@@ -66,37 +45,36 @@ const About = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5
-      }
-    }
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
-    <motion.div 
-      className="about-page"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-    >
+    <div className="about-page">
       <Element name="hero">
-        <motion.section 
+        <motion.section
           className="about-hero"
-          variants={itemVariants}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
         >
           <div className="about-hero-content">
-            <motion.h1 
-              initial={{ opacity: 0, y: -20 }}
+            <motion.h1
+              initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              About Physiophy
+              Transforming Lives Through Expert Care
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Leading the way in physiotherapy care since 2024
+              Leading the way in physiotherapy excellence since 2024, providing innovative
+              and personalized care for optimal recovery and wellness.
             </motion.p>
           </div>
         </motion.section>
@@ -104,34 +82,51 @@ const About = () => {
 
       <Element name="mission-vision">
         <section className="mission-vision">
-          <motion.div 
+          <motion.div
             className="mission-container"
             variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
           >
-            {['Mission', 'Vision', 'Values'].map((item, index) => (
-              <motion.div 
-                key={item}
-                className="mission-card"
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {index === 0 && <Heart className="mission-icon" />}
-                {index === 1 && <Award className="mission-icon" />}
-                {index === 2 && <Users className="mission-icon" />}
-                <h2>Our {item}</h2>
-                {item === 'Values' ? (
+            {[
+              {
+                title: "Mission",
+                icon: <Heart className="mission-icon" />,
+                content: "To provide exceptional physiotherapy care that empowers our patients to achieve optimal physical health and well-being through personalized treatment plans and evidence-based practices."
+              },
+              {
+                title: "Vision",
+                icon: <Award className="mission-icon" />,
+                content: "To be the leading physiotherapy clinic that sets the standard for excellence in patient care, innovation, and rehabilitation services in our community."
+              },
+              {
+                title: "Values",
+                icon: <Users className="mission-icon" />,
+                content: (
                   <ul>
                     <li>Patient-Centered Care</li>
                     <li>Clinical Excellence</li>
                     <li>Continuous Learning</li>
                     <li>Integrity & Trust</li>
+                    <li>Compassionate Service</li>
                   </ul>
+                )
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                className="mission-card"
+                variants={itemVariants}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {item.icon}
+                <h2>{item.title}</h2>
+                {typeof item.content === 'string' ? (
+                  <p>{item.content}</p>
                 ) : (
-                  <p>{item === 'Mission' ? 
-                    "To provide exceptional physiotherapy care that empowers our patients to achieve optimal physical health and well-being through personalized treatment plans and evidence-based practices." :
-                    "To be the leading physiotherapy clinic that sets the standard for excellence in patient care, innovation, and rehabilitation services in our community."
-                  }</p>
+                  item.content
                 )}
               </motion.div>
             ))}
@@ -140,7 +135,7 @@ const About = () => {
       </Element>
 
       <Element name="history">
-        <motion.section 
+        <motion.section
           className="history"
           variants={containerVariants}
           initial="hidden"
@@ -148,55 +143,64 @@ const About = () => {
           viewport={{ once: true }}
         >
           <div className="history-content">
-            <motion.h2 variants={itemVariants}>Our History</motion.h2>
+            <motion.h2 variants={itemVariants}>Our Journey</motion.h2>
             <motion.p variants={itemVariants}>
-            At the heart of our clinic's story is a deep passion for improving lives through physiotherapy. Founded in 2024 by a dedicated team of healthcare professionals, we set out with a clear mission: to provide compassionate, effective, and innovative care for our community.
-
-From humble beginnings, our clinic has rapidly grown into a trusted name in the field, recognized for our personalized treatment plans, state-of-the-art techniques, and unwavering commitment to patient well-being. We have been privileged to serve a diverse range of patients, helping them recover from injuries, manage chronic pain, and achieve a better quality of life.
+              Founded in 2024, our clinic emerged from a vision to revolutionize
+              physiotherapy care. We began with a simple mission: to provide
+              exceptional, personalized care that truly transforms lives.
             </motion.p>
             <motion.p variants={itemVariants}>
-            Join us as we continue to shape the future of physiotherapy, empowering individuals to lead healthier, pain-free lives.
+              Today, we continue to grow and evolve, embracing innovative
+              techniques and technologies while maintaining our commitment to
+              compassionate, patient-centered care.
             </motion.p>
           </div>
         </motion.section>
       </Element>
 
       <Element name="team">
-        <motion.section 
+        <motion.section
           className="team"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <motion.h2 variants={itemVariants}>Meet Our Team</motion.h2>
-          <motion.div 
-            className="team-grid"
-            variants={containerVariants}
-          >
-            {teamMembers.map((member, index) => (
-              <motion.div 
-                key={index} 
-                className="team-member"
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="member-image">
-                  <img src={member.image} alt={member.name} />
-                </div>
-                <div className="member-info">
-                  <h3>{member.name}</h3>
-                  <p className="role">{member.role}</p>
-                  <p className="specialization">{member.specialization}</p>
-                  <p className="experience">Experience: {member.experience}</p>
-                </div>
-              </motion.div>
-            ))}
+          <motion.h2 variants={itemVariants}>Our Expert Team</motion.h2>
+          <motion.div className="team-grid" variants={containerVariants}>
+            {isLoading ? (
+              <p>Loading team members...</p>
+            ) : (
+              teamMembers.map((member, index) => (
+                <motion.div
+                  key={member.id || index}
+                  className="team-member"
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="member-image">
+                    <img
+                      src={getImageUrl(member.image)}
+                      alt={member.name}
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/400x500?text=Doctor+Photo';
+                      }}
+                    />
+                  </div>
+                  <div className="member-info">
+                    <h3>{member.name}</h3>
+                    <p className="role">{member.role}</p>
+                    <p className="specialization">{member.specialization}</p>
+                    <p className="experience">{member.experience} Years Experience</p>
+                  </div>
+                </motion.div>
+              ))
+            )}
           </motion.div>
         </motion.section>
       </Element>
-    </motion.div>
+    </div>
   );
 };
 

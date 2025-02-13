@@ -13,7 +13,6 @@
   background-color: #f3f4f6;
   position: sticky;
 }
-
 .zd-app-container {
   display: flex;
   position: relative;
@@ -459,4 +458,13 @@
     align-items: flex-start;
     gap: 0.5rem;
   }
+}
+
+.zd-logout-btn{
+  z-index: 50;
+  background-color: #111827;
+  color: white;
+  height: 200px;
+  width: 200px;
+  margin-top: -4rem;
 }
