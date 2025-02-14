@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
+import supabase from "./SupabaseClient";
+import HeroImg from "../assets/hero.webp";
 import "./Home.css";
-import Buttons from "./Buttons";
-
 const reviewsData = [
   {
     "author_name": "Shriya Mehta",
@@ -14,7 +16,7 @@ const reviewsData = [
     "author_name": "Gauri Malviya",
     "rating": 4,
     "time": "1 month ago",
-    "text": "I had an amazing experience at this neurophysiotherapy centre! The service is truly excellent - the therapists are knowledgeable, professional, and tailored their treatment to my specific needs. What really stood out, though, was the friendly and welcoming staff.Five stars isn't enough - I'd give it ten stars if I could!"
+    "text": "I had an amazing experience at this neurophysiotherapy centre! The service is truly excellent - the therapists are knowledgeable, professional, and tailored their treatment to my specific needs. What really stood out, though, was the friendly and welcoming staff. Five stars isn't enough - I'd give it ten stars if I could!"
   },
   {
     "author_name": "Nishad Katkoria",
@@ -96,11 +98,29 @@ const reviewsData = [
   }
 ];
 
-
-const Home = () => {
+const Home = ({ onLogin }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoScrollPaused, setIsAutoScrollPaused] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);  // NEW: Track login state
   const intervalRef = useRef(null);
+
+  useEffect(() => {
+    // Fetch session from Supabase
+    const fetchAuthStatus = async () => {
+      const { data } = await supabase.auth.getSession();
+      setIsLoggedIn(!!data.session); // Update state based on session
+    };
+
+    fetchAuthStatus();
+
+    // Listen for auth state changes
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      setIsLoggedIn(!!session);
+    });
+
+    return () => authListener?.subscription?.unsubscribe();
+  }, []);
 
   useEffect(() => {
     if (!isAutoScrollPaused) {
@@ -108,102 +128,69 @@ const Home = () => {
         nextReview();
       }, 5000);
     }
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
+    return () => clearInterval(intervalRef.current);
   }, [currentIndex, isAutoScrollPaused]);
 
-  const nextReview = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % reviewsData.length);
-  };
+  const nextReview = () => setCurrentIndex((prev) => (prev + 1) % reviewsData.length);
+  const prevReview = () => setCurrentIndex((prev) => (prev === 0 ? reviewsData.length - 1 : prev - 1));
+  const handleDotClick = (index) => setCurrentIndex(index);
+  const handleMouseEnter = () => setIsAutoScrollPaused(true);
+  const handleMouseLeave = () => setIsAutoScrollPaused(false);
 
-  const prevReview = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? reviewsData.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleDotClick = (index) => {
-    setCurrentIndex(index);
-  };
-
-  const handleMouseEnter = () => {
-    setIsAutoScrollPaused(true);
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
+  const handleBookNowClick = () => {
+    if (!isLoggedIn) {
+      setShowPopup(true);
+    } else {
+      window.location.href = "/appointment";
     }
   };
 
-  const handleMouseLeave = () => {
-    setIsAutoScrollPaused(false);
-  };
+  const closePopup = () => setShowPopup(false);
 
   return (
+    <div className="physio-cont">
     <div className="physio-container">
       {/* Hero Section */}
       <section className="physio-hero">
         <div className="physio-hero-content">
           <h1 className="physio-main-title">
             <span className="physio-title-accent">Expert Care</span>
+            <span className="physio-title-accent">With Physiophy</span>
             <span className="physio-title-main">for Your Recovery Journey</span>
           </h1>
           <p className="physio-hero-description">
-            Discover personalized physiotherapy treatments that help you move better,
-            feel stronger, and live pain-free. Our expert team is dedicated to your
-            complete recovery.
+            Discover personalized physiotherapy treatments that help you move better, feel stronger, and live pain-free.
           </p>
           <div className="physio-cta-group">
-            {/* <button className="physio-primary-btn">
-              Book Appointment
-              <span className="physio-btn-arrow">→</span>
-            </button> */}
-            <Buttons text="Book Appointment" />
-            <button className="physio-secondary-btn">
-              Our Services
-              <span className="physio-btn-arrow">→</span>
-            </button>
+            <div>
+              <div className="physio-primary-btn" onClick={handleBookNowClick}>
+                Book Appointment
+              </div>
+            </div>
+            <ScrollLink to="services" spy={true} smooth={true} offset={-70} duration={500} className="physio-secondary-btn">
+              Our Services<span className="physio-btn-arrow">→</span>
+            </ScrollLink>
           </div>
         </div>
         <div className="physio-hero-image-wrapper">
-          <img
-            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80"
-            alt="Physiotherapy Session"
-            className="physio-hero-image"
-          />
-          <div className="physio-experience-badge">
-            <span className="physio-badge-number">15+</span>
-            <span className="physio-badge-text">Years of Excellence</span>
-          </div>
+          <img src={HeroImg} alt="Physiotherapy Session" className="physio-hero-image" />
+          {/* <div className="physio-experience-badge">
+            {/* <span className="physio-badge-number">15+</span>
+            <span className="physio-badge-text">Years of Excellence</span> */}
+          {/* </div>  */}
         </div>
       </section>
 
-      {/* Enhanced Testimonials Section */}
+      {/* Testimonials Section */}
       <section className="physio-testimonials">
         <h2 className="physio-section-title">What Our Patients Say</h2>
-        <div 
-          className="physio-testimonials-wrapper"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
+        <div className="physio-testimonials-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <button className="physio-nav-btn left" onClick={prevReview}>
             <ChevronLeft size={24} />
           </button>
-          <div 
-            className="physio-testimonials-slider"
-            style={{
-              transform: `translateX(-${currentIndex * 100}%)`,
-            }}
-          >
+          <div className="physio-testimonials-slider" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
             {reviewsData.map((review, index) => (
-              <div
-                key={index}
-                className={`physio-testimonial-card ${
-                  index === currentIndex ? "active" : ""
-                }`}
-              >
+              <div key={index} className={`physio-testimonial-card ${index === currentIndex ? "active" : ""}`}>
                 <div className="physio-testimonial-header">
                   <img
                     src={`https://api.dicebear.com/7.x/initials/svg?seed=${review.author_name}`}
@@ -218,11 +205,7 @@ const Home = () => {
                 <p className="physio-testimonial-text">{review.text}</p>
                 <div className="physio-testimonial-rating">
                   {[...Array(review.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="physio-star-icon"
-                      fill="currentColor"
-                    />
+                    <Star key={i} className="physio-star-icon" fill="currentColor" />
                   ))}
                 </div>
               </div>
@@ -233,15 +216,27 @@ const Home = () => {
           </button>
           <div className="physio-testimonial-dots">
             {reviewsData.map((_, index) => (
-              <button
-                key={index}
-                className={`physio-dot ${index === currentIndex ? "active" : ""}`}
-                onClick={() => handleDotClick(index)}
-              />
+              <button key={index} className={`physio-dot ${index === currentIndex ? "active" : ""}`} onClick={() => handleDotClick(index)} />
             ))}
           </div>
         </div>
       </section>
+
+
+        {/* Popup Modal */}
+        {showPopup && (
+  <div className="popup-overlay">
+    <div className="popup-box">
+      <h2>Sign In Required</h2>
+      <p>You need to sign in to book an appointment.</p>
+      <div className="button-group">
+        <RouterLink to="signIn" onClick={onLogin} className="login-btn">Sign In</RouterLink>
+        <button onClick={closePopup} className="close-button">Close</button>
+      </div>
+    </div>
+  </div>
+)}
+     </div>
     </div>
   );
 };

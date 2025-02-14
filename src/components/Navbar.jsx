@@ -166,12 +166,12 @@ const Navbar = ({ isLoggedIn, onLogin, onLogout, userProfile }) => {
                 Media
               </RouterLink>
             </li>
-            <li>
+            {/* <li>
               <RouterLink to="/blog" className="nav-link" onClick={closeMenu}>
                 <BookOpen className="nav-icon" size={18} />
                 Blog
               </RouterLink>
-            </li>
+            </li> */}
           </ul>
           <div className="auth-section">
             {isLoggedIn ? (
@@ -181,26 +181,30 @@ const Navbar = ({ isLoggedIn, onLogin, onLogout, userProfile }) => {
                 {showUserMenu && (
                   <div className="user-dropdown">
                     <RouterLink to="/profile" className="dropdown-item" onClick={closeMenu}><User /><span>Profile</span></RouterLink>
-                    <RouterLink to="/settings" className="dropdown-item" onClick={closeMenu}><Settings /><span>Settings</span></RouterLink>
+                    {/* <RouterLink to="/settings" className="dropdown-item" onClick={closeMenu}><Settings /><span>Settings</span></RouterLink> */}
                     <button onClick={handleLogout} className="dropdown-item logout"><LogOut /><span>Sign Out</span></button>
                   </div>
                 )}
               </div>
             ) : (
-              <button className="login-button" onClick={onLogin}><LogIn /><span>Sign In</span></button>
+              <button className="login-btn-nav" onClick={onLogin}><LogIn /><span>Sign In</span></button>
             )}
           </div>
         </div>
       </div>
-      {showPopup &&  <div className="popup-overlay">
-          <div className="popup-box">
-            <h2>Sign In Required</h2>
-            <p>You need to sign in to book an appointment.</p>
-            <button onClick={closePopup} className="close-button">
-              Close
-            </button>
-          </div>
-        </div>}
+      {showPopup && (
+  <div className="popup-overlay">
+    <div className="popup-box">
+      <h2>Sign In Required</h2>
+      <p>You need to sign in to book an appointment.</p>
+      <div className="button-group">
+        <RouterLink to="signIn" onClick={onLogin} className="login-btn">Sign In</RouterLink>
+        <button onClick={closePopup} className="close-button">Close</button>
+      </div>
+    </div>
+  </div>
+)}
+
     </nav>
   );
 };

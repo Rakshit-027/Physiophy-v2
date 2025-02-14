@@ -235,7 +235,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--primary-green);
+    color: black;
+    background-color: #2ecc71;
     text-decoration: none;
     font-weight: 600;
     margin-top: 0.5rem;
@@ -245,6 +246,7 @@
   .switch-auth:hover {
     color: #159b82;
     gap: 0.8rem;
+    color: black bold;
   }
   
   /* Responsive Design */

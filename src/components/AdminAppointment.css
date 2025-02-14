@@ -132,18 +132,18 @@
     color: black;
   }
   
-  button:first-child:hover:not(:disabled) {
+  /* button:first-child:hover:not(:disabled) {
     background-color: green;
-  }
-  
+  } */
+/*   
   button:last-child {
     background-color: white;
     color: black;
-  }
+  } */
   
-  button:last-child:hover:not(:disabled) {
-    background-color: lightgreen;
-  }
+  /* button:last-child:hover:not(:disabled) {
+    background-color: lightgreen; */
+  /* } */
   
   .loading-container {
     display: flex;

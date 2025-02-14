@@ -24,6 +24,7 @@ const Contact = () => {
   };
 
   return (
+    <div className="contact-main">
     <div className="contact-container">
       <div className="contact-header">
         <h1>Your First Step to a Healthier, Pain-Free Life</h1>
@@ -109,6 +110,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 };

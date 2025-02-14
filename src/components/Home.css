@@ -13,7 +13,7 @@
 
 /* Container */
 .physio-container {
-  max-width: 100%;
+  max-width: 2400px;
   margin: 0 auto;
   font-family: 'Helvetica Neue', Arial, sans-serif;
   color: var(--text-color);
@@ -25,10 +25,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: clamp(3rem, 6vw, 6rem) clamp(4%, 6vw, 8%);
+  padding: clamp(3rem, 6vw, 6rem) clamp(4%, 10vw, 8%);
   background: linear-gradient(135deg, var(--background-color) 0%, #E0FBE2 100%);
   min-height: 90vh;
-  gap: clamp(2rem, 4vw, 4rem);
+  gap: clamp(14rem, 4vw, 4rem);
 }
 
 .physio-hero-content {
@@ -66,12 +66,12 @@
 .physio-hero-image-wrapper {
   flex: 1;
   position: relative;
-  animation: slideIn 1s ease-out;
+  animation: FadeIn 3s ease-out;
 }
 
 .physio-hero-image {
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   height: auto;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -109,7 +109,7 @@
 
 .physio-primary-btn, .physio-secondary-btn {
   padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
-  border-radius: 50px;
+  border-radius: 20px;
   font-size: clamp(0.9rem, 1.5vw, 1.1rem);
   font-weight: 600;
   cursor: pointer;
@@ -121,15 +121,31 @@
 }
 
 .physio-primary-btn {
-  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+  /* background: linear-gradient(to right, var(--gradient-start), var(--gradient-end)); */
+  color: black;
+  border: none;
+  background-color: lightgreen;
+  
+}
+.physio-primary-btn:hover{
+  /* background: linear-gradient(to right, var(--gradient-start), var(--gradient-end)); */
   color: white;
   border: none;
+  background-color:black;
+  border-radius: 3px;
+  
 }
 
 .physio-secondary-btn {
-  background: transparent;
+  /* background: transparent; */
   color: var(--primary-color);
   border: 2px solid var(--primary-color);
+}
+.physio-secondary-btn:hover {
+  /* background: transparent; */
+  color: white;
+  background-color:var(--primary-color);
+  border-radius: 3px;
 }
 
 /* Testimonials Section */
@@ -342,9 +358,11 @@
   .physio-hero {
     flex-direction: column;
     text-align: center;
+  
     min-height: auto;
     margin-top: 5rem;
     padding: clamp(2rem, 4vw, 4rem) clamp(4%, 6vw, 8%);
+    gap: clamp(2rem, 4vw, 4rem);
   }
 
   .physio-hero-content {
@@ -389,7 +407,10 @@
 
   .physio-cta-group {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+    height: 50px;
+    width: auto;
+    
   }
 }
 

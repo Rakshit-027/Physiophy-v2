@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 import "./Auth.css";
 import Logo from "./Logo.png";
 import supabase from "./SupabaseClient";
+import { useNavigate } from "react-router-dom";
 
 const AdminSignIn = ({ onClose }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -17,6 +18,11 @@ const AdminSignIn = ({ onClose }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const navigate = useNavigate();
+const closePopup = () => {
+  navigate("/"); 
+  window.location.reload();// Redirect to home page without reloading
+};
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -71,7 +77,7 @@ const AdminSignIn = ({ onClose }) => {
   return (
     <div className="auth-container" onClick={onClose}>
       <div className="auth-card" onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={onClose}>
+        <button className="close-button" onClick={closePopup}>
           <X size={24} />
         </button>
         <div className="auth-header">

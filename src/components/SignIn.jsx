@@ -3,6 +3,9 @@ import { Mail, Lock, LogIn, ArrowRight, X } from 'lucide-react';
 import './Auth.css';
 import Logo from './Logo.png';
 import supabase from './SupabaseClient';
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 const SignIn = ({ onClose, onSignUp, onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -18,6 +21,12 @@ const SignIn = ({ onClose, onSignUp, onSuccess }) => {
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
+const navigate = useNavigate();
+const closePopup = () => {
+  navigate("/"); 
+  window.location.reload();// Redirect to home page without reloading
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,9 +73,9 @@ const SignIn = ({ onClose, onSignUp, onSuccess }) => {
   };
 
   return (
-    <div className="auth-container" onClick={onClose}>
+    <div className="auth-container" onClick={closePopup}>
       <div className="auth-card" onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={onClose}>
+        <button className="close-button" onClick={closePopup}>
           <X size={24} />
         </button>
         <div className="auth-header">
@@ -126,13 +135,13 @@ const SignIn = ({ onClose, onSignUp, onSuccess }) => {
             <span>Create Account</span>
             <ArrowRight size={16} />
           </button>
-          <p className="demo-credentials">
+          {/* <p className="demo-credentials">
             <strong>Admin demo credentials:</strong>
             <br />
             Email: admin@example.com
             <br />
             Password: admin
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

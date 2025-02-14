@@ -1,4 +1,10 @@
 /* Contact Container */
+.contact-main{
+  min-height: 100vh;
+  background: linear-gradient(135deg,#F9FAFB 0%, #E0FBE2 100%);
+  position: relative;
+
+}
 .contact-container {
     max-width: 1200px;
     margin: 7rem auto;

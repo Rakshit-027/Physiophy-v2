@@ -4,6 +4,7 @@ import { User, Mail, Lock, Phone, UserPlus, ArrowRight, X } from "lucide-react";
 import "./Auth.css"; // Keeps your original styling
 import Logo from "./Logo.png";
 import supabase from "./SupabaseClient";
+import { useNavigate } from "react-router-dom";
 
 const AdminSignUp = ({ onClose, onSignIn, onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,11 @@ const AdminSignUp = ({ onClose, onSignIn, onSuccess }) => {
 
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+const closePopup = () => {
+  navigate("/"); 
+  window.location.reload();// Redirect to home page without reloading
+};
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -83,7 +89,7 @@ const AdminSignUp = ({ onClose, onSignIn, onSuccess }) => {
   return (
     <div className="auth-container" onClick={onClose}>
       <div className="auth-card" onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={onClose}>
+        <button className="close-button" onClick={closePopup}>
           <X size={24} />
         </button>
         <div className="auth-header">
