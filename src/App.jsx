@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import { Element, Events, scrollSpy } from 'react-scroll';
 import supabase from './components/SupabaseClient';
 import Navbar from './components/Navbar';
