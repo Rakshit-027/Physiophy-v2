@@ -27,6 +27,14 @@ import BookNowPopup from './components/BookNowPopup.jsx';
 import Doctors from './components/Doctors.jsx';
 
 function App() {
+  return (
+    <Router>
+      <MainApp />
+    </Router>
+  );
+}
+
+function MainApp() {
   const [showAuth, setShowAuth] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
@@ -39,7 +47,7 @@ function App() {
 
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      
+
       if (session) {
         setUserProfile(session.user);
         setIsLoggedIn(true);
@@ -69,70 +77,28 @@ function App() {
     };
   }, []);
 
-  const handleLogin = () => {
-    setShowAuth('signin');
-  };
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-  };
+  const handleLogin = () => setShowAuth('signin');
+  const handleLogout = async () => await supabase.auth.signOut();
 
   return (
-    <Router>
-      <div className="app">
-        <Navbar
-          isLoggedIn={isLoggedIn}
-          onLogin={handleLogin}
-          onLogout={handleLogout}
-          userProfile={userProfile}
-        />
-        <AnimatePresence mode="wait">
-          {showAuth ? (
-            <motion.div
-              key="auth"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50"
-            >
-              {showAuth === 'signin' ? (
-                <SignIn
-                  onClose={() => setShowAuth(null)}
-                  onSignUp={() => setShowAuth('signup')}
-                />
-              ) : (
-                <SignUp
-                  onClose={() => setShowAuth(null)}
-                  onSignIn={() => setShowAuth('signin')}
-                />
-              )}
-            </motion.div>
-          ) : showAdminAuth ? (
-            <motion.div
-              key="admin-auth"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50"
-            >
-              {showAdminAuth === 'signin' ? (
-                <AdminSignIn
-                  onClose={() => setShowAdminAuth(null)}
-                  onSignUp={() => setShowAdminAuth('signup')}
-                />
-              ) : (
-                <AdminSignUp
-                  onClose={() => setShowAdminAuth(null)}
-                  onSignIn={() => setShowAdminAuth('signin')}
-                />
-              )}
-            </motion.div>
-          ) : (
-            <ScrollContent isLoggedIn={isLoggedIn} />
-          )}
-        </AnimatePresence>
-      </div>
-    </Router>
+    <div className="app">
+      <Navbar isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} userProfile={userProfile} />
+      <AnimatePresence mode="wait">
+        {showAuth ? (
+          <motion.div key="auth" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50">
+            {showAuth === 'signin' ? <SignIn onClose={() => setShowAuth(null)} onSignUp={() => setShowAuth('signup')} /> : 
+                                      <SignUp onClose={() => setShowAuth(null)} onSignIn={() => setShowAuth('signin')} />}
+          </motion.div>
+        ) : showAdminAuth ? (
+          <motion.div key="admin-auth" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50">
+            {showAdminAuth === 'signin' ? <AdminSignIn onClose={() => setShowAdminAuth(null)} onSignUp={() => setShowAdminAuth('signup')} /> : 
+                                          <AdminSignUp onClose={() => setShowAdminAuth(null)} onSignIn={() => setShowAdminAuth('signin')} />}
+          </motion.div>
+        ) : (
+          <ScrollContent isLoggedIn={isLoggedIn} />
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -144,22 +110,11 @@ const ProtectedAdminRoute = ({ children }) => {
   useEffect(() => {
     const fetchAdminSession = async () => {
       try {
-        const adminEmail = localStorage.getItem('admin_email'); // Get stored admin email
+        const adminEmail = localStorage.getItem('admin_email');
 
         if (adminEmail) {
-          const { data, error } = await supabase
-            .from('admin_auth') // Ensure your table is named correctly
-            .select('role')
-            .eq('email', adminEmail)
-            .single();
-
-          if (error) {
-            console.error("Error fetching admin:", error);
-          }
-
-          if (data?.role === 'admin') {
-            setAdmin(data);
-          }
+          const { data, error } = await supabase.from('admin_auth').select('role').eq('email', adminEmail).single();
+          if (!error && data?.role === 'admin') setAdmin(data);
         }
       } catch (err) {
         console.error("Unexpected error:", err);
@@ -172,34 +127,18 @@ const ProtectedAdminRoute = ({ children }) => {
   }, []);
 
   if (loading) return <div>Loading...</div>;
-
   return admin ? children : <Navigate to="/admin-signin" replace />;
 };
 
-
-// 📌 HomePage remains the same
+// 📌 HomePage
 const HomePage = ({ isLoggedIn }) => (
   <div className="sections-container">
-    <Element name="home" className="element">
-      <Home />
-    </Element>
-    <Element name="about" className="element">
-      <About />
-    </Element>
-    <Element name="services" className="element">
-      <Services />
-    </Element>
-    {isLoggedIn && (
-      <Element name="appointment" className="element">
-        <Appointment />
-      </Element>
-    )}
-    <Element name="contact" className="element">
-      <Contact />
-    </Element>
-    <Element name="faq" className="element">
-      <FAQ />
-    </Element>
+    <Element name="home" className="element"><Home /></Element>
+    <Element name="about" className="element"><About /></Element>
+    <Element name="services" className="element"><Services /></Element>
+    {isLoggedIn && <Element name="appointment" className="element"><Appointment /></Element>}
+    <Element name="contact" className="element"><Contact /></Element>
+    <Element name="faq" className="element"><FAQ /></Element>
   </div>
 );
 
@@ -208,13 +147,7 @@ function ScrollContent({ isLoggedIn }) {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.5 }}
-      >
+      <motion.div key={location.pathname} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.5 }}>
         <Routes location={location}>
           <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
           <Route path="/signIn" element={<SignIn />} />
