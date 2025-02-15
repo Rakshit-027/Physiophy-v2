@@ -1,9 +1,13 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react'; // Correct plugin for React
-import tailwindcss from 'tailwindcss'; // TailwindCSS should be used in a PostCSS config, not here
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [
-    react(), // Correct way to add React plugin
-  ],
+  plugins: [react()],
+  base: './', // 👈 Important for correct asset paths
+  server: {
+    port: 3000
+  },
+  build: {
+    outDir: 'dist'
+  }
 });
