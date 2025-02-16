@@ -25,7 +25,8 @@ import AdminSignIn from './components/AdminSignIn';
 import AdminSignUp from './components/AdminSignUp';
 import BookNowPopup from './components/BookNowPopup.jsx';
 import Doctors from './components/Doctors.jsx';
-
+import UpdatePassword from './components/UpdatePassword.jsx';
+import ResetPassword from './components/ResetPassword.jsx';
 function App() {
   return (
     <Router>
@@ -168,6 +169,7 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="/admin-dashboard" element={<ProtectedAdminRoute><MainAdmin /></ProtectedAdminRoute>} />
           <Route path="/AdminA" element={<ProtectedAdminRoute><AdminAppointment /></ProtectedAdminRoute>} />
           <Route path="/Doctors" element={<ProtectedAdminRoute><Doctors/></ProtectedAdminRoute>}/>
+          <Route path='/update-password' element={<ResetPassword />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
