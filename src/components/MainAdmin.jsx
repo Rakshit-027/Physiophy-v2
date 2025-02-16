@@ -20,14 +20,15 @@ import Testimonials from './Testimonials';
 import MediaUpload from './MediaUpload';
 import AdminAppointment from './AdminAppointment';
 import Doctors from './Doctors';
+import AdminInstructions from './AdminInstructions';
 
 function MainAdmin() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [activeTab, setActiveTab] = useState('Home'); // Store only one active tab at a time
+  const [activeTab, setActiveTab] = useState('Instructions'); // Store only one active tab at a time
   const navigate = useNavigate();
 
   const sidebarItems = [
-    { id: 'Home', icon: <LayoutDashboard size={20} />, label: 'Home', component: <Home /> },
+    { id: 'Instructions', icon: <LayoutDashboard size={20} />, label: 'Instructions', component: <AdminInstructions/> },
     { id: 'Users', icon: <User size={20} />, label: 'User', component: <AdminPanel /> },
     { id: 'Testimonial', icon: <Users size={20} />, label: 'Testimonial', component: <Testimonials /> },
     { id: 'Media Upload', icon: <Camera size={20} />, label: 'Media Upload', component: <MediaUpload /> },

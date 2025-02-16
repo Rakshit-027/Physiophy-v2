@@ -27,6 +27,7 @@ import BookNowPopup from './components/BookNowPopup.jsx';
 import Doctors from './components/Doctors.jsx';
 import UpdatePassword from './components/UpdatePassword.jsx';
 import ResetPassword from './components/ResetPassword.jsx';
+import AdminInstructions from './components/AdminInstructions.jsx';
 function App() {
   return (
     <Router>
@@ -169,6 +170,7 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="/admin-dashboard" element={<ProtectedAdminRoute><MainAdmin /></ProtectedAdminRoute>} />
           <Route path="/AdminA" element={<ProtectedAdminRoute><AdminAppointment /></ProtectedAdminRoute>} />
           <Route path="/Doctors" element={<ProtectedAdminRoute><Doctors/></ProtectedAdminRoute>}/>
+          <Route path="/AdminIntructions" element={<ProtectedAdminRoute><AdminInstructions/></ProtectedAdminRoute>}/>
           <Route path="/update-password" element={<ResetPassword />} />
         </Routes>
       </motion.div>
