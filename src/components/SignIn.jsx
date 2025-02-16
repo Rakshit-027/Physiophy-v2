@@ -57,7 +57,7 @@ const closePopup = () => {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(formData.email, {
-        redirectTo: 'http://localhost:3000/update-password',
+        redirectTo: 'https://physiophy-v2.vercel.app/update-password',
       });
 
       if (error) {
