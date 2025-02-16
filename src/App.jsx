@@ -169,7 +169,7 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="/admin-dashboard" element={<ProtectedAdminRoute><MainAdmin /></ProtectedAdminRoute>} />
           <Route path="/AdminA" element={<ProtectedAdminRoute><AdminAppointment /></ProtectedAdminRoute>} />
           <Route path="/Doctors" element={<ProtectedAdminRoute><Doctors/></ProtectedAdminRoute>}/>
-          <Route path='/update-password' element={<ResetPassword />} />
+          <Route path="/update-password" element={<ResetPassword />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
