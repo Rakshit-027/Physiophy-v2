@@ -41,17 +41,28 @@
   line-height: 1.2;
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
   animation: slideUp 0.8s ease-out;
+  
 }
 
 .physio-title-accent {
-  color: var(--primary-color);
+  background: linear-gradient(to right, lightgreen, darkgreen);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   display: block;
-  font-weight: 700;
+  font-weight: 1000;
+}
+.physio-title-accent img {
+  height: 20px;
+  width:40px;
 }
 
 .physio-title-main {
   display: block;
   margin-top: 0.5rem;
+  background: linear-gradient(to right, black, gray);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
 }
 
 .physio-hero-description {

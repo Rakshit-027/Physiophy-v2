@@ -5,6 +5,8 @@ import { Link as ScrollLink } from "react-scroll";
 import supabase from "./SupabaseClient";
 import HeroImg from "../assets/hero.webp";
 import "./Home.css";
+import ShinyText from "./ShinyText";
+import ShinyTextc from "./ShinyTextc";
 const reviewsData = [
   {
     "author_name": "Shriya Mehta",
@@ -154,9 +156,9 @@ const Home = ({ onLogin }) => {
       <section className="physio-hero">
         <div className="physio-hero-content">
           <h1 className="physio-main-title">
-            <span className="physio-title-accent">Expert Care</span>
-            <span className="physio-title-accent">With Physiophy</span>
-            <span className="physio-title-main">for Your Recovery Journey</span>
+            <span className="physio-title-accent"><ShinyText text="Expert Care"/></span>
+            <span className="physio-title-accent"><ShinyText text="With Physiophy"/></span>
+            <span className="physio-title-main"><ShinyTextc text="For Your Recovery Journey"/></span>
           </h1>
           <p className="physio-hero-description">
             Discover personalized physiotherapy treatments that help you move better, feel stronger, and live pain-free.
