@@ -1,52 +1,185 @@
+:root {
+  --primary-color:lightgreen;
+  --primary-hover: lightgreen;
+  --secondary-color: lightgreen;
+  --text-color: #1f2937;
+  --background-color: #f3f4f6;
+  --card-background: #ffffff;
+  --border-color: #e5e7eb;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
 .patient-panel {
-    max-width: 800px;
-    width: 90%;
-    margin: 19rem auto;
-    padding: 20px;
-    background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
+  max-width: 1000px;
+  width: 95%;
+  margin: 6rem auto;
+  background: var(--card-background);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.patient-panel-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.header-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.patient-panel h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.patient-data {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.data-card {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.data-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.card-content {
+  color: var(--text-color);
+}
+
+.sessions-counter {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.sessions-counter .number {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.sessions-counter .label {
+  font-size: 0.875rem;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.improvements, .exercise-plan {
+  margin: 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--background-color);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: #6b7280;
+  text-align: center;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .patient-panel {
+    margin: 8rem 40px 0 40px;
+      width: auto; }
+    /* align-items: center;
+    justify-content: center;
+    margin-left: -40px;
+  } */
+
+  .patient-data {
+    padding: 1rem;
+    grid-template-columns: 1fr;
   }
-  
-  .patient-panel h2 {
-    color: #2c3e50;
-    text-align: center;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+
+  .sessions-counter .number {
+    font-size: 2.5rem;
   }
-  
-  .patient-panel p {
-    background-color: white;
-    margin: 10px 0;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    color: #34495e;
-    font-size: clamp(0.9rem, 3vw, 1.1rem);
-  }
-  
-  .patient-panel p:nth-child(odd) {
-    background-color: #f1f4f7;
-  }
-  
-  .patient-panel .loading,
-  .patient-panel .no-data {
-    text-align: center;
-    color: #7f8c8d;
-    font-style: italic;
-  }
-  
-  @media screen and (max-width: 600px) {
-    .patient-panel {
-      margin: 70% auto;
-      padding: 10px;
-      width: 95%;
-    }
-  
-    .patient-panel p {
-      padding: 8px;
-    }
-  }
+}

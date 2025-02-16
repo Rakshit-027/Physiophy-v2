@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import supabase from "./SupabaseClient"
+import { Users, UserPlus, Activity, ClipboardList, Award } from 'lucide-react'
 import "./AdminPanel.css"
 
 const AdminPanel = () => {
@@ -14,7 +15,6 @@ const AdminPanel = () => {
 
   const fetchPatients = async () => {
     try {
-      // Get all patient records with their user data
       const { data: patientData, error: patientError } = await supabase
         .from('patients')
         .select(`
@@ -68,7 +68,6 @@ const AdminPanel = () => {
     try {
       console.log("Attempting to update patient:", selectedPatient)
 
-      // First check if the user still exists
       const { data: userExists, error: userError } = await supabase
         .from('users')
         .select('id')
@@ -89,7 +88,6 @@ const AdminPanel = () => {
 
       console.log("Update data:", updateData)
 
-      // First check if a record exists
       const { data: existingRecord, error: checkError } = await supabase
         .from('patients')
         .select('id')
@@ -97,20 +95,17 @@ const AdminPanel = () => {
         .single()
 
       if (checkError && checkError.code !== 'PGRST116') {
-        // PGRST116 means no rows returned, which is fine
         throw checkError
       }
 
       let updateError
       if (existingRecord) {
-        // Update existing record
         const { error } = await supabase
           .from('patients')
           .update(updateData)
           .eq('user_id', selectedPatient.id)
         updateError = error
       } else {
-        // Insert new record
         const { error } = await supabase
           .from('patients')
           .insert([updateData])
@@ -122,38 +117,67 @@ const AdminPanel = () => {
         throw new Error("Failed to update patient record")
       }
 
-      alert("Patient details updated successfully.")
+      const successMessage = document.createElement('div')
+      successMessage.className = 'success-message'
+      successMessage.textContent = 'Patient details updated successfully!'
+      document.body.appendChild(successMessage)
+      
+      setTimeout(() => {
+        document.body.removeChild(successMessage)
+      }, 3000)
+
       setSelectedPatient(null)
       fetchPatients()
     } catch (err) {
       console.error("Error in handleUpdate:", err)
-      alert(`Error updating patient details: ${err.message}`)
+      const errorMessage = document.createElement('div')
+      errorMessage.className = 'error-message'
+      errorMessage.textContent = `Error: ${err.message}`
+      document.body.appendChild(errorMessage)
+      
+      setTimeout(() => {
+        document.body.removeChild(errorMessage)
+      }, 3000)
     }
   }
 
   return (
     <div className="admin-panel">
       <div className="admin-panel-header">
-        <h2>Admin Panel</h2>
+        <Users className="header-icon" size={32} />
+        <h2>Patient Management Dashboard</h2>
       </div>
 
       {loading ? (
-        <p className="loading">Loading patients data...</p>
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p className="loading">Loading patients data...</p>
+        </div>
       ) : (
         <div className="admin-panel-content">
           <div className="patients-list">
-            <h3>Patients List ({patients.length})</h3>
+            <div className="section-header">
+              <UserPlus className="section-icon" size={24} />
+              <h3>Patients Directory ({patients.length})</h3>
+            </div>
             {patients.length === 0 ? (
-              <p>No active patients found</p>
+              <div className="empty-state">
+                <Users size={48} />
+                <p>No active patients found</p>
+              </div>
             ) : (
               <ul>
                 {patients.map((patient) => (
-                  <li key={patient.id} className="patient-item">
+                  <li key={patient.id} className={`patient-item ${selectedPatient?.id === patient.id ? 'selected' : ''}`}>
                     <div className="patient-info">
-                      <span>{patient.full_name}</span>
-                      {/* <small>Sessions left: {patient.sessions_left || 0}</small> */}
+                      <span className="patient-name">{patient.full_name}</span>
+                      <span className="sessions-badge">
+                        {patient.sessions_left || 0} sessions left
+                      </span>
                     </div>
-                    <button onClick={() => handlePatientSelect(patient)}>Edit</button>
+                    <button className="edit-button" onClick={() => handlePatientSelect(patient)}>
+                      Edit Details
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -162,46 +186,70 @@ const AdminPanel = () => {
 
           {selectedPatient && (
             <div className="edit-patient-form">
-              <h3>Edit Patient Details</h3>
+              <div className="section-header">
+                <ClipboardList className="section-icon" size={24} />
+                <h3>Edit Patient Profile</h3>
+              </div>
               <form onSubmit={(e) => {
                 e.preventDefault()
                 handleUpdate()
               }}>
-                <label>
-                  Patient Name:
-                  <input type="text" value={selectedPatient.full_name} readOnly />
-                </label>
-                <label>
-                  Sessions Left:
-                  <input
-                    type="number"
-                    name="sessions_left"
-                    value={selectedPatient.sessions_left || 0}
-                    onChange={handleChange}
-                    min="0"
-                  />
-                </label>
-                <label>
-                  Exercise Plan:
-                  <input
-                    type="text"
-                    name="exercise_plan"
-                    value={selectedPatient.exercise_plan || ""}
-                    onChange={handleChange}
-                  />
-                </label>
-                <label>
-                  Improvements:
-                  <input
-                    type="text"
-                    name="improvements"
-                    value={selectedPatient.improvements || ""}
-                    onChange={handleChange}
-                  />
-                </label>
+                <div className="form-group">
+                  <label>
+                    <span className="label-text">Patient Name</span>
+                    <input type="text" value={selectedPatient.full_name} readOnly className="readonly-input" />
+                  </label>
+                </div>
+
+                <div className="form-group">
+                  <label>
+                    <span className="label-text">
+                      <Activity className="input-icon" size={18} />
+                      Sessions Left
+                    </span>
+                    <input
+                      type="number"
+                      name="sessions_left"
+                      value={selectedPatient.sessions_left || 0}
+                      onChange={handleChange}
+                      min="0"
+                    />
+                  </label>
+                </div>
+
+                <div className="form-group">
+                  <label>
+                    <span className="label-text">
+                      <ClipboardList className="input-icon" size={18} />
+                      Exercise Plan
+                    </span>
+                    <textarea
+                      name="exercise_plan"
+                      value={selectedPatient.exercise_plan || ""}
+                      onChange={handleChange}
+                      rows="4"
+                    />
+                  </label>
+                </div>
+
+                <div className="form-group">
+                  <label>
+                    <span className="label-text">
+                      <Award className="input-icon" size={18} />
+                      Improvements
+                    </span>
+                    <textarea
+                      name="improvements"
+                      value={selectedPatient.improvements || ""}
+                      onChange={handleChange}
+                      rows="4"
+                    />
+                  </label>
+                </div>
+
                 <div className="form-buttons">
-                  <button type="submit">Update Patient</button>
-                  <button type="button" onClick={() => setSelectedPatient(null)}>Cancel</button>
+                  <button type="submit" className="submit-button">Update Patient</button>
+                  <button type="button" className="cancel-button" onClick={() => setSelectedPatient(null)}>Cancel</button>
                 </div>
               </form>
             </div>

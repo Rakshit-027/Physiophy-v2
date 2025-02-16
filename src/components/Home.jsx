@@ -158,7 +158,7 @@ const Home = ({ onLogin }) => {
           <h1 className="physio-main-title">
             <span className="physio-title-accent"><ShinyText text="Expert Care"/></span>
             <span className="physio-title-accent"><ShinyText text="With Physiophy"/></span>
-            <span className="physio-title-main"><ShinyTextc text="For Your Recovery Journey"/></span>
+            <span className="physio-title-main"><ShinyText text="For Your Recovery Journey"/></span>
           </h1>
           <p className="physio-hero-description">
             Discover personalized physiotherapy treatments that help you move better, feel stronger, and live pain-free.

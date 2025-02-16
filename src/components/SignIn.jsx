@@ -23,7 +23,7 @@ const SignIn = ({ onClose, onSignUp, onSuccess }) => {
   };
 const navigate = useNavigate();
 const closePopup = () => {
-  navigate("/"); 
+  navigate("/#Home"); 
   window.location.reload();// Redirect to home page without reloading
 };
 
