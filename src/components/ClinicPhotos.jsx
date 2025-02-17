@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import supabase from './SupabaseClient';
 import { Camera } from 'lucide-react';
 import './ClinicPhotos.css';
@@ -7,6 +7,7 @@ const ClinicPhotos = () => {
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const observer = useRef(null);
 
   useEffect(() => {
     fetchImages();
@@ -28,6 +29,18 @@ const ClinicPhotos = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          observer.current.unobserve(img);
+        }
+      });
+    });
+  }, []);
 
   if (loading) {
     return (
@@ -63,8 +76,9 @@ const ClinicPhotos = () => {
             <li key={photo.id} className="image-container">
               <img 
                 className="gallery-image" 
-                src={photo.photo_url} 
+                data-src={photo.photo_url} 
                 alt={photo.title || 'Gallery image'} 
+                ref={(el) => el && observer.current.observe(el)}
               />
               {(photo.title || photo.description) && (
                 <figcaption className="overlay">

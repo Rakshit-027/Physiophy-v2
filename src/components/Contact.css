@@ -173,3 +173,8 @@
       padding: 30px;
     }
   }
+
+  .contact-link{
+    text-decoration: none;
+    color: inherit;
+  }

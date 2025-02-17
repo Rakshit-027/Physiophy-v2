@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Mail, Phone, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { MapPin, Mail, Phone, Facebook, Twitter, Instagram, Linkedin,Youtube } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
@@ -37,27 +37,34 @@ const Contact = () => {
           <p>Contact us for any inquiries, appointments, or further information. We're here to help you.</p>
           
           <div className="contact-details">
-            <div className="contact-item">
-              <MapPin className="icon" />
-              <span>123 Wellness Avenue, Greenfield</span>
-            </div>
-            <div className="contact-item">
-              <Mail className="icon" />
-              <span>contact@physiotherapy.com</span>
-            </div>
-            <div className="contact-item">
-              <Phone className="icon" />
-              <span>+1-234-567-890</span>
-            </div>
-          </div>
+  <div className="contact-item">
+    <MapPin className="icon" />
+    <a 
+      href="https://www.google.com/maps/dir/21.1351351,79.1242868/PhysioPhy+-+Best+Neurophysiotherapy+Centre+in+Nagpur/@21.1369162,79.0610261,13z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bd4c1006aa0f325:0x7840366ec727ecc2!2m2!1d79.0797323!2d21.1366246?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="contact-link"
+    >
+      Ground Floor, Hyatt Medicare, Besides Get Wel Hospital, Dhantoli, Nagpur - 440012.
+    </a>
+  </div>
+  <div className="contact-item">
+    <Mail className="icon" />
+    <a href="mailto:contact@physiotherapy.com" className="contact-link">contact@physiotherapy.com</a>
+  </div>
+  <div className="contact-item">
+    <Phone className="icon" />
+    <a href="tel:+919970127614" className="contact-link">+91 9970127614</a>
+  </div>
+</div>
 
           <div className="social-links">
             <h3>Follow us on:</h3>
             <div className="social-icons">
-              <a href="#" className="social-icon"><Facebook /></a>
-              <a href="#" className="social-icon"><Twitter /></a>
-              <a href="#" className="social-icon"><Instagram /></a>
-              <a href="#" className="social-icon"><Linkedin /></a>
+              <a href="https://www.instagram.com/physio.phy/" className="social-icon"><Instagram /></a>
+              <a href="https://www.facebook.com/PhysioPhyPhysiotherapyCentre/" className="social-icon"><Facebook /></a>
+              <a href="https://www.youtube.com/@PhysioPhy" className="social-icon"><Youtube /></a>
+              <a href="https://www.linkedin.com/in/tanvi-shah-441106212/?originalSubdomain=in" className="social-icon"><Linkedin /></a>
             </div>
           </div>
         </div>
