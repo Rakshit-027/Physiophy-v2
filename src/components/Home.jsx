@@ -7,6 +7,8 @@ import HeroImg from "../assets/hero.webp";
 import "./Home.css";
 import ShinyText from "./ShinyText";
 import ShinyTextc from "./ShinyTextc";
+import ArrowLeft from "./ArrowLeft";
+import ArrowRightt from "./ArrowRightt";
 const reviewsData = [
   {
     "author_name": "Shriya Mehta",
@@ -187,9 +189,9 @@ const Home = ({ onLogin }) => {
       <section className="physio-testimonials">
         <h2 className="physio-section-title">What Our Patients Say</h2>
         <div className="physio-testimonials-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          <button className="physio-nav-btn left" onClick={prevReview}>
-            <ChevronLeft size={24} />
-          </button>
+          <div className="physio-nav-btn left" onClick={prevReview}>
+            <ArrowLeft />
+          </div>
           <div className="physio-testimonials-slider" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
             {reviewsData.map((review, index) => (
               <div key={index} className={`physio-testimonial-card ${index === currentIndex ? "active" : ""}`}>
@@ -213,9 +215,9 @@ const Home = ({ onLogin }) => {
               </div>
             ))}
           </div>
-          <button className="physio-nav-btn right" onClick={nextReview}>
-            <ChevronRight size={24} />
-          </button>
+          <div className="physio-nav-btn right" onClick={nextReview}>
+            <ArrowRightt/>
+          </div>
           <div className="physio-testimonial-dots">
             {reviewsData.map((_, index) => (
               <button key={index} className={`physio-dot ${index === currentIndex ? "active" : ""}`} onClick={() => handleDotClick(index)} />
