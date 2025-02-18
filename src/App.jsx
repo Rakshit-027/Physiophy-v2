@@ -28,6 +28,8 @@ import Doctors from './components/Doctors.jsx';
 import UpdatePassword from './components/UpdatePassword.jsx';
 import ResetPassword from './components/ResetPassword.jsx';
 import AdminInstructions from './components/AdminInstructions.jsx';
+import Whatsaap from './components/Mini/Whatsaap.jsx';
+import "./App.css"
 function App() {
   return (
     <Router>
@@ -85,6 +87,10 @@ function MainApp() {
   return (
     <div className="app">
       <Navbar isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} userProfile={userProfile} />
+      <div className="whatsapp">
+      <Whatsaap />
+      </div>
+      
       <AnimatePresence mode="wait">
         {showAuth ? (
           <motion.div key="auth" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50">
