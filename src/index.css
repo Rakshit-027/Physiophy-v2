@@ -9,6 +9,8 @@ Reset and base styles
   --nav-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   --transition-speed: 0.3s;
 }
+
+background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 /* 
 * {
   margin: 0;
@@ -19,7 +21,7 @@ Reset and base styles
 body {
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
-} */
+}
 
 /* Enhanced Navbar Styles */
 /* .navbar {

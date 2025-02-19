@@ -129,8 +129,16 @@ const Services = () => {
               Let our experienced team guide you through your rehabilitation process.
             </p>
             <button onClick={handleBookAppointment} className="rehab-cta-button">
-              Schedule a Consultation
+              Make a Consultation
             </button>
+            <h2>or</h2>
+            <button
+  onClick={() => (window.location.href = "tel:+919970127614")}
+  className="rehab-cta-button"
+>
+  +91 99701 27614
+</button>
+
           </div>
         </div>
       </div>

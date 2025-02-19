@@ -75,9 +75,9 @@ const MediaGallery = () => {
         <p>Browse our collection of success stories and transformations</p>
       </header>
 
-      <nav className="gallery-nav">
+      <nav className="gallery-nav-nav">
         <button 
-          className={`nav-button ${filter === 'all' ? 'active' : ''}`}
+          className={`nav-button-gallery ${filter === 'all' ? 'active' : ''}`}
           onClick={() => setFilter('all')}
         >
           <Image size={20} />
@@ -85,14 +85,14 @@ const MediaGallery = () => {
         </button>
         <Link 
           to="/ClinicsPhotos"
-          className={`nav-button ${filter === 'photos' ? 'active' : ''}`}
+          className={`nav-button-gallery${filter === 'photos' ? 'active' : ''}`}
         >
           <Image size={20} />
           <span>Clinic Photos</span>
         </Link>
         <Link 
           to="/ClinicVideos"
-          className={`nav-button ${filter === 'videos' ? 'active' : ''}`}
+          className={`nav-button-gallery ${filter === 'videos' ? 'active' : ''}`}
         >
           <Video size={20} />
           <span>Clinic Videos</span>

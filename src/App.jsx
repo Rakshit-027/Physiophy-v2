@@ -29,6 +29,7 @@ import UpdatePassword from './components/UpdatePassword.jsx';
 import ResetPassword from './components/ResetPassword.jsx';
 import AdminInstructions from './components/AdminInstructions.jsx';
 import Whatsaap from './components/Mini/Whatsaap.jsx';
+import Footer from './components/Footer.jsx'; 
 import "./App.css"
 function App() {
   return (
@@ -147,6 +148,7 @@ const HomePage = ({ isLoggedIn }) => (
     {isLoggedIn && <Element name="appointment" className="element"><Appointment /></Element>}
     <Element name="contact" className="element"><Contact /></Element>
     <Element name="faq" className="element"><FAQ /></Element>
+    <Element name="Footer" className="element"><Footer/></Element>
   </div>
 );
 
@@ -178,6 +180,7 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="/Doctors" element={<ProtectedAdminRoute><Doctors/></ProtectedAdminRoute>}/>
           <Route path="/AdminIntructions" element={<ProtectedAdminRoute><AdminInstructions/></ProtectedAdminRoute>}/>
           <Route path="/update-password" element={<ResetPassword />} />
+          <Route path='/Footer' element={<Footer/>}/>
         </Routes>
       </motion.div>
     </AnimatePresence>

@@ -1,6 +1,6 @@
 .whatsapp {
     position: fixed;
-    top: 50%;
+    top: 60%;
     right: 20px;
     z-index: 1000; /* Ensures it's above other elements */
     transform: translateY(-50%);
@@ -14,4 +14,11 @@
     to {
         transform: rotate(360deg);
     }
+}
+.sections-container{
+    
+        /* background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); */
+        
+background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    
 }
