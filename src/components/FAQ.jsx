@@ -10,77 +10,34 @@ const FAQ = () => {
       category: "General Information",
       items: [
         {
-          question: "What is physiotherapy?",
-          answer: "Physiotherapy is a healthcare profession that focuses on improving movement, function, and overall well-being through various physical methods such as exercises, manual therapy, education, and advice."
-        },
-        {
-          question: "Do I need a doctor's referral to see a physiotherapist?",
-          answer: "No, you don't need a referral to book an appointment. However, some insurance providers may require a doctor's referral for coverage."
+          question: "Do we need a doctor referral to come to Physiophy for physiotherapy treatment?",
+          answer: "No, you don't need a doctor's referral to visit Physiophy. You can book an appointment directly."
         }
       ]
     },
     {
-      category: "Services and Treatments",
+      category: "Treatment and Sessions",
       items: [
         {
-          question: "What conditions do you treat?",
-          answer: "We treat a variety of conditions, including:\n• Back and neck pain\n• Sports injuries\n• Post-surgical rehabilitation\n• Arthritis and joint issues\n• Neurological disorders (e.g., stroke, Parkinson's disease)\n• Pediatric conditions"
+          question: "What are the treatment charges at Physiophy?",
+          answer: "Our treatment charges vary depending on the type of therapy required. Please contact us for detailed pricing."
         },
         {
-          question: "What types of treatments do you offer?",
-          answer: "Our clinic provides:\n• Manual therapy\n• Exercise therapy\n• Electrotherapy (e.g., TENS, ultrasound)\n• Postural correction\n• Dry needling\n• Education and prevention strategies"
+          question: "How many sessions of physiotherapy do we require?",
+          answer: "The number of sessions needed depends on your condition and recovery goals. Your physiotherapist will recommend a treatment plan after an initial assessment."
+        },
+        {
+          question: "How long does a physiotherapy session last?",
+          answer: "A typical physiotherapy session lasts between 30 to 60 minutes, depending on the treatment required."
         }
       ]
     },
     {
-      category: "Appointments and Scheduling",
+      category: "Conditions Treated",
       items: [
         {
-          question: "How do I book an appointment?",
-          answer: "You can book an appointment by calling us, visiting our website, or using our online booking system."
-        },
-        {
-          question: "What should I bring to my first appointment?",
-          answer: "Please bring the following:\n• Any relevant medical reports or imaging (e.g., X-rays, MRIs)\n• Comfortable clothing suitable for movement\n• Your insurance information (if applicable)"
-        }
-      ]
-    },
-    {
-      category: "Payment and Insurance",
-      items: [
-        {
-          question: "Do you accept insurance?",
-          answer: "Yes, we accept most major insurance providers. Please contact us to confirm coverage."
-        },
-        {
-          question: "What payment methods do you accept?",
-          answer: "We accept cash, credit/debit cards, and digital payments."
-        }
-      ]
-    },
-    {
-      category: "During the Appointment",
-      items: [
-        {
-          question: "What can I expect during my first session?",
-          answer: "Your first session will include:\n• A thorough assessment of your condition\n• Discussion of your medical history\n• Development of a personalized treatment plan"
-        },
-        {
-          question: "How long is each session?",
-          answer: "Sessions typically last between 30-60 minutes, depending on your treatment plan."
-        }
-      ]
-    },
-    {
-      category: "Miscellaneous",
-      items: [
-        {
-          question: "Is physiotherapy painful?",
-          answer: "Some treatments may cause temporary discomfort, especially during rehabilitation of injuries. Your physiotherapist will work within your tolerance to ensure a safe and effective recovery."
-        },
-        {
-          question: "How many sessions will I need?",
-          answer: "The number of sessions depends on your condition and recovery goals. Your physiotherapist will provide an estimated treatment plan after the initial assessment."
+          question: "What conditions are treated at Physiophy?",
+          answer: "Physiophy treats a variety of conditions including musculoskeletal injuries, post-surgical rehabilitation, neurological disorders, sports injuries, and chronic pain."
         }
       ]
     }
@@ -118,12 +75,7 @@ const FAQ = () => {
                     {activeIndex === currentIndex ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
                   </div>
                   <div className="faq-answer">
-                    <p>{item.answer.split('\n').map((line, i) => (
-                      <React.Fragment key={i}>
-                        {line}
-                        <br />
-                      </React.Fragment>
-                    ))}</p>
+                    <p>{item.answer}</p>
                   </div>
                 </div>
               );
@@ -133,7 +85,7 @@ const FAQ = () => {
       </div>
 
       <div className="faq-footer">
-        <p>Still have questions? Contact us at (555) 123-4567 or email info@physioclinic.com</p>
+        <p>Still have questions? Contact us at (+91) 9970127614 or email info@physiophy.com</p>
       </div>
     </div>
   );

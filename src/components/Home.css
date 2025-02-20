@@ -166,17 +166,17 @@
 .physio-testimonials {
   padding: clamp(3rem, 6vw, 6rem) clamp(4%, 6vw, 8%);
   /* background: linear-gradient(135deg, #E0FBE2 0%, var(--background-color) 100%); */
-  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  background-image: inherit;
   position: relative;
 }
 
 .physio-section-title {
   text-align: center;
-  font-size: clamp(3rem, 3.5vw, 2.25rem);
+  font-size: clamp(3.5rem, 3.5vw, 2.25rem);
   margin-bottom: clamp(1rem, 4vw, 3rem);
   color: var(--text-color);
   font-weight: 600;
-  font-style: italic;
+  /* font-style: italic; */
 }
 
 .physio-testimonials-wrapper {

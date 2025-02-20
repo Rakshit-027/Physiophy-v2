@@ -13,8 +13,29 @@ import HomeTest from "./HomeTest";
 import image from "../assets/imge1.jpg";
 import image2 from "../assets/image2.jpg";
 import image3 from "../assets/image3.jpg";
-
+import Founder from "./Founder";
 const reviewsData = [
+  {
+    name: "Dr. Rajesh Gadekar",
+    image: "https://lh3.googleusercontent.com/a/ACg8ocLvWkxIeNTzZa8dzLkxYfFjdZKC4fp8eREkfnT3yWfKa8gVQFM=w60-h60-p-rp-mo-br100",
+    text: "After my heart bypass, I lost significant strength & mobility in my left arm. Thanks to Dr. Tanvi for her exceptional physiotherapy.",
+    rating: 5,
+    date: "1 month ago"
+  },
+  {
+    name: "Nageen Farokhmanesh",
+    image: "https://lh3.googleusercontent.com/a/ACg8ocLvWkxIeNTzZa8dzLkxYfFjdZKC4fp8eREkfnT3yWfKa8gVQFM=w60-h60-p-rp-mo-br100",
+    text: "Thanks to Dr. Tanvi for her wonderful treatment & care. Her friendly nature & personal attention made my therapy sessions easier.",
+    rating: 5,
+    date: "1 month ago"
+  },
+  {
+    name: "Dr. Mayank Bhansali",
+    image: "https://lh3.googleusercontent.com/a/ACg8ocLvWkxIeNTzZa8dzLkxYfFjdZKC4fp8eREkfnT3yWfKa8gVQFM=w60-h60-p-rp-mo-br100",
+    text: "As a dentist, I struggled with chronic pain affecting my work. After a few sessions with Dr. Tanvi my pain vanished & I recovered quickly.",
+    rating: 5,
+    date: "1 month ago"
+  },
   {
     name: "Shriya Mehta",
     image: "https://lh3.googleusercontent.com/a/ACg8ocLvWkxIeNTzZa8dzLkxYfFjdZKC4fp8eREkfnT3yWfKa8gVQFM=w60-h60-p-rp-mo-br100",
@@ -235,11 +256,12 @@ const Home = ({ onLogin }) => {
           <ChevronRight size={24} />
         </button>
       </div>
+      <Founder />
     <div className="physio-cont">
     <div className="physio-container">
       {/* Hero Section */}
       
-      <section className="physio-hero">
+      {/* <section className="physio-hero">
         <div className="physio-hero-content">
           <h1 className="physio-main-title">
             <span className="physio-title-accent"><ShinyText text="Expert Care"/></span>
@@ -266,28 +288,28 @@ const Home = ({ onLogin }) => {
             {/* <span className="physio-badge-number">15+</span>
             <span className="physio-badge-text">Years of Excellence</span> */}
           {/* </div>  */}
-        </div>
-      </section>
-      <div className="founder-container">
-      <div className="founder-header">
+        {/* </div> */}
+      {/* </section> */} *
+      {/* <div className="founder-container"> */}
+      {/* <div className="founder-header">
         <div className="header-content">
           <div className="slogan">The story of founder from passion to practice</div>
           <div className="founder-photo">
             <img src={HeroImg} alt="Dr. Tanvi Katariya" className="profile-image" />
           </div>
           <h1>Dr. Tanvi Katariya</h1>
-          <div className="title">Physiotherapist</div>
+          <div className="title">Physiotherapist</div> */}
           {/* <div className="contact-info">
             <span><i className="icon">📞</i> +91 7020427614</span>
             <span><i className="icon">📧</i> tanvishah01@gmail.com</span>
             <span><i className="icon">📍</i> Physiophy - Dhantoli, Nagpur</span>
           </div> */}
-        </div>
-      </div>
+        {/* </div> */}
+      {/* </div> */}
       
   
 
-      <div className="content-grid">
+      {/* <div className="content-grid">
         <div className="founder-section">
           <h2><span className="section-icon">🎓</span> Education</h2>
           <ul>
@@ -347,9 +369,9 @@ const Home = ({ onLogin }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         
-      </div>
+      {/* </div>
       <div className="mvv-section">
         <div className="mvv-container">
           <div className="mvv-card">
@@ -374,7 +396,7 @@ const Home = ({ onLogin }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div> */}
 
 
       {/* Testimonials Section */}
@@ -418,7 +440,7 @@ const Home = ({ onLogin }) => {
           </div>
         </div>
       </section>
-      <section className="videos-section">
+      {/* <section className="videos-section">
         <h2 className="section-title">From Pain to Power: Watch How Physiophy Changes Lives</h2>
         <div className="videos-grid">
           {successStories.map((story) => (
@@ -437,7 +459,7 @@ const Home = ({ onLogin }) => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
       {/* <HomeTest/> */}
 
 

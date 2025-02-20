@@ -2,7 +2,7 @@
 .rehab-services-page {
   min-height: 100vh;
   /* background: linear-gradient(135deg,#F9FAFB 0%, #E0FBE2 100%); */
-  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  background-image: inherit;
   position: relative;
 }
 
@@ -57,6 +57,7 @@
   margin: 0 auto;
   padding: 5rem 2rem;
   position: relative;
+  background-color: inherit;
 }
 
 /* Introduction section */
@@ -152,7 +153,7 @@
 }
 
 .rehab-cta-content {
-  background-color: #73EC8B;
+  background-color:lightblue;
   border-radius: 1rem;
   padding: 3rem 2rem;
   text-align: center;

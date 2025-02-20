@@ -1,5 +1,5 @@
 :root {
-    --primary-green: #4CAF50;
+    --primary-green: black;
     --light-green: #E8F5E9;
     --hover-green: #43A047;
     --text-dark: #2C3E50;
@@ -13,7 +13,7 @@
     max-width: 90%;
     margin: 7rem auto;
     padding: 20px;
-    background-color: var(--white);
+    background-color: inherit;
   }
   
   .faq-header {

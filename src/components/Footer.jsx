@@ -28,15 +28,15 @@ const Footer = () => {
           <ul className="footer-contact">
             <li>
               <i className="footer-icon location"></i>
-              123 Wellness Avenue, Greenfield
+              Ground Floor, Hyatt Medicare, Besides Get Wel Hospital, Dhantoli, Nagpur - 440012.
             </li>
             <li>
               <i className="footer-icon phone"></i>
-              +1-234-567-890
+              +919970127641
             </li>
             <li>
               <i className="footer-icon email"></i>
-              contact@physiotherapy.com
+              contact@physiophy.com
             </li>
           </ul>
         </div>
@@ -44,10 +44,10 @@ const Footer = () => {
         <div className="footer-section">
           <h3 className="footer-title">Follow Us</h3>
           <div className="social-links">
-            <a href="https://facebook.com" className="social-icon facebook" aria-label="Facebook"></a>
-            <a href="https://twitter.com" className="social-icon twitter" aria-label="Twitter"></a>
-            <a href="https://instagram.com" className="social-icon instagram" aria-label="Instagram"></a>
-            <a href="https://linkedin.com" className="social-icon linkedin" aria-label="LinkedIn"></a>
+            <a href="https://www.facebook.com/PhysioPhyPhysiotherapyCentre/" className="social-icon facebook" aria-label="Facebook"></a>
+            {/* <a href="https://twitter.com" className="social-icon twitter" aria-label="Twitter"></a> */}
+            <a href="https://www.instagram.com/physio.phy/" className="social-icon instagram" aria-label="Instagram"></a>
+            <a href="https://www.linkedin.com/in/tanvi-shah-441106212/?originalSubdomain=in" className="social-icon linkedin" aria-label="LinkedIn"></a>
           </div>
         </div>
       </div>

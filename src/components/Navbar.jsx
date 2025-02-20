@@ -155,7 +155,7 @@ const Navbar = ({ isLoggedIn, onLogin, onLogout, userProfile }) => {
         <div className={`nav-menu ${isOpen ? "active" : ""}`}>
           <ul className="nav-links">
             <li>{renderNavLink("home", "Home", Home)}</li>
-            <li>{renderNavLink("about", "About Us", Info)}</li>
+            <li>{renderNavLink("about", "Why Choose Us", Info)}</li>
             <li>{renderNavLink("services", "Services", Stethoscope)}</li>
             <li>{renderNavLink("appointment", "Book Now", Calendar)}</li>
             <li>{renderNavLink("contact", "Contact", Phone)}</li>

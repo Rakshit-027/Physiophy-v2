@@ -2,7 +2,7 @@
 .contact-main{
   min-height: 100vh;
   /* background: linear-gradient(135deg,#F9FAFB 0%, #E0FBE2 100%); */
-  background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+  background-image: inherit;
   position: relative;
 
 }
@@ -11,7 +11,7 @@
     margin: 7rem auto;
     padding: 40px 20px;
     /* background: linear-gradient(135deg,#F9FAFB 0%, #E0FBE2 100%); */
-    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    background-image: inherit;
   
   }
   
@@ -22,7 +22,7 @@
   }
   
   .contact-header h1 {
-    color: #00897b;
+    color:black;
     font-size: 2.5rem;
     margin-bottom: 20px;
     font-weight: 600;
@@ -75,7 +75,7 @@
   }
   
   .contact-item .icon {
-    color: #00897b;
+    color:black;
     margin-right: 15px;
   }
   

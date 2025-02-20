@@ -30,6 +30,7 @@ import ResetPassword from './components/ResetPassword.jsx';
 import AdminInstructions from './components/AdminInstructions.jsx';
 import Whatsaap from './components/Mini/Whatsaap.jsx';
 import Footer from './components/Footer.jsx'; 
+import PatientVideos from './components/PatientVideos.jsx';
 import "./App.css"
 function App() {
   return (
@@ -88,8 +89,9 @@ function MainApp() {
   return (
     <div className="app">
       <Navbar isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} userProfile={userProfile} />
-      <div className="whatsapp">
-      <Whatsaap />
+      <div className="whatsapp" onClick={() => (window.location.href = "tel:+919970127614")}>
+    
+      <Whatsaap  />
       </div>
       
       <AnimatePresence mode="wait">
@@ -143,6 +145,7 @@ const ProtectedAdminRoute = ({ children }) => {
 const HomePage = ({ isLoggedIn }) => (
   <div className="sections-container">
     <Element name="home" className="element"><Home /></Element>
+    <Element name="PatientVideo" className="element"><PatientVideos/></Element>
     <Element name="about" className="element"><About /></Element>
     <Element name="services" className="element"><Services /></Element>
     {isLoggedIn && <Element name="appointment" className="element"><Appointment /></Element>}

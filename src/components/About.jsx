@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Award, Heart, Users, ChevronRight } from 'lucide-react';
+import { Award, Heart, Users } from 'lucide-react';
 import { Element } from 'react-scroll';
 import supabase from './SupabaseClient';
 import './About.css';
@@ -27,29 +27,6 @@ const About = () => {
     };
     fetchTeamMembers();
   }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
 
   return (
     <div className="about-page">
@@ -80,124 +57,92 @@ const About = () => {
         </motion.section>
       </Element>
 
-      {/* <Element name="mission-vision">
-        <section className="mission-vision">
-          <motion.div
-            className="mission-container"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {[
-              {
-                title: "Mission",
-                icon: <Heart className="mission-icon" />,
-                content: "To provide exceptional physiotherapy care that empowers our patients to achieve optimal physical health and well-being through personalized treatment plans and evidence-based practices."
-              },
-              {
-                title: "Vision",
-                icon: <Award className="mission-icon" />,
-                content: "To be the leading physiotherapy clinic that sets the standard for excellence in patient care, innovation, and rehabilitation services in our community."
-              },
-              {
-                title: "Values",
-                icon: <Users className="mission-icon" />,
-                content: (
-                  <ul>
-                    <li>Patient-Centered Care</li>
-                    <li>Clinical Excellence</li>
-                    <li>Continuous Learning</li>
-                    <li>Integrity & Trust</li>
-                    <li>Compassionate Service</li>
-                  </ul>
-                )
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                className="mission-card"
-                variants={itemVariants}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {item.icon}
-                <h2>{item.title}</h2>
-                {typeof item.content === 'string' ? (
-                  <p>{item.content}</p>
-                ) : (
-                  item.content
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-      </Element> */}
-
-      <Element name="history">
-        <motion.section
-          className="history"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+      <Element name="features">
+        <motion.div 
+          className="feature-grid"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
         >
-          <div className="history-content">
-            <motion.h2 variants={itemVariants}>Our Journey</motion.h2>
-            <motion.p variants={itemVariants}>
-              Founded in 2024, our clinic emerged from a vision to revolutionize
-              physiotherapy care. We began with a simple mission: to provide
-              exceptional, personalized care that truly transforms lives.
-            </motion.p>
-            <motion.p variants={itemVariants}>
-              Today, we continue to grow and evolve, embracing innovative
-              techniques and technologies while maintaining our commitment to
-              compassionate, patient-centered care.
-            </motion.p>
-          </div>
-        </motion.section>
+          <motion.div 
+            className="feature-box"
+            whileHover={{ scale: 1.02, translateY: -10 }}
+          >
+            <div className="icon">👨‍⚕️</div>
+            <h3>Personalised Care</h3>
+            <p>We provide individualized attention and care tailored to your specific needs and requirements.</p>
+          </motion.div>
+
+          <motion.div 
+            className="feature-box"
+            whileHover={{ scale: 1.02, translateY: -10 }}
+          >
+            <div className="icon">🏆</div>
+            <h3>Best Professional Doctor</h3>
+            <p>Our team consists of highly qualified and experienced medical professionals dedicated to your health.</p>
+          </motion.div>
+
+          <motion.div 
+            className="feature-box"
+            whileHover={{ scale: 1.02, translateY: -10 }}
+          >
+            <div className="icon">💰</div>
+            <h3>Affordable & Quality Services</h3>
+            <p>We offer high-quality medical services at competitive and reasonable prices.</p>
+          </motion.div>
+
+          <motion.div 
+            className="feature-box"
+            whileHover={{ scale: 1.02, translateY: -10 }}
+          >
+            <div className="icon">📋</div>
+            <h3>Customized Treatment Protocols</h3>
+            <p>Treatment plans are customized to meet your specific health goals and conditions.</p>
+          </motion.div>
+
+          <motion.div 
+            className="feature-box"
+            whileHover={{ scale: 1.02, translateY: -10 }}
+          >
+            <div className="icon">🔬</div>
+            <h3>Advanced Equipment & Modalities</h3>
+            <p>We utilize state-of-the-art medical equipment and modern treatment modalities.</p>
+          </motion.div>
+
+          <motion.div 
+            className="feature-box"
+            whileHover={{ scale: 1.02, translateY: -10 }}
+          >
+            <div className="icon">🧑‍🤝‍🧑</div>
+            <h3>Comprehensive Rehabilitation</h3>
+            <p>We offer a holistic approach to rehabilitation, ensuring complete physical and mental well-being.</p>
+          </motion.div>
+        </motion.div>
       </Element>
 
-      <Element name="team">
+      <Element name="why-choose-us">
         <motion.section
-          className="team"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          className="why-choose-us"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
         >
-          <motion.h2 variants={itemVariants}>Our Expert Team</motion.h2>
-          <motion.div className="team-grid" variants={containerVariants}>
-            {isLoading ? (
-              <p>Loading team members...</p>
-            ) : (
-              teamMembers.map((member, index) => (
-                <motion.div
-                  key={member.id || index}
-                  className="team-member"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="member-image">
-                    <img
-                      src={getImageUrl(member.image)}
-                      alt={member.name}
-                      onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/400x500?text=Doctor+Photo';
-                      }}
-                    />
-                  </div>
-                  <div className="member-info">
-                    <h3>{member.name}</h3>
-                    <p className="role">{member.role}</p>
-                    <p className="specialization">{member.specialization}</p>
-                    <p className="experience">{member.experience} Years Experience</p>
-                  </div>
-                </motion.div>
-              ))
-            )}
-          </motion.div>
+          <div className="why-choose-us-content">
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              At Physiophy, rehabilitation is more than just therapy—it's a commitment to excellence, innovation, and patient-first care. We follow the principle of one patient, one therapist, ensuring undivided attention and a treatment plan that's as unique as you. Our approach blends scientific precision with human touch, focusing not just on recovery but on enhancing mobility, confidence, and quality of life.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              What sets us apart is our dedication to detail, hands-on expertise, and unwavering belief in every patient's potential. We combine cutting-edge rehabilitation technologies, advanced modalities, and evidence-based techniques to deliver the most effective treatments. We don't just guide recovery—we track it, update it, and celebrate every milestone with you. Healing is not just about the body but about restoring independence, rebuilding strength, and empowering individuals to live fully. At Physiophy, you are not just another case—you are our priority, and your journey to recovery is our mission.
+            </motion.p>
+          </div>
         </motion.section>
       </Element>
     </div>
