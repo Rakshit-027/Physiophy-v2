@@ -6,11 +6,11 @@
 
 .video-header {
   text-align: center;
-  margin-bottom: 4rem; /* Reduce margin */
+  margin-bottom: 4rem;
 }
 
 .video-header h1 {
-  font-size: 1.8rem; /* Reduce font size */
+  font-size: 1.8rem;
   font-weight: 700;
   color: #333;
   margin: 1.5rem 0;
@@ -22,9 +22,9 @@
 }
 
 .head {
-  font-size: 2.5rem; /* Reduce heading size */
+  font-size: 2.5rem;
   font-weight: 600;
-  color:black;
+  color: black;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -38,53 +38,48 @@
   bottom: -1.5rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px; /* Reduce line width */
+  width: 60px;
   height: 3px;
   background: #0066FF;
   border-radius: 2px;
 }
 
-/* Patient Videos Grid */
-.videos-grid {
+/* Unified grid styling for both video types */
+.videos-grid,
+.instagram-reels-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust size */
-  gap: 1.5rem; /* Reduce spacing */
-  max-width: 1200px; /* Reduce width */
-  margin: 0 auto 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-.video-card {
-  width: 220px; /* Reduce card size */
-  height: auto;
+/* Unified card styling */
+.video-card,
+.instagram-reel-card {
   background: #ffffff;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
 }
 
-.video-card:hover {
+.video-card:hover,
+.instagram-reel-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  padding-top: 140%; /* Reduce video aspect ratio */
-  background: #000;
-  overflow: hidden;
 }
 
 /* Instagram Reels Section */
 .instagram-reels-header {
   text-align: center;
-  margin: 5rem 0 3rem; /* Reduce margin */
+  margin: 5rem 0 3rem;
 }
 
 .instagram-reels-header h2 {
-  font-size: 2.5rem; /* Reduce font size */
+  font-size: 2.5rem;
   font-weight: 600;
   color: #00A651;
   margin: 0;
@@ -104,29 +99,8 @@
   border-radius: 2px;
 }
 
-.instagram-reels-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust layout */
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-.instagram-reel-card {
-  background: #ffffff;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
-}
-
-.instagram-reel-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
+/* Unified wrapper styling */
+.video-wrapper,
 .reel-wrapper {
   position: relative;
   width: 100%;
@@ -135,7 +109,7 @@
   overflow: hidden;
 }
 
-/* Shared Video Styles */
+/* Unified video element styling */
 .video-wrapper video,
 .reel-wrapper video {
   position: absolute;
@@ -147,6 +121,7 @@
   border-radius: 15px;
 }
 
+/* Video Controls */
 .video-controls {
   position: absolute;
   bottom: 0;

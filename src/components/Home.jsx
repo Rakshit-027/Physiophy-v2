@@ -14,6 +14,7 @@ import image from "../assets/imge1.jpg";
 import image2 from "../assets/image2.jpg";
 import image3 from "../assets/image3.jpg";
 import Founder from "./Founder";
+import PatientVideos from "./PatientVideos";
 const reviewsData = [
   {
     name: "Dr. Rajesh Gadekar",
@@ -256,6 +257,10 @@ const Home = ({ onLogin }) => {
           <ChevronRight size={24} />
         </button>
       </div>
+      <div className="about-hero">
+        <h1 className="main-title">Your bridge between disability to ability</h1>
+        <div className="decorative-line"></div>
+      </div>
       <Founder />
     <div className="physio-cont">
     <div className="physio-container">
@@ -397,11 +402,11 @@ const Home = ({ onLogin }) => {
         </div>
       </div>
     </div> */}
-
+    <div className="about-hero"><h1>Clinic videos And reviews</h1></div>
 
       {/* Testimonials Section */}
       <section className="physio-testimonials">
-        <h2 className="physio-section-title">Clinic videos And reviews</h2>
+        
         <h2 className="section-title">Real people real recoveries</h2>
         <div className="physio-testimonials-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <div className="physio-nav-btn left" onClick={prevReview}>
@@ -461,6 +466,12 @@ const Home = ({ onLogin }) => {
         </div>
       </section> */}
       {/* <HomeTest/> */}
+
+      <div className="about-hero">
+        <h1 className="head">From Pain to Power: Watch How Physiophy Changes Lives</h1>
+        
+      </div>
+      {/* <PatientVideos/> */}
 
 
         {/* Popup Modal */}

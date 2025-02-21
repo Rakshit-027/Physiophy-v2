@@ -210,10 +210,10 @@ const InstagramReelCard = ({ reel }) => {
 function PatientVideos() {
   return (
     <section className="patient-videos">
-      <div className="video-header">
+      {/* <div className="video-header">
         <h2 className="head">From Pain to Power: Watch How Physiophy Changes Lives</h2>
         <h1 >Transformation Videos</h1>
-      </div>
+      </div> */}
 
       <div className="instagram-reels-grid">
         {patientVideos.map((video) => (

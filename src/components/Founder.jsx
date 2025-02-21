@@ -5,37 +5,28 @@ import pareshalImg from '../Celeb/pareshal_rawal.jpeg';
 import aliirani from '../Celeb/AliIrani.jpg';
 import TanuJain from '../Celeb/TanuJain.jpg';
 
-    
 const Founder = () => {
-
-    const celebrities = [
-        {
-          name: "Paresh Rawal",
-          image: pareshalImg,
-          testimonial: "Dr. Kataria's expertise in physiotherapy has been instrumental in my recovery. Her dedication and professional approach make her stand out in her field.",
-          treatment: "Post-surgery rehabilitation"
-        },
-        {
-          name: "Dr Ali Irani",
-          image: aliirani,
-          testimonial: "The personalized care and attention to detail at PhysioFi has made a significant difference in my recovery journey.",
-          treatment: "Sports injury rehabilitation"
-        },
-        {
-          name: "Dr Tanu Jain",
-          image: TanuJain,
-        //   testimonial: "Dr. Tanvi's innovative approach to physiotherapy has helped me regain my strength and mobility faster than I expected.",
-        //   treatment: "Chronic pain management"
-        }
-      ];
+  const celebrities = [
+    {
+      name: "Paresh Rawal",
+      image: pareshalImg,
+      testimonial: "Dr. Kataria's expertise in physiotherapy has been instrumental in my recovery. Her dedication and professional approach make her stand out in her field.",
+      treatment: "Post-surgery rehabilitation"
+    },
+    {
+      name: "Dr Ali Irani",
+      image: aliirani,
+      testimonial: "The personalized care and attention to detail at PhysioFi has made a significant difference in my recovery journey.",
+      treatment: "Sports injury rehabilitation"
+    },
+    {
+      name: "Dr Tanu Jain",
+      image: TanuJain,
+    }
+  ];
   
   return (
     <div className="founder-container">
-      <div className="hero-section">
-        <h1 className="main-title">Your bridge between disability to ability</h1>
-        <div className="decorative-line"></div>
-      </div>
-
       <div className="content-wrapper">
         <div className="story-section">
           <h2 className="story-title">The story of founder from passion to practice</h2>
@@ -101,7 +92,6 @@ const Founder = () => {
         </div>
       </div>
       <div className="celebrity-section">
-        {/* <h2 className="section-title">Celebrity Success Stories</h2> */}
         <div className="celebrity-grid">
           {celebrities.map((celebrity, index) => (
             <div key={index} className="celebrity-card">
@@ -110,8 +100,6 @@ const Founder = () => {
               </div>
               <div className="celebrity-content">
                 <h3 className="celebrity-name">{celebrity.name}</h3>
-                {/* <p className="treatment-type">{celebrity.treatment}</p> */}
-                {/* <p className="celebrity-testimonial">{celebrity.testimonial}</p> */}
               </div>
             </div>
           ))}
