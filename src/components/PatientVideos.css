@@ -1,245 +1,104 @@
 .patient-videos {
-  padding: 6rem 2rem;
-  width: 100%;
-  background: inherit;
+  padding: 20px;
+  background-color:inherit;
+  min-height: 100vh;
 }
 
-.video-header {
+.title {
+  color: #fff;
   text-align: center;
-  margin-bottom: 4rem;
-}
-
-.video-header h1 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #333;
-  margin: 1.5rem 0;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background: linear-gradient(45deg, #00A651, #0066FF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.head {
-  font-size: 2.5rem;
+  font-size: 24px;
+  margin-bottom: 32px;
   font-weight: 600;
-  color: black;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  position: relative;
-  font-family: 'Poppins', sans-serif;
 }
 
-.header::after {
-  content: '';
-  position: absolute;
-  bottom: -1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: #0066FF;
-  border-radius: 2px;
+.reels-title {
+  margin-top: 64px;
 }
 
-/* Unified grid styling for both video types */
-.videos-grid,
-.instagram-reels-grid {
+.videos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
 }
 
-/* Unified card styling */
-.video-card,
-.instagram-reel-card {
-  background: #ffffff;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
-}
-
-.video-card:hover,
-.instagram-reel-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
-/* Instagram Reels Section */
-.instagram-reels-header {
-  text-align: center;
-  margin: 5rem 0 3rem;
-}
-
-.instagram-reels-header h2 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #00A651;
-  margin: 0;
-  position: relative;
-  display: inline-block;
-}
-
-.instagram-reels-header h2::after {
-  content: '';
-  position: absolute;
-  bottom: -0.8rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 3px;
-  background: #0066FF;
-  border-radius: 2px;
-}
-
-/* Unified wrapper styling */
-.video-wrapper,
-.reel-wrapper {
+.video-container {
   position: relative;
   width: 100%;
-  padding-top: 140%;
+  padding-top: 177.77%; /* Instagram Reels aspect ratio (9:16) */
   background: #000;
+  border-radius: 12px;
   overflow: hidden;
 }
 
-/* Unified video element styling */
-.video-wrapper video,
-.reel-wrapper video {
+.video-container video {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 15px;
 }
 
-/* Video Controls */
 .video-controls {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  padding: 1.5rem;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  gap: 12px;
   opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 0 0 15px 15px;
+  transition: opacity 0.2s ease;
 }
 
-.video-wrapper:hover .video-controls,
-.reel-wrapper:hover .video-controls {
+.video-container:hover .video-controls {
   opacity: 1;
 }
 
-.control-overlay {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.control-overlay button {
+.control-btn {
   background: rgba(255, 255, 255, 0.2);
   border: none;
-  color: white;
-  cursor: pointer;
-  padding: 0.75rem;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.2s ease;
 }
 
-.control-overlay button:hover {
+.control-btn:hover {
   background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
 }
 
-.control-overlay svg {
-  width: 20px;
-  height: 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .videos-grid,
-  .instagram-reels-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    max-width: 900px;
-  }
-  
-  .header {
-    font-size: 2.5rem;
-  }
-
-  .video-header h1,
-  .instagram-reels-header h2 {
-    font-size: 2rem;
-  }
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 16px;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
-  .videos-grid,
-  .instagram-reels-grid {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    max-width: 600px;
-  }
-
-  .patient-videos {
-    padding: 3rem 1rem;
-  }
-
-  .header {
-    font-size: 2rem;
-  }
-
-  .video-header h1 {
-    font-size: 1.8rem;
-  }
-
-  .instagram-reels-header h2 {
-    font-size: 1.8rem;
-  }
-
-  .control-overlay button {
-    width: 35px;
-    height: 35px;
-    padding: 0.5rem;
-  }
-
-  .control-overlay svg {
-    width: 18px;
-    height: 18px;
+  .videos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 }
 
 @media (max-width: 480px) {
-  .header {
-    font-size: 1.8rem;
+  .videos-grid {
+    grid-template-columns: 1fr;
   }
-
-  .video-header h1 {
-    font-size: 1.6rem;
-  }
-
-  .video-header,
-  .instagram-reels-header {
-    margin-bottom: 2rem;
-  }
-
-  .videos-grid,
-  .instagram-reels-grid {
-    padding: 0 1rem;
+  
+  .video-container {
+    max-width: 100%;
+    margin: 0 auto;
   }
 }

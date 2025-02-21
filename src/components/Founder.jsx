@@ -4,6 +4,8 @@ import FounderImage from '../assets/7.jpg';
 import pareshalImg from '../Celeb/pareshal_rawal.jpeg';
 import aliirani from '../Celeb/AliIrani.jpg';
 import TanuJain from '../Celeb/TanuJain.jpg';
+import ProFileCard from './ProFileCard';
+import ShinyText from './ShinyText';
 
 const Founder = () => {
   const celebrities = [
@@ -34,28 +36,28 @@ const Founder = () => {
           <div className="story-content">
             <div className="text-section">
               <p className="story-paragraph">
-                Physiophy is not just a rehabilitation center—it is a space of
+               <ShinyText text=" Physiophy is not just a rehabilitation center—it is a space of
                 transformation, resilience, and hope. Founded by Dr. Tanvi
                 Katariya, a renowned physiotherapist with over five years of
                 hands-on experience, Physiophy was built on the belief that
-                healing goes beyond recovery.
+                healing goes beyond recovery."/>
               </p>
 
               <p className="story-paragraph">
-                As a celebrity physiotherapist, Dr. Katariya has treated
+               <ShinyText text=" As a celebrity physiotherapist, Dr. Katariya has treated
                 esteemed personalities, yet her true passion lies in making world-class
                 physiotherapy accessible to all. With a deep commitment to
                 patient-centric care, she has redefined physiotherapy as
                 more than just treatment—it is a movement toward
-                strength, innovation, and excellence.
+                strength, innovation, and excellence."/>
               </p>
 
               <p className="story-paragraph">
-                Every patient is not just a case but a story, and at Physiophy,
+                <ShinyText text="Every patient is not just a case but a story, and at Physiophy,
                 every story is given the attention, expertise, and dedication
                 it deserves. This is a place where science meets compassion,
                 where barriers are broken, and where every step forward is a
-                victory.
+                victory."/>
               </p>
 
               <div className="quote-box">
@@ -67,7 +69,8 @@ const Founder = () => {
             </div>
 
             <div className="profile-section">
-              <div className="profile-card">
+              <ProFileCard/>
+              {/* <div className="profile-card">
                 <div className="profile-image-container">
                   <img 
                     src={FounderImage}
@@ -86,7 +89,8 @@ const Founder = () => {
                     <li>Internationally Certified Garbh Sanskar Coach </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
+              
             </div>
           </div>
         </div>

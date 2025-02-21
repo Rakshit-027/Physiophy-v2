@@ -15,6 +15,7 @@ import image2 from "../assets/image2.jpg";
 import image3 from "../assets/image3.jpg";
 import Founder from "./Founder";
 import PatientVideos from "./PatientVideos";
+import  Helmet  from "react-helmet";
 const reviewsData = [
   {
     name: "Dr. Rajesh Gadekar",
@@ -231,6 +232,16 @@ const Home = ({ onLogin }) => {
 
   return (
     <div className="home-">
+        <Helmet>
+        <title>Physiophy - Best Physiotherapy Clinic in Nagpur</title>
+        <meta name="description" content="Experience the best physiotherapy care at Physiophy in Nagpur. Expert treatments for pain relief, rehabilitation, and wellness." />
+        <meta name="keywords" content="Physiotherapy, Pain Relief, Rehabilitation, Nagpur, Physiophy" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Physiophy - Your Bridge Between Disability and Ability" />
+        <meta property="og:description" content="Personalized physiotherapy treatments to help you move better, feel stronger, and live pain-free." />
+        <meta property="og:image" content={sliderImages[0].url} />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <div className="slider-container">
         <div className="slider" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
           {sliderImages.map((image, index) => (
