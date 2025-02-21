@@ -1,30 +1,39 @@
 import React from 'react';
 import './Founder.css';
 import FounderImage from '../assets/7.jpg';
-import pareshalImg from '../Celeb/pareshal_rawal.jpeg';
-import aliirani from '../Celeb/AliIrani.jpg';
-import TanuJain from '../Celeb/TanuJain.jpg';
+import pareshalImg from '../Celeb/With Paresh Rawal (1).jpg';
+import aliirani from '../Celeb/With Dr. Ali Irani (1).jpg';
+import TanuJain from '../Celeb/Dr. Tanu Jain (1).jpg';
+import Velu from '../Celeb/With Dr. Velumani sir (1).jpg';
 import ProFileCard from './ProFileCard';
 import ShinyText from './ShinyText';
+import Celeb from './TitleCard';
+import TitleCard from './TitleCard';
 
 const Founder = () => {
-  const celebrities = [
-    {
-      name: "Paresh Rawal",
-      image: pareshalImg,
-      testimonial: "Dr. Kataria's expertise in physiotherapy has been instrumental in my recovery. Her dedication and professional approach make her stand out in her field.",
-      treatment: "Post-surgery rehabilitation"
-    },
-    {
-      name: "Dr Ali Irani",
-      image: aliirani,
-      testimonial: "The personalized care and attention to detail at PhysioFi has made a significant difference in my recovery journey.",
-      treatment: "Sports injury rehabilitation"
-    },
-    {
-      name: "Dr Tanu Jain",
-      image: TanuJain,
-    }
+  // const celebrities = [
+  //   {
+  //     name: "Paresh Rawal",
+  //     image: pareshalImg,
+  //     testimonial: "Dr. Kataria's expertise in physiotherapy has been instrumental in my recovery. Her dedication and professional approach make her stand out in her field.",
+  //     treatment: "Post-surgery rehabilitation"
+  //   },
+  //   {
+  //     name: "Dr Ali Irani",
+  //     image: aliirani,
+  //     testimonial: "The personalized care and attention to detail at PhysioFi has made a significant difference in my recovery journey.",
+  //     treatment: "Sports injury rehabilitation"
+  //   },
+  //   {
+  //     name: "Dr Tanu Jain",
+  //     image: TanuJain,
+  //   }
+  // ];
+  const photos = [
+    { id: 1, src: pareshalImg, alt: "Photo 1" },
+    { id: 2, src: aliirani, alt: "Photo 2" },
+    { id: 3, src: TanuJain, alt: "Photo 3" },
+    { id: 4, src: Velu, alt: "Photo 3" },
   ];
   
   return (
@@ -57,19 +66,20 @@ const Founder = () => {
                 every story is given the attention, expertise, and dedication
                 it deserves. This is a place where science meets compassion,
                 where barriers are broken, and where every step forward is a
-                victory."/>
+                victory."/> <p className="quote-text">
+                At Physiophy, we don't just heal we transform lives
               </p>
+              </p>
+             
 
-              <div className="quote-box">
-                <p className="quote-text">
-                  At Physiophy, we don't just heal—
-                  <span className="quote-highlight">we transform lives.</span>
-                </p>
-              </div>
+              {/* <div className="quote-box">
+                
+              </div> */}
             </div>
 
             <div className="profile-section">
               <ProFileCard/>
+              
               {/* <div className="profile-card">
                 <div className="profile-image-container">
                   <img 
@@ -92,10 +102,19 @@ const Founder = () => {
               </div> */}
               
             </div>
+           
           </div>
+          
         </div>
+        <div className="celeb">
+      {photos.map(photo => (
+        <div key={photo.id} className="photo-container">
+          <img src={photo.src} alt={photo.alt} />
+        </div>
+      ))}
+    </div>
       </div>
-      <div className="celebrity-section">
+      {/* <div className="celebrity-section">
         <div className="celebrity-grid">
           {celebrities.map((celebrity, index) => (
             <div key={index} className="celebrity-card">
@@ -107,8 +126,10 @@ const Founder = () => {
               </div>
             </div>
           ))}
+            
         </div>
-      </div>
+      </div> */}
+      
     </div>
   );
 };

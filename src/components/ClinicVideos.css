@@ -30,7 +30,7 @@
   background: linear-gradient(to right, #3498db, #2ecc71);
 }
 
-.video-grid {
+.video-gridd {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 30px;

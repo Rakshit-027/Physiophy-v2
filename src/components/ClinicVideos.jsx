@@ -139,7 +139,7 @@ const ClinicVideos = () => {
           <p>No videos available at the moment.</p>
         </div>
       ) : (
-        <div className="video-grid">
+        <div className="video-gridd">
           {videos.map(video => (
             <VideoPlayer key={video.id} video={video} />
           ))}
