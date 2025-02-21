@@ -1,5 +1,5 @@
 import React from "react";
-import "./ProfileCard.css";
+import "./ProFileCard.css";
 // import FounderImage from './assets/components/Mini/7.jpg';
 import FounderImage from '../assets/7.jpg';
 const ProfileCard = ({ name, role, image, description, socialLinks }) => {
