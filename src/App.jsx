@@ -89,7 +89,7 @@ function MainApp() {
   return (
     <div className="app">
       <Navbar isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} userProfile={userProfile} />
-      <div className="whatsapp" onClick={() => (window.location.href = "tel:+919970127614")}>
+      <div className="whatsapp" onClick={() => (window.location.href = "https://goto.now/70NiW")}>
     
       <Whatsaap  />
       </div>

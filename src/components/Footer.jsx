@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
-
+import {Facebook, Twitter, Instagram, Linkedin, Youtube,MapPin} from 'lucide-react'
+import Insta from '../assets/My_Instagram_QR_Code.svg'
 const Footer = () => {
   return (
     <footer className="physio-footer">
@@ -28,6 +29,8 @@ const Footer = () => {
           <ul className="footer-contact">
             <li>
               <i className="footer-icon location"></i>
+              
+
               Ground Floor, Hyatt Medicare, Besides Get Wel Hospital, Dhantoli, Nagpur - 440012.
             </li>
             <li>
@@ -40,17 +43,26 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-
+        <div className="footer-section">
+          <h3 className='footer-title'>Scan & Follow</h3>
+          <div className="qr-codes">
+            <div className="qr-code">
+              <img src={Insta} alt="Instagram QR Code" />
+              {/* <span>Instagram</span> */}
+            </div>
+          </div>
+        </div>
         <div className="footer-section">
           <h3 className="footer-title">Follow Us</h3>
           <div className="social-links">
-            <a href="https://www.facebook.com/PhysioPhyPhysiotherapyCentre/" className="social-icon facebook" aria-label="Facebook"></a>
-            {/* <a href="https://twitter.com" className="social-icon twitter" aria-label="Twitter"></a> */}
-            <a href="https://www.instagram.com/physio.phy/" className="social-icon instagram" aria-label="Instagram"></a>
-            <a href="https://www.linkedin.com/in/tanvi-shah-441106212/?originalSubdomain=in" className="social-icon linkedin" aria-label="LinkedIn"></a>
+            <a> <Facebook size={28} href="https://www.facebook.com/PhysioPhyPhysiotherapyCentre/"/></a>
+            <a><Youtube size={28}/></a>
+            <a><Instagram size={28} href="https://www.instagram.com/physio.phy/"/></a>
+            <a><Linkedin size={28} href="https://www.instagram.com/physio.phy/"/></a>
           </div>
         </div>
       </div>
+     
       
       <div className="footer-bottom">
         <p>&copy; 2024 Physiophy. All rights reserved.</p>

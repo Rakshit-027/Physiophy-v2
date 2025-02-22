@@ -6,31 +6,31 @@ import './Services.css';
 const services = [
   {
     icon: <Stethoscope className="rehab-service-icon" />,
-    title: "Pediatric Rehab",
+    title: "Pediatric Rehabilitation",
     description: "Helping little ones move, grow, and thrive with expert pediatric rehabilitation.",
     category: "Pediatric Care"
   },
   {
     icon: <Brain className="rehab-service-icon" />,
-    title: "Neuro Rehab",
+    title: "Neuro Rehabilitation",
     description: "Restoring mobility, independence, and confidence through advanced neurological rehabilitation.",
     category: "Neurological Care"
   },
   {
     icon: <Bone  className="rehab-service-icon" />,
-    title: "Ortho Rehab",
+    title: "Ortho Rehabilitation",
     description: "Precision-driven recovery for joint, muscle, and bone health, ensuring pain-free movement.",
     category: "Orthopedic Care"
   },
   {
     icon: <Users className="rehab-service-icon" />,
-    title: "Geriatric Rehab",
+    title: "Geriatric Rehabilitation",
     description: "Gentle, effective rehabilitation to enhance mobility and quality of life in older adults.",
     category: "Senior Care"
   },
   {
     icon: <Heart className="rehab-service-icon" />,
-    title: "ANC & PNC Rehab",
+    title: "ANC & PNC Rehabilitation",
     description: "Specialized physiotherapy for a smoother pregnancy, safer delivery, and faster postpartum recovery.",
     category: "Maternity Care"
   },

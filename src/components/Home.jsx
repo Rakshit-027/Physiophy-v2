@@ -16,6 +16,7 @@ import image3 from "../assets/image3.jpg";
 import Founder from "./Founder";
 import PatientVideos from "./PatientVideos";
 import  Helmet  from "react-helmet";
+import ServicesInfo from "./ServicesInfo";
 const reviewsData = [
   {
     name: "Dr. Rajesh Gadekar",
@@ -413,12 +414,13 @@ const Home = ({ onLogin }) => {
         </div>
       </div>
     </div> */}
-    <div className="about-hero"><h1>Clinic videos And reviews</h1></div>
+    <ServicesInfo/>
+    <div className="about-hero"><h1>Real People, Real Recoveries</h1></div>
 
       {/* Testimonials Section */}
       <section className="physio-testimonials">
         
-        <h2 className="section-title">Real people real recoveries</h2>
+        {/* <h2 className="section-title">Real people real recoveries</h2> */}
         <div className="physio-testimonials-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <div className="physio-nav-btn left" onClick={prevReview}>
             <ArrowLeft />

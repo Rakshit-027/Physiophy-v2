@@ -1,7 +1,7 @@
 :root {
     --primary-green: black;
     --light-green: #E8F5E9;
-    --hover-green: #43A047;
+    --hover-green: #F4F2FF;
     --text-dark: #2C3E50;
     --text-light: #607D8B;
     --white: #FFFFFF;
@@ -20,7 +20,7 @@
     text-align: center;
     margin-bottom: 40px;
     padding: 30px;
-    background-color: var(--light-green);
+    background-color: #F4F2FF;
     border-radius: 10px;
   }
   
@@ -110,7 +110,7 @@
     text-align: center;
     margin-top: 40px;
     padding: 20px;
-    background-color: var(--light-green);
+    background-color: #F4F2FF;
     border-radius: 8px;
   }
   

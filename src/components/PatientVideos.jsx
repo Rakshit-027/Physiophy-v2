@@ -112,7 +112,7 @@ function PatientVideos() {
         ))}
       </div>
 
-      <h1 className="title reels-title">Informative Videos</h1>
+      {/* <h1 className="title reels-title">Informative Videos</h1>
       <div className="videos-grid">
         {reels.map(video => (
           <VideoPlayer
@@ -121,7 +121,7 @@ function PatientVideos() {
             poster={video.poster}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

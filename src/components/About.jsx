@@ -69,7 +69,7 @@ const About = () => {
             whileHover={{ scale: 1.02, translateY: -10 }}
           >
             <div className="icon">👨‍⚕️</div>
-            <h3>Personalised Care</h3>
+            <h3>One therapist ,One patient</h3>
             <p>We provide individualized attention and care tailored to your specific needs and requirements.</p>
           </motion.div>
 
