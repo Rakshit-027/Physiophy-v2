@@ -60,15 +60,18 @@
 }
 
 .story-paragraph {
-  background: -webkit-linear-gradient(#000000, #510aad);
+  /* background: -webkit-linear-gradient(#000000, #510aad);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
   font-family: 'Playfair Display', serif;
   line-height: 1.8;
   margin-bottom: 1.5rem;
-  font-size: 1.60rem;
+  font-size: 1rem;
   font-weight: 400;
   font-style: normal;
+  background-color: #2b6cb0;
+  border: black solid 2px;
+  
 }
 
 .quote-box {

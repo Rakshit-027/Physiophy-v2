@@ -9,6 +9,7 @@ import ProFileCard from './ProFileCard';
 import ShinyText from './ShinyText';
 import Celeb from './TitleCard';
 import TitleCard from './TitleCard';
+import ScrollReveal from './ScrollReveal';
 
 const Founder = () => {
   // const celebrities = [
@@ -44,31 +45,32 @@ const Founder = () => {
           
           <div className="story-content">
             <div className="text-section">
-              <p className="story-paragraph">
-               <ShinyText text=" Physiophy is not just a rehabilitation center—it is a space of
+              <ScrollReveal className="story-paragraph">
+                Physiophy is not just a rehabilitation center—it is a space of
                 transformation, resilience, and hope. Founded by Dr. Tanvi
                 Katariya, a renowned physiotherapist with over five years of
                 hands-on experience, Physiophy was built on the belief that
-                healing goes beyond recovery."/>
-              </p>
+                healing goes beyond recovery
+              </ScrollReveal>
 
-              <p className="story-paragraph">
-               <ShinyText text=" As a celebrity physiotherapist, Dr. Katariya has treated
+              <ScrollReveal className="story-paragraph">
+                As a celebrity physiotherapist, Dr. Katariya has treated
                 esteemed personalities, yet her true passion lies in making world-class
                 physiotherapy accessible to all. With a deep commitment to
                 patient-centric care, she has redefined physiotherapy as
                 more than just treatment—it is a movement toward
-                strength, innovation, and excellence."/>
-              </p>
+                strength, innovation, and excellence.
+              </ScrollReveal>
 
-              <p className="story-paragraph">
-                <ShinyText text="Every patient is not just a case but a story, and at Physiophy,
+              <ScrollReveal className="story-paragraph">
+                "Every patient is not just a case but a story, and at Physiophy,
                 every story is given the attention, expertise, and dedication
                 it deserves. This is a place where science meets compassion,
                 where barriers are broken, and where every step forward is a
-                victory."/> <p className="quote-text">
+                victory." 
+              </ScrollReveal>
+              <p className="quote-text">
                 At Physiophy, we don't just heal we transform lives
-              </p>
               </p>
              
 
