@@ -38,7 +38,7 @@ const Contact = () => {
           
           <div className="contact-details">
   <div className="contact-item">
-    <MapPin className="icon" />
+    <MapPin size={28} className="icon-c" />
     <a 
       href="https://www.google.com/maps/dir/21.1351351,79.1242868/PhysioPhy+-+Best+Neurophysiotherapy+Centre+in+Nagpur/@21.1369162,79.0610261,13z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bd4c1006aa0f325:0x7840366ec727ecc2!2m2!1d79.0797323!2d21.1366246?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D"
       target="_blank" 
@@ -49,11 +49,11 @@ const Contact = () => {
     </a>
   </div>
   <div className="contact-item">
-    <Mail className="icon" />
+    <Mail className="icon-c" />
     <a href="mailto:contact@physiotherapy.com" className="contact-link">contact@physiotherapy.com</a>
   </div>
   <div className="contact-item">
-    <Phone className="icon" />
+    <Phone className="icon-c" />
     <a href="tel:+919970127614" className="contact-link">+91 9970127614</a>
   </div>
 </div>

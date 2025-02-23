@@ -71,7 +71,7 @@ const Founder = () => {
                 victory." 
               </ScrollReveal>
               <p className="quote-text">
-                At Physiophy, we don't just heal we transform lives
+                -At Physiophy, we don't just heal we transform lives
               </p>
              
 

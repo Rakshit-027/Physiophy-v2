@@ -20,15 +20,15 @@ const FAQ = () => {
       items: [
         {
           question: "What are the treatment charges at Physiophy?",
-          answer: "Our treatment charges vary depending on the type of therapy required. Please contact us for detailed pricing."
+          answer: "Our treatment charges are tailored to the specific therapy you need, ensuring you receive the best care for your condition. We offer competitive pricing with flexible options to suit your needs. For a personalized quote and to explore the best treatment plan for you, feel free to contact us—we’re happy to assist!"
         },
         {
           question: "How many sessions of physiotherapy do we require?",
-          answer: "The number of sessions needed depends on your condition and recovery goals. Your physiotherapist will recommend a treatment plan after an initial assessment."
+          answer: "The number of physiotherapy sessions varies based on your condition and recovery goals. Minor issues may need 4-6 sessions, while more complex cases may require 12 or more. After an initial assessment, our physiotherapists will recommend a personalized treatment plan for the best results. Contact us to learn more!" 
         },
         {
           question: "How long does a physiotherapy session last?",
-          answer: "A typical physiotherapy session lasts between 30 to 60 minutes, depending on the treatment required."
+          answer: "A physiotherapy session usually lasts 60 to 90 minutes, depending on your treatment plan and needs. Your therapist will ensure you get the most effective care within this time."
         }
       ]
     },
@@ -37,8 +37,15 @@ const FAQ = () => {
       items: [
         {
           question: "What conditions are treated at Physiophy?",
-          answer: "Physiophy treats a variety of conditions including musculoskeletal injuries, post-surgical rehabilitation, neurological disorders, sports injuries, and chronic pain."
+          answer: "Physiophy provides expert care for various conditions across all age groups. \n\n" +
+            " Pediatric Rehabilitation: Muscular Dystrophy, Developmental Delay, Down Syndrome, Cerebral Palsy, Autism Spectrum Disorder (ASD), Brachial Plexus Injury, Juvenile Arthritis, Clubfoot & Post-Surgical Pediatric Rehab. \n\n" +
+            " Adult & Geriatric Rehabilitation: Bell’s Palsy, Cervical & Lumbar Spondylosis, Multiple Sclerosis, Stroke & Hemiplegia, Parkinson’s Disease, Sciatica, Osteoarthritis, Frozen Shoulder, Sports Injuries, and Post-Surgical Rehabilitation. \n\n" +
+            " Women’s Health & Wellness: ANC/PNC Rehab, Postural Correction for New Mothers, Diastasis Recti Correction, Pelvic Floor Strengthening, and Post-C-Section Pain Management. \n\n" +
+            " Specialized Therapies: Gait Training, Dry Needling, Cupping Therapy, Kinesio Taping, Hydrotherapy, Electrotherapy & Pain Management, Moxa Fire Therapy, Myofascial Release, Manual Therapy & Joint Mobilization, Lymphatic Drainage Therapy, Ergonomics & Postural Correction Therapy, Hand & Fine Motor Rehabilitation. \n\n" +
+            "Our expert physiotherapists offer personalized treatment plans for effective recovery. Contact us to learn more!"
         }
+        
+        
       ]
     }
   ];

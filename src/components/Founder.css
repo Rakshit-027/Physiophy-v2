@@ -89,8 +89,9 @@
 }
 
 .quote-text {
-  color: white;
+  color: black solid;
   font-size: 1.4rem;
+  font-weight: 700;
   font-style: italic;
   text-align: center;
   line-height: 1.6;

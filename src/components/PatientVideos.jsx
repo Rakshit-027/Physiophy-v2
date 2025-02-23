@@ -101,7 +101,7 @@ function PatientVideos() {
 
   return (
     <div className="patient-videos">
-      <h1 className="title">Patient Success Stories</h1>
+      {/* <h1 className="title">Patient Success Stories</h1> */}
       <div className="videos-grid">
         {videos.map(video => (
           <VideoPlayer

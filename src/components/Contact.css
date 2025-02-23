@@ -180,3 +180,6 @@
     text-decoration: none;
     color: inherit;
   }
+  .icon-c a {
+    margin-right: -80px;
+  }
