@@ -91,9 +91,9 @@ function MainApp() {
   return (
     <div className="app">
       {/* ✅ Navbar stays visible on all pages */}
-      <div className="nav-app">
+      {/* <div className="nav-app"> */}
       <Navbar isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} userProfile={userProfile} />
-      </div>
+      {/* </div> */}
       <div className="whatsapp" onClick={() => (window.location.href = "https://goto.now/70NiW")}>
         <Whatsaap />
       </div>
@@ -176,6 +176,10 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="/appointment" element={isLoggedIn ? <Appointment /> : <BookNowPopup />} />
           <Route path="/admin" element={<ProtectedAdminRoute><AdminPanel /></ProtectedAdminRoute>} />
           <Route path="/profile" element={<PatientPanel />} />
+          <Route path="media" element={<MediaGallery/>}/>
+          <Route path="ClinicsPhotos" element={<ClinicPhotos/>}/>
+          <Route path="ClinicVideos" element={<ClinicVideos/>}/>
+
         </Routes>
       </motion.div>
     </AnimatePresence>
