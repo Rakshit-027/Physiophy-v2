@@ -10,6 +10,7 @@ import ShinyText from './ShinyText';
 import Celeb from './TitleCard';
 import TitleCard from './TitleCard';
 import ScrollReveal from './ScrollReveal';
+import HomeCard from './HomeCard';
 
 const Founder = () => {
   // const celebrities = [
@@ -108,13 +109,14 @@ const Founder = () => {
           </div>
           
         </div>
-        <div className="celeb">
+        {/* <div className="celeb">
       {photos.map(photo => (
         <div key={photo.id} className="photo-container">
           <img src={photo.src} alt={photo.alt} />
         </div>
       ))}
-    </div>
+    </div> */}
+    <HomeCard/>
       </div>
       {/* <div className="celebrity-section">
         <div className="celebrity-grid">
