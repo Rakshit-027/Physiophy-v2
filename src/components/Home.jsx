@@ -233,16 +233,40 @@ const Home = ({ onLogin }) => {
 
   return (
     <div className="home-">
-        <Helmet>
-        <title>Physiophy - Best Physiotherapy Clinic in Nagpur</title>
-        <meta name="description" content="Experience the best physiotherapy care at Physiophy in Nagpur. Expert treatments for pain relief, rehabilitation, and wellness." />
-        <meta name="keywords" content="Physiotherapy, Pain Relief, Rehabilitation, Nagpur, Physiophy" />
-        <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Physiophy - Your Bridge Between Disability and Ability" />
-        <meta property="og:description" content="Personalized physiotherapy treatments to help you move better, feel stronger, and live pain-free." />
-        <meta property="og:image" content={sliderImages[0].url} />
-        <meta property="og:type" content="website" />
-      </Helmet>
+       <Helmet>
+  <title>Physiophy - Best Physiotherapy Clinic in Nagpur</title>
+  <meta name="description" content="Experience top physiotherapy care at Physiophy in Nagpur. Expert treatments for pain relief, rehabilitation, and wellness." />
+  <meta name="keywords" content="Physiotherapy, Pain Relief, Rehabilitation, Nagpur, Physiophy, Dr. Tanvi Katariya" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Physiophy - Your Bridge Between Disability and Ability" />
+  <meta property="og:description" content="Personalized physiotherapy treatments to help you move better, feel stronger, and live pain-free." />
+  <meta property="og:image" content={sliderImages[0].url} />
+  <meta property="og:url" content="https://www.physiophy.com/" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://www.physiophy.com/" />
+
+  {/* Structured Data for Sitelinks */}
+  <script type="application/ld+json">{`
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "url": "https://www.physiophy.com/",
+      "name": "Physiophy",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.physiophy.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "sameAs": [
+        "https://www.physiophy.com/about",
+        "https://www.physiophy.com/services",
+        "https://www.physiophy.com/testimonials",
+        "https://www.physiophy.com/contact",
+        "https://www.physiophy.com/appointment"
+      ]
+    }
+  `}</script>
+</Helmet>
       <div className="slider-container">
         <div className="slider" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
           {sliderImages.map((image, index) => (
