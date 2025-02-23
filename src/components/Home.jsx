@@ -171,15 +171,15 @@ const successStories = [
 ];
 const sliderImages = [
   {
-    url: image,
+    url: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/Hero/image2-min.jpg",
     slogan: "Expert Physical Therapy Care",
   },
   {
-    url: image3,
+    url: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/Hero/image3-min.jpg",
     slogan: "State-of-the-Art Facilities",
   },
   {
-    url: image2,
+    url: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/Hero/imge1-min.jpg",
     slogan: "Advanced Rehabilitation Solutions",
   },
 ];

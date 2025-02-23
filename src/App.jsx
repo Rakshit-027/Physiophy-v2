@@ -32,6 +32,7 @@ import Whatsaap from './components/Mini/Whatsaap.jsx';
 import Footer from './components/Footer.jsx'; 
 import PatientVideos from './components/PatientVideos.jsx';
 import "./App.css"
+import InfiniteCardSlider from './components/InfiniteCardSlider.jsx';
 function App() {
   return (
     <Router>
@@ -147,6 +148,7 @@ const HomePage = ({ isLoggedIn }) => (
     <Element name="home" className="element"><Home /></Element>
     <Element name="PatientVideo" className="element"><PatientVideos/></Element>
     <Element name="about" className="element"><About /></Element>
+    <Element name="Scroll" className='element'><InfiniteCardSlider/></Element>
     <Element name="services" className="element"><Services /></Element>
     {isLoggedIn && <Element name="appointment" className="element"><Appointment /></Element>}
     <Element name="contact" className="element"><Contact /></Element>
