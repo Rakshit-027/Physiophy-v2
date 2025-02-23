@@ -91,8 +91,9 @@ function MainApp() {
   return (
     <div className="app">
       {/* ✅ Navbar stays visible on all pages */}
+      <div className="nav-app">
       <Navbar isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} userProfile={userProfile} />
-
+      </div>
       <div className="whatsapp" onClick={() => (window.location.href = "https://goto.now/70NiW")}>
         <Whatsaap />
       </div>

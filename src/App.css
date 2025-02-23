@@ -22,3 +22,10 @@
 background-image: url(./bg6.jpg);
     
 }
+.nav-app{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
