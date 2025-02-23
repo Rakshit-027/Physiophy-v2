@@ -29,10 +29,11 @@ import UpdatePassword from './components/UpdatePassword.jsx';
 import ResetPassword from './components/ResetPassword.jsx';
 import AdminInstructions from './components/AdminInstructions.jsx';
 import Whatsaap from './components/Mini/Whatsaap.jsx';
-import Footer from './components/Footer.jsx'; 
+import Footer from './components/Footer.jsx';
 import PatientVideos from './components/PatientVideos.jsx';
 import "./App.css"
 import InfiniteCardSlider from './components/InfiniteCardSlider.jsx';
+
 function App() {
   return (
     <Router>
@@ -46,6 +47,7 @@ function MainApp() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
   const [showAdminAuth, setShowAdminAuth] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     Events.scrollEvent.register('begin', () => {});
@@ -54,7 +56,6 @@ function MainApp() {
 
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-
       if (session) {
         setUserProfile(session.user);
         setIsLoggedIn(true);
@@ -89,12 +90,13 @@ function MainApp() {
 
   return (
     <div className="app">
+      {/* ✅ Navbar stays visible on all pages */}
       <Navbar isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} userProfile={userProfile} />
+
       <div className="whatsapp" onClick={() => (window.location.href = "https://goto.now/70NiW")}>
-    
-      <Whatsaap  />
+        <Whatsaap />
       </div>
-      
+
       <AnimatePresence mode="wait">
         {showAuth ? (
           <motion.div key="auth" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50">
@@ -123,7 +125,6 @@ const ProtectedAdminRoute = ({ children }) => {
     const fetchAdminSession = async () => {
       try {
         const adminEmail = localStorage.getItem('admin_email');
-
         if (adminEmail) {
           const { data, error } = await supabase.from('admin_auth').select('role').eq('email', adminEmail).single();
           if (!error && data?.role === 'admin') setAdmin(data);
@@ -172,20 +173,8 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/appointment" element={isLoggedIn ? <Appointment /> : <BookNowPopup />} />
-          <Route path="/testimonials" element={<ProtectedAdminRoute><Testimonials /></ProtectedAdminRoute>} />
-          <Route path="/media" element={<MediaGallery />} />
-          <Route path="/faq" element={<FAQ />} />
           <Route path="/admin" element={<ProtectedAdminRoute><AdminPanel /></ProtectedAdminRoute>} />
           <Route path="/profile" element={<PatientPanel />} />
-          <Route path="/media_upload" element={<ProtectedAdminRoute><MediaUpload /></ProtectedAdminRoute>} />
-          <Route path="/ClinicsPhotos" element={<ClinicPhotos />} />
-          <Route path="/ClinicVideos" element={<ClinicVideos />} />
-          <Route path="/admin-dashboard" element={<ProtectedAdminRoute><MainAdmin /></ProtectedAdminRoute>} />
-          <Route path="/AdminA" element={<ProtectedAdminRoute><AdminAppointment /></ProtectedAdminRoute>} />
-          <Route path="/Doctors" element={<ProtectedAdminRoute><Doctors/></ProtectedAdminRoute>}/>
-          <Route path="/AdminIntructions" element={<ProtectedAdminRoute><AdminInstructions/></ProtectedAdminRoute>}/>
-          <Route path="/update-password" element={<ResetPassword />} />
-          <Route path='/Footer' element={<Footer/>}/>
         </Routes>
       </motion.div>
     </AnimatePresence>
