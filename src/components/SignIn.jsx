@@ -41,7 +41,7 @@ const closePopup = () => {
         alert('Error signing in: ' + error.message);
       } else {
         console.log('User signed in successfully:', data.user);
-        onSuccess();
+        // onSuccess();
       }
     } catch (error) {
       console.error('Unexpected error:', error);
