@@ -171,7 +171,7 @@ const successStories = [
 ];
 const sliderImages = [
   {
-    url: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/Hero/image2-min.jpg",
+    url: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/Hero/WhatsApp%20Image%202025-02-24%20at%207.37.45%20PM%20(1).jpeg",
     slogan: "Expert Physical Therapy Care",
   },
   {
