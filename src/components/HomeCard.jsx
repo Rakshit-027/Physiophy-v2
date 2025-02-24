@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
-import Velu from '../Celeb/With Dr. Velumani sir (1).jpg';
-import TanuJain from '../Celeb/Dr. Tanu Jain (1).jpg';
-import aliirani from '../Celeb/With Dr. Ali Irani (1).jpg';
+import React, { useState, useRef, useEffect } from 'react';
+import styled, { css } from 'styled-components';
+import { motion, useAnimation } from 'framer-motion';
 import pareshalImg from '../Celeb/With Paresh Rawal (1).jpg';
-
-// Define the animation keyframes
+import aliirani from '../Celeb/With Dr. Ali Irani (1).jpg';
+import TanuJain from '../Celeb/Dr. Tanu Jain (1).jpg';
+import Velu from '../Celeb/With Dr. Velumani sir (1).jpg';
+// Styled container with Safari-specific fixes
 const SliderContainer = styled.div`
   width: 100%;
   overflow: hidden;
@@ -13,18 +13,29 @@ const SliderContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 20px 0;
-  background-color: transparent;
+  touch-action: none; /* Prevent all default touch behaviors */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
 `;
 
-// Using CSS animation instead of framer-motion for better iOS compatibility
-const SliderTrack = styled.div`
+// Track with improved Safari performance
+const SliderTrack = styled(motion.div)`
   display: flex;
-  width: fit-content;
-  transition: transform 0.5s ease;
-  transform: translateX(${props => props.translateX}px);
+  width: calc(100% * 8);
+  will-change: transform; /* Optimize performance */
+  transform: translateZ(0); /* Force GPU acceleration */
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  
+  ${({ $isPaused }) =>
+    $isPaused &&
+    css`
+      animation-play-state: paused;
+    `}
 `;
 
-const Card = styled.div`
+const Card = styled(motion.div)`
   min-width: 350px;
   height: 350px;
   margin: 0 10px;
@@ -33,9 +44,8 @@ const Card = styled.div`
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
-  transform: scale(${props => (props.isActive ? 1.1 : 1)});
-  z-index: ${props => (props.isActive ? 10 : 1)};
-  transition: transform 0.4s ease-in-out, z-index 0.2s ease-in-out;
+  transform: translateZ(0); /* Force GPU acceleration */
+  -webkit-transform: translateZ(0);
   
   @media (max-width: 768px) {
     min-width: 250px;
@@ -52,116 +62,89 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  user-select: none;
-  -webkit-user-drag: none;
+  -webkit-user-drag: none; /* Prevent image dragging on iOS */
+  user-select: none; /* Prevent selection */
 `;
 
-const images = [Velu, TanuJain, aliirani, pareshalImg];
-const duplicatedImages = [...images, ...images];
-
 const HomeCard = () => {
-  const [translateX, setTranslateX] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(-1);
-  const [startX, setStartX] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const containerRef = useRef(null);
-  const intervalRef = useRef(null);
+  const controls = useAnimation();
+  const trackRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Calculate the total width of the original set of images
-  const calculateImageSetWidth = () => {
-    if (!containerRef.current) return 0;
-    
-    const cards = containerRef.current.querySelectorAll('div[data-card]');
-    if (cards.length === 0) return 0;
-    
-    // Calculate width of first half (original set) of images
-    let width = 0;
-    for (let i = 0; i < images.length; i++) {
-      const card = cards[i];
-      const cardWidth = card.offsetWidth;
-      const marginRight = parseInt(getComputedStyle(card).marginRight);
-      const marginLeft = parseInt(getComputedStyle(card).marginLeft);
-      width += cardWidth + marginRight + marginLeft;
-    }
-    return width;
-  };
-
-  // Auto-scrolling animation
+  // Check if device is mobile
   useEffect(() => {
-    if (isPaused) {
-      clearInterval(intervalRef.current);
-      return;
-    }
-    
-    const imageSetWidth = calculateImageSetWidth();
-    if (imageSetWidth === 0) return;
-    
-    // Reset position when we've scrolled through one complete set
-    if (Math.abs(translateX) >= imageSetWidth) {
-      setTranslateX(0);
-    }
-    
-    intervalRef.current = setInterval(() => {
-      setTranslateX(prev => prev - 1);
-    }, 30);
-    
-    return () => clearInterval(intervalRef.current);
-  }, [isPaused, translateX]);
+    const checkMobile = () => {
+      setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
-  // Touch handlers for iOS
-  const handleTouchStart = (e) => {
+  // Start animation
+  useEffect(() => {
+    const startAnimation = async () => {
+      if (!isPaused) {
+        await controls.start({
+          x: [0, -trackRef.current?.offsetWidth / 2 || 0],
+          transition: {
+            duration: 30,
+            ease: "linear",
+            repeat: Infinity,
+            repeatType: "loop"
+          }
+        });
+      } else {
+        controls.stop();
+      }
+    };
+
+    startAnimation();
+  }, [controls, isPaused]);
+
+  // Handle touch events
+  const handleTouchStart = () => {
     setIsPaused(true);
-    setStartX(e.touches[0].clientX);
-    setIsDragging(true);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-    
-    const currentX = e.touches[0].clientX;
-    const diff = currentX - startX;
-    setTranslateX(prev => prev + diff/5); // Divide by 5 to slow down the swiping
-    setStartX(currentX);
+    controls.stop();
   };
 
   const handleTouchEnd = () => {
-    setIsDragging(false);
     setIsPaused(false);
   };
 
-  // Mouse handlers for desktop
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-    setActiveIndex(-1);
-  };
+  const images = [
+    aliirani,
+    pareshalImg,
+    TanuJain,
+    Velu
+  ];
 
   return (
     <SliderContainer>
-      <SliderTrack 
-        ref={containerRef}
-        translateX={translateX}
+      <SliderTrack
+        ref={trackRef}
+        animate={controls}
+        $isPaused={isPaused}
+        onMouseEnter={() => !isMobile && setIsPaused(true)}
+        onMouseLeave={() => !isMobile && setIsPaused(false)}
+        drag={isMobile ? false : "x"}
+        dragConstraints={{ left: -500, right: 500 }}
         onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        style={{
+          touchAction: 'none'
+        }}
       >
-        {duplicatedImages.map((image, index) => (
-          <Card 
+        {[...images, ...images].map((image, index) => (
+          <Card
             key={index}
-            data-card
-            isActive={activeIndex === index}
-            onMouseEnter={() => setActiveIndex(index)}
-            onMouseLeave={() => setActiveIndex(-1)}
+            whileHover={isMobile ? {} : { scale: 1.1, zIndex: 10 }}
+            initial={{ scale: 1 }}
           >
             <Image 
               src={image} 
-              alt={`Slide ${index}`} 
+              alt={`Slide ${index}`}
               draggable="false"
             />
           </Card>
