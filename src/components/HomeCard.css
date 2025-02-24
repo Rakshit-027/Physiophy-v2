@@ -1,14 +1,14 @@
-/* HomeCard.css */
+/* HomeCard.css (updated) */
 .slider-container {
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
     display: flex;
     align-items: center;
     padding: 20px 0;
-    touch-action: none;
     -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: transparent;
+    touch-action: pan-y pinch-zoom; /* Allow vertical scrolling while maintaining horizontal control */
   }
   
   .slider-track {
@@ -19,6 +19,10 @@
     -webkit-transform: translateZ(0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    -webkit-user-select: none;
+    user-select: none;
   }
   
   .slider-track.paused {
@@ -36,6 +40,8 @@
     position: relative;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   
   .card-image {
@@ -44,6 +50,7 @@
     object-fit: cover;
     -webkit-user-drag: none;
     user-select: none;
+    pointer-events: none; /* Prevents image from intercepting touch events */
   }
   
   @media (max-width: 768px) {

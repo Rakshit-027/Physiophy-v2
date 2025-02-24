@@ -1,4 +1,4 @@
-// HomeCard.jsx
+// HomeCard.jsx (updated)
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import pareshalImg from '../Celeb/With Paresh Rawal (1).jpg';
@@ -24,9 +24,11 @@ const HomeCard = () => {
 
   useEffect(() => {
     const startAnimation = async () => {
+      if (!trackRef.current) return;
+      
       if (!isPaused) {
         await controls.start({
-          x: [0, -trackRef.current?.offsetWidth / 2 || 0],
+          x: [0, -trackRef.current.offsetWidth / 2],
           transition: {
             duration: 30,
             ease: "linear",
@@ -42,21 +44,17 @@ const HomeCard = () => {
     startAnimation();
   }, [controls, isPaused]);
 
-  const handleTouchStart = () => {
+  const handleTouchStart = (e) => {
     setIsPaused(true);
     controls.stop();
   };
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = (e) => {
+    if (!isMobile) return;
     setIsPaused(false);
   };
 
-  const images = [
-    aliirani,
-    pareshalImg,
-    TanuJain,
-    Velu
-  ];
+  const images = [aliirani, pareshalImg, TanuJain, Velu];
 
   return (
     <div className="slider-container">
@@ -66,12 +64,18 @@ const HomeCard = () => {
         animate={controls}
         onMouseEnter={() => !isMobile && setIsPaused(true)}
         onMouseLeave={() => !isMobile && setIsPaused(false)}
-        drag={isMobile ? false : "x"}
-        dragConstraints={{ left: -500, right: 500 }}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
+        drag={isMobile ? "x" : false}
+        dragConstraints={{ 
+          left: -trackRef.current?.offsetWidth / 2 || -500, 
+          right: 0 
+        }}
+        dragElastic={0.1}
         style={{
-          touchAction: 'none'
+          WebkitUserSelect: 'none',
+          WebkitTouchCallout: 'none'
         }}
       >
         {[...images, ...images].map((image, index) => (
