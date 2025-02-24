@@ -240,7 +240,7 @@ const Home = ({ onLogin }) => {
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Physiophy - Your Bridge Between Disability and Ability" />
   <meta property="og:description" content="Personalized physiotherapy treatments to help you move better, feel stronger, and live pain-free." />
-  <meta property="og:image" content={sliderImages[0].url} />
+  <meta property="og:image" content={"https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/Hero/WhatsApp%20Image%202025-02-24%20at%207.37.45%20PM%20(1).jpeg"} />
   <meta property="og:url" content="https://www.physiophy.com/" />
   <meta property="og:type" content="website" />
   <link rel="canonical" href="https://www.physiophy.com/" />

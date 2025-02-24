@@ -50,7 +50,7 @@ const Contact = () => {
   </div>
   <div className="contact-item">
     <Mail className="icon-c" />
-    <a href="mailto:contact@physiotherapy.com" className="contact-link">contact@physiotherapy.com</a>
+    <a href="mailto:contact@physiotherapy.com" className="contact-link">contact@physiophy.com</a>
   </div>
   <div className="contact-item">
     <Phone className="icon-c" />
