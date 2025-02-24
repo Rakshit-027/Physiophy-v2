@@ -1,4 +1,4 @@
-// HomeCard.jsx (updated)
+// HomeCard.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import pareshalImg from '../Celeb/With Paresh Rawal (1).jpg';
@@ -12,6 +12,7 @@ const HomeCard = () => {
   const controls = useAnimation();
   const trackRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [trackWidth, setTrackWidth] = useState(0);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -22,18 +23,32 @@ const HomeCard = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Update track width on mount and resize
   useEffect(() => {
-    const startAnimation = async () => {
-      if (!trackRef.current) return;
-      
+    const updateWidth = () => {
+      if (trackRef.current) {
+        setTrackWidth(trackRef.current.scrollWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+
+  useEffect(() => {
+    const animateSlider = async () => {
+      if (!trackWidth || !trackRef.current) return;
+
       if (!isPaused) {
         await controls.start({
-          x: [0, -trackRef.current.offsetWidth / 2],
+          x: [0, -trackWidth / 2],
           transition: {
-            duration: 30,
-            ease: "linear",
-            repeat: Infinity,
-            repeatType: "loop"
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 30,
+              ease: "linear"
+            }
           }
         });
       } else {
@@ -41,8 +56,8 @@ const HomeCard = () => {
       }
     };
 
-    startAnimation();
-  }, [controls, isPaused]);
+    animateSlider();
+  }, [controls, isPaused, trackWidth]);
 
   const handleTouchStart = (e) => {
     setIsPaused(true);
@@ -50,7 +65,6 @@ const HomeCard = () => {
   };
 
   const handleTouchEnd = (e) => {
-    if (!isMobile) return;
     setIsPaused(false);
   };
 
@@ -69,20 +83,22 @@ const HomeCard = () => {
         onTouchCancel={handleTouchEnd}
         drag={isMobile ? "x" : false}
         dragConstraints={{ 
-          left: -trackRef.current?.offsetWidth / 2 || -500, 
+          left: -(trackWidth / 2) || -500, 
           right: 0 
         }}
-        dragElastic={0.1}
+        dragElastic={0.2}
+        dragMomentum={false}
         style={{
           WebkitUserSelect: 'none',
-          WebkitTouchCallout: 'none'
+          WebkitTouchCallout: 'none',
+          msUserSelect: 'none'
         }}
       >
         {[...images, ...images].map((image, index) => (
           <motion.div
             key={index}
             className="card"
-            whileHover={isMobile ? {} : { scale: 1.1, zIndex: 10 }}
+            whileHover={isMobile ? {} : { scale: 1.05, zIndex: 10 }}
             initial={{ scale: 1 }}
           >
             <img 
@@ -90,6 +106,7 @@ const HomeCard = () => {
               alt={`Slide ${index}`}
               className="card-image"
               draggable="false"
+              onDragStart={(e) => e.preventDefault()}
             />
           </motion.div>
         ))}
