@@ -1,5 +1,5 @@
-/* HomeCard.css (updated) */
-.slider-container {
+/* HomeCard.css */
+.home-card-slider-container {
     width: 100%;
     overflow-x: hidden;
     position: relative;
@@ -7,62 +7,97 @@
     align-items: center;
     padding: 20px 0;
     -webkit-overflow-scrolling: touch;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: pan-y pinch-zoom; /* Allow vertical scrolling while maintaining horizontal control */
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    touch-action: pan-y;
+    -ms-touch-action: pan-y;
   }
   
-  .slider-track {
+  .home-card-slider-track {
     display: flex;
     width: calc(100% * 8);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
     will-change: transform;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000;
-    perspective: 1000;
     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   
-  .slider-track.paused {
+  .home-card-slider-track.home-card-paused {
     animation-play-state: paused;
   }
   
-  .card {
+  .home-card-item {
     min-width: 350px;
+    width: 350px;
+    max-width: 350px;
     height: 350px;
+    max-height: 350px;
     margin: 0 10px;
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
     flex-shrink: 0;
+    flex-grow: 0;
     position: relative;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
   }
   
-  .card-image {
+  .home-card-image {
     width: 100%;
     height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: cover;
     -webkit-user-drag: none;
-    user-select: none;
-    pointer-events: none; /* Prevents image from intercepting touch events */
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
   }
   
   @media (max-width: 768px) {
-    .card {
+    .home-card-item {
       min-width: 250px;
+      width: 250px;
+      max-width: 250px;
       height: 250px;
+      max-height: 250px;
     }
   }
   
   @media (max-width: 480px) {
-    .card {
+    .home-card-item {
       min-width: 200px;
+      width: 200px;
+      max-width: 200px;
       height: 200px;
+      max-height: 200px;
+    }
+  }
+  
+  /* Safari-specific fixes */
+  @supports (-webkit-overflow-scrolling: touch) {
+    .home-card-item {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    
+    .home-card-image {
+      -webkit-object-fit: cover;
+      object-fit: cover;
+      width: 100% !important;
+      height: 100% !important;
     }
   }
