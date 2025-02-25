@@ -9,7 +9,7 @@ import ShinyText from "./ShinyText";
 import ShinyTextc from "./ShinyTextc";
 import ArrowLeft from "./ArrowLeft";
 import ArrowRightt from "./ArrowRightt";
-import image from "../assets/image-1.jpeg";
+import image from "../assets/image-3-3-3-3.jpeg";
 import image2 from "../assets/image-2-2-2.jpeg";
 import image3 from "../assets/image3.jpg";
 import Founder from "./Founder";

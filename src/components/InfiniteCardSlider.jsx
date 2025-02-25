@@ -8,7 +8,7 @@ const sampleCards = [
   { id: 4, image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider//Photos%209.jpg" },
   { id: 5, image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider//WhatsApp%20Image%202024-05-17%20at%203.26.45%20PM%20(1).jpeg" },
   { id: 6, image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider//WhatsApp%20Image%202024-05-17%20at%204.34.13%20PM%20(1).jpeg" },
-  { id: 7, image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider//WhatsApp%20Image%202024-05-17%20at%204.36.44%20PM%20(2).jpeg" },
+  // { id: 7, image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider//WhatsApp%20Image%202024-05-17%20at%204.36.44%20PM%20(2).jpeg" },
   { id: 8, image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider//WhatsApp%20Image%202024-05-17%20at%204.36.46%20PM.jpeg" },
   { id: 9, image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider//WhatsApp%20Image%202024-05-17%20at%205.23.50%20PM.jpeg" },
   { id: 10, image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider//WhatsApp%20Image%202024-06-06%20at%2012.16.48%20AM.jpeg" }
