@@ -10,8 +10,8 @@ import ShinyTextc from "./ShinyTextc";
 import ArrowLeft from "./ArrowLeft";
 import ArrowRightt from "./ArrowRightt";
 import HomeTest from "./HomeTest";
-import image from "../assets/imge1.jpg";
-import image2 from "../assets/image2.jpg";
+import image from "../assets/image-1.jpeg";
+import image2 from "../assets/image-2.jpeg";
 import image3 from "../assets/image3.jpg";
 import Founder from "./Founder";
 import PatientVideos from "./PatientVideos";
@@ -171,11 +171,11 @@ const successStories = [
 ];
 const sliderImages = [
   {
-    url: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/Hero/WhatsApp%20Image%202025-02-24%20at%207.37.45%20PM%20(1).jpeg",
+    url: image,
     slogan: "Expert Physical Therapy Care",
   },
   {
-    url: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/Hero/image3-min.jpg",
+    url: image2,
     slogan: "State-of-the-Art Facilities",
   },
   {
