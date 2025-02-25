@@ -54,12 +54,21 @@ const Footer = () => {
         </div>
         <div className="footer-section">
           <h3 className="footer-title">Follow Us</h3>
-          <div className="social-links">
-            <a> <Facebook size={28} href="https://www.facebook.com/PhysioPhyPhysiotherapyCentre/"/></a>
-            <a><Youtube size={28} href='https://www.youtube.com/@PhysioPhy'/></a>
-            <a><Instagram size={28} href="https://www.instagram.com/physio.phy/"/></a>
-            <a><Linkedin size={28} href="https://www.instagram.com/physio.phy/"/></a>
-          </div>
+          <div className="social-linksss">
+  <a href="https://www.facebook.com/PhysioPhyPhysiotherapyCentre/" target="_blank" rel="noopener noreferrer">
+    <Facebook size={28} color='white' />
+  </a>
+  <a href="https://www.youtube.com/@PhysioPhy" target="_blank" rel="noopener noreferrer">
+    <Youtube size={28} color='white' />
+  </a>
+  <a href="https://www.instagram.com/physio.phy/" target="_blank" rel="noopener noreferrer">
+    <Instagram size={28} color='white' />
+  </a>
+  <a href="https://www.linkedin.com/in/physio-phy/" target="_blank" rel="noopener noreferrer">
+    <Linkedin size={28} color='white' />
+  </a>
+</div>
+
         </div>
       </div>
      
