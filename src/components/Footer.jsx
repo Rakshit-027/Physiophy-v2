@@ -56,7 +56,7 @@ const Footer = () => {
           <h3 className="footer-title">Follow Us</h3>
           <div className="social-links">
             <a> <Facebook size={28} href="https://www.facebook.com/PhysioPhyPhysiotherapyCentre/"/></a>
-            <a><Youtube size={28}/></a>
+            <a><Youtube size={28} href='https://www.youtube.com/@PhysioPhy'/></a>
             <a><Instagram size={28} href="https://www.instagram.com/physio.phy/"/></a>
             <a><Linkedin size={28} href="https://www.instagram.com/physio.phy/"/></a>
           </div>
