@@ -11,7 +11,7 @@ import ArrowLeft from "./ArrowLeft";
 import ArrowRightt from "./ArrowRightt";
 import HomeTest from "./HomeTest";
 import image from "../assets/image-1.jpeg";
-import image2 from "../assets/image-2.jpeg";
+import image2 from "../assets/image-2-2-2.jpeg";
 import image3 from "../assets/image3.jpg";
 import Founder from "./Founder";
 import PatientVideos from "./PatientVideos";
