@@ -53,7 +53,7 @@
   }
   
   .contact-info h2 {
-    color: #00897b;
+    color: black;
     font-size: 2rem;
     margin-bottom: 20px;
   }
@@ -113,7 +113,7 @@
   }
   
   .contact-form h2 {
-    color: #00897b;
+    color: black;
     font-size: 2rem;
     margin-bottom: 30px;
   }
@@ -143,10 +143,10 @@
     border-color: #00897b;
   }
   
-  .submit-button {
+  .submit-button-contact {
     width: 100%;
     padding: 15px;
-    background-color: #00897b;
+    background-color:rgb(3, 37, 48);
     color: white;
     border: none;
     border-radius: 8px;
@@ -156,8 +156,8 @@
     transition: background-color 0.3s ease;
   }
   
-  .submit-button:hover {
-    background-color: #00796b;
+  .submit-button-contact:hover {
+    background-color: black;
   }
   
   /* Responsive Design */
