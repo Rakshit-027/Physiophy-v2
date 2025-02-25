@@ -1,14 +1,16 @@
 /* Appointment Container */
 .appointment-page{
   min-height: 100vh;
-  background: linear-gradient(135deg,#F9FAFB 0%, #E0FBE2 100%);
+  /* background: linear-gradient(135deg,#F9FAFB 0%, #E0FBE2 100%); */
+  background: inherit;
   position: relative;
 }
 .appointment-container {
   max-width: 1200px;
-  margin: 8rem auto;
+  margin: -3rem auto;
   padding: 40px 20px;
-  background: linear-gradient(135deg, #F9FAFB 0%, #E0FBE2 100%);
+  /* background: linear-gradient(135deg, #F9FAFB 0%, #E0FBE2 100%); */
+  background: inherit;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
@@ -22,7 +24,7 @@
 }
 
 .appointment-header h1 {
-  color: #00897b;
+  color: black;
   font-size: 3rem;
   margin-bottom: 20px;
   font-weight: 700;
@@ -30,7 +32,7 @@
 }
 
 .appointment-header p {
-  color: #666;
+  color:black;
   font-size: 1.3rem;
   margin-top: 20px;
   line-height: 1.6;
@@ -39,7 +41,7 @@
 .decorative-line {
   width: 150px;
   height: 4px;
-  background: linear-gradient(90deg, #00897b, #4db6ac);
+  background: darkblue;
   margin: 0 auto;
   border-radius: 2px;
 }
@@ -67,7 +69,7 @@
 
 .booking-section h2,
 .details-section h2 {
-  color: #00897b;
+  color: black;
   font-size: 2rem;
   margin-bottom: 35px;
   display: flex;
@@ -109,8 +111,8 @@
 }
 
 .date-button.selected {
-  background: linear-gradient(135deg, #00897b, #4db6ac);
-  color: white;
+  background: lightblue;
+  color: black;
   border-color: transparent;
   box-shadow: 0 4px 12px rgba(0, 137, 123, 0.2);
 }
@@ -147,14 +149,14 @@
 }
 
 .time-button:hover {
-  border-color: #00897b;
+  border-color: lightblue;
   background: #f5f5f5;
   transform: translateY(-2px);
 }
 
 .time-button.selected {
-  background: linear-gradient(135deg, #00897b, #4db6ac);
-  color: white;
+  background: lightblue;
+  color: black;
   border-color: transparent;
   box-shadow: 0 4px 12px rgba(0, 137, 123, 0.2);
 }
@@ -211,7 +213,7 @@
 .submit-button {
   width: 100%;
   padding: 16px;
-  background: linear-gradient(135deg, #00897b, #4db6ac);
+  background: lightblue;
   color: white;
   border: none;
   border-radius: 12px;
