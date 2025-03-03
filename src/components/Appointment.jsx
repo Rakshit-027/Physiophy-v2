@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, User, Phone, Mail, FileText, CheckCircle } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom'; // Add these imports
 import './Appointment.css';
 import supabase from './SupabaseClient';
 
 const Appointment = () => {
+  const navigate = useNavigate(); // Add navigation hook
+  const location = useLocation(); // Add location hook
   
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
@@ -14,6 +17,18 @@ const Appointment = () => {
     problem: ''
   });
   const [showConfirmation, setShowConfirmation] = useState(false);
+
+  // Add useEffect to watch for route changes
+  useEffect(() => {
+    // Check if we've navigated to sign-in page
+    if (location.pathname === '/signIn' || location.pathname === '/sign-in') {
+      setShowConfirmation(false);
+      // Reset form if needed
+      setSelectedDate('');
+      setSelectedTime('');
+      setFormData({ name: '', email: '', phone: '', problem: '' });
+    }
+  }, [location.pathname]); // Run effect when pathname changes
 
   const timeSlots = [
     '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
@@ -55,6 +70,12 @@ const Appointment = () => {
       }
     }
     return dates;
+  };
+
+  // Add navigation handler for sign-in
+  const handleSignInNavigation = () => {
+    setShowConfirmation(false); // Close popup before navigating
+    navigate('/signin'); // Navigate to sign-in page
   };
 
   return (
@@ -204,6 +225,13 @@ const Appointment = () => {
             }}
           >
             Book Another Appointment
+          </button>
+          {/* Optional: Add Sign In button */}
+          <button 
+            className="signin-button"
+            onClick={handleSignInNavigation}
+          >
+            Go to Sign In
           </button>
         </div>
       )}

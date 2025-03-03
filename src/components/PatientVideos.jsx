@@ -5,10 +5,10 @@ import inform from "../assets/inform0.jpg";
 import inform1 from "../assets/inform.jpg";
 import inform2 from "../assets/inform2.jpg";
 import patient from "../assets/Patientsix.mp4";
-import patient1 from "../assets/Patient8.mp4";
+import patient1 from "../assets/VID-20250207-WA0001.mp4";
 import patient2 from "../assets/Patientseven.mp4";
 import reel1 from "../assets/Ad reel FINAL.mov";
-import reel2 from "../assets/Cerebral.mp4";
+import reel2 from "../assets/VID-20250207-WA0001.mp4";
 import reel3 from "../assets/c1.mp4";
 import Thumb from "../assets/Thumb.png";
 import Thumb1 from "../assets/Thumb1.png";
@@ -91,9 +91,9 @@ const VideoPlayer = ({ src, poster }) => {
 
 function PatientVideos() {
   const videos = [
-    { id: 1, src: patient, poster: Thumb },
-    { id: 2, src: patient1, poster: Thumb1 },
-    { id: 3, src: patient2, poster: Thumb2 },
+    { id: 1, src: patient, poster: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/thumb/Siddharth%20(Spinal%20Cord%20Injury).jpg" },
+    { id: 2, src: patient1, poster: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/thumb/Rakshit%20(GBS).jpg" },
+    { id: 3, src: patient2, poster: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/thumb/Bhavika%20(Developmental%20Delay).jpg" },
   ];
 
   const reels = [

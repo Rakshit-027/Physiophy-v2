@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { ChevronLeft, ChevronRight, Star,Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Play } from "lucide-react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import supabase from "./SupabaseClient";
@@ -10,12 +10,14 @@ import ShinyTextc from "./ShinyTextc";
 import ArrowLeft from "./ArrowLeft";
 import ArrowRightt from "./ArrowRightt";
 import image from "../assets/image-3-3-3-3.jpeg";
-import image2 from "../assets/image-2-2-2.jpeg";
-import image3 from "../assets/image3.jpg";
+import image2 from "../assets/sc2.jpeg";
+import image3 from "../assets/sc3.jpeg";
 import Founder from "./Founder";
 import PatientVideos from "./PatientVideos";
-import  Helmet  from "react-helmet";
+import Helmet from "react-helmet";
 import ServicesInfo from "./ServicesInfo";
+
+// Data Definitions
 const reviewsData = [
   {
     name: "Dr. Rajesh Gadekar",
@@ -94,20 +96,6 @@ const reviewsData = [
     rating: 4,
     date: "5 months ago"
   },
-  // {
-  //   name: "Chinmay Galwe",
-  //   image: "https://via.placeholder.com/150",
-  //   text: "Best physio with best hospitality and services. Professional care and personal attention given.",
-  //   rating: 5,
-  //   date: "7 months ago"
-  // },
-  // {
-  //   name: "Karnik Tawarji",
-  //   image: "https://via.placeholder.com/150",
-  //   text: "Good clinic with a friendly environment. Exercise program is given to each individual as per their problem and condition.",
-  //   rating: 4,
-  //   date: "7 months ago"
-  // },
   {
     name: "Priti Choudhary",
     image: "https://lh3.googleusercontent.com/a/ACg8ocKYN7HOB9uoP8S0G8faeCRdfJdMxEy0GNL4dmWaI7wmydGiwg=w60-h60-p-rp-mo-br100",
@@ -168,6 +156,7 @@ const successStories = [
     description: "Experience Mr. Thompson's journey to improved mobility"
   }
 ];
+
 const sliderImages = [
   {
     url: image,
@@ -178,11 +167,12 @@ const sliderImages = [
     slogan: "State-of-the-Art Facilities",
   },
   {
-    url: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/Hero/imge1-min.jpg",
+    url: image3,
     slogan: "Advanced Rehabilitation Solutions",
   },
 ];
 
+// Home Component
 const Home = ({ onLogin }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -190,6 +180,7 @@ const Home = ({ onLogin }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const intervalRef = useRef(null);
+  const location = useLocation();
 
   // Fetch user session
   useEffect(() => {
@@ -219,6 +210,14 @@ const Home = ({ onLogin }) => {
     return () => clearInterval(intervalRef.current);
   }, [isAutoScrollPaused]);
 
+  // Close popup when navigating to /signIn
+  useEffect(() => {
+    if (location.pathname === "/signIn") {
+      setTimeout(() => setShowPopup(false), 100); // Small delay to ensure update
+    }
+  }, [location.pathname]);
+  
+
   const nextReview = () => setCurrentIndex((prev) => (prev + 1) % reviewsData.length);
   const prevReview = () => setCurrentIndex((prev) => (prev === 0 ? reviewsData.length - 1 : prev - 1));
 
@@ -230,42 +229,44 @@ const Home = ({ onLogin }) => {
   const handleBookNowClick = () => (!isLoggedIn ? setShowPopup(true) : (window.location.href = "/appointment"));
   const closePopup = () => setShowPopup(false);
 
+  const handleDotClick = (index) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <div className="home-">
-       <Helmet>
-  <title>Physiophy - Best Physiotherapy Clinic in Nagpur</title>
-  <meta name="description" content="Experience top physiotherapy care at Physiophy in Nagpur. Expert treatments for pain relief, rehabilitation, and wellness." />
-  <meta name="keywords" content="Physiotherapy, Pain Relief, Rehabilitation, Nagpur, Physiophy, Dr. Tanvi Katariya" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Physiophy - Your Bridge Between Disability and Ability" />
-  <meta property="og:description" content="Personalized physiotherapy treatments to help you move better, feel stronger, and live pain-free." />
-  <meta property="og:image" content={"https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/Hero/WhatsApp%20Image%202025-02-24%20at%207.37.45%20PM%20(1).jpeg"} />
-  <meta property="og:url" content="https://www.physiophy.com/" />
-  <meta property="og:type" content="website" />
-  <link rel="canonical" href="https://www.physiophy.com/" />
-
-  {/* Structured Data for Sitelinks */}
-  <script type="application/ld+json">{`
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "url": "https://www.physiophy.com/",
-      "name": "Physiophy",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.physiophy.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      },
-      "sameAs": [
-        "https://www.physiophy.com/about",
-        "https://www.physiophy.com/services",
-        "https://www.physiophy.com/testimonials",
-        "https://www.physiophy.com/contact",
-        "https://www.physiophy.com/appointment"
-      ]
-    }
-  `}</script>
-</Helmet>
+      <Helmet>
+        <title>Physiophy - Best Physiotherapy Clinic in Nagpur</title>
+        <meta name="description" content="Experience top physiotherapy care at Physiophy in Nagpur. Expert treatments for pain relief, rehabilitation, and wellness." />
+        <meta name="keywords" content="Physiotherapy, Pain Relief, Rehabilitation, Nagpur, Physiophy, Dr. Tanvi Katariya" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Physiophy - Your Bridge Between Disability and Ability" />
+        <meta property="og:description" content="Personalized physiotherapy treatments to help you move better, feel stronger, and live pain-free." />
+        <meta property="og:image" content={"https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/Hero/WhatsApp%20Image%202025-02-24%20at%207.37.45%20PM%20(1).jpeg"} />
+        <meta property="og:url" content="https://www.physiophy.com/" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.physiophy.com/" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "url": "https://www.physiophy.com/",
+            "name": "Physiophy",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://www.physiophy.com/search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            },
+            "sameAs": [
+              "https://www.physiophy.com/about",
+              "https://www.physiophy.com/services",
+              "https://www.physiophy.com/testimonials",
+              "https://www.physiophy.com/contact",
+              "https://www.physiophy.com/appointment"
+            ]
+          }
+        `}</script>
+      </Helmet>
       <div className="slider-container">
         <div className="slider" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
           {sliderImages.map((image, index) => (
@@ -297,234 +298,75 @@ const Home = ({ onLogin }) => {
         <div className="decorative-line"></div>
       </div>
       <Founder />
-    <div className="physio-cont">
-    <div className="physio-container">
-      {/* Hero Section */}
-      
-      {/* <section className="physio-hero">
-        <div className="physio-hero-content">
-          <h1 className="physio-main-title">
-            <span className="physio-title-accent"><ShinyText text="Expert Care"/></span>
-            <span className="physio-title-accent"><ShinyText text="With Physiophy"/></span>
-            <span className="physio-title-main"><ShinyText text="Your bridge between  disability to ability"/></span>
-          </h1>
-          <p className="physio-hero-description">
-            Discover personalized physiotherapy treatments that help you move better, feel stronger, and live pain-free.
-          </p>
-          <div className="physio-cta-group">
-            <div>
-              <div className="physio-primary-btn" onClick={handleBookNowClick}>
-                Book Appointment
+      <div className="physio-cont">
+        <div className="physio-container">
+          <ServicesInfo />
+          <div className="about-hero">
+            <h1>Real People, Real Recoveries</h1>
+          </div>
+          <section className="physio-testimonials">
+            <div className="physio-testimonials-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <div className="physio-nav-btn left" onClick={prevReview}>
+                <ArrowLeft />
               </div>
-            </div>
-            <ScrollLink to="services" spy={true} smooth={true} offset={-70} duration={500} className="physio-secondary-btn">
-              Our Services<span className="physio-btn-arrow">→</span>
-            </ScrollLink>
-          </div>
-        </div>
-        <div className="physio-hero-image-wrapper">
-          <img src={HeroImg} alt="Physiotherapy Session" className="physio-hero-image" />
-          {/* <div className="physio-experience-badge">
-            {/* <span className="physio-badge-number">15+</span>
-            <span className="physio-badge-text">Years of Excellence</span> */}
-          {/* </div>  */}
-        {/* </div> */}
-      {/* </section> */} *
-      {/* <div className="founder-container"> */}
-      {/* <div className="founder-header">
-        <div className="header-content">
-          <div className="slogan">The story of founder from passion to practice</div>
-          <div className="founder-photo">
-            <img src={HeroImg} alt="Dr. Tanvi Katariya" className="profile-image" />
-          </div>
-          <h1>Dr. Tanvi Katariya</h1>
-          <div className="title">Physiotherapist</div> */}
-          {/* <div className="contact-info">
-            <span><i className="icon">📞</i> +91 7020427614</span>
-            <span><i className="icon">📧</i> tanvishah01@gmail.com</span>
-            <span><i className="icon">📍</i> Physiophy - Dhantoli, Nagpur</span>
-          </div> */}
-        {/* </div> */}
-      {/* </div> */}
-      
-  
-
-      {/* <div className="content-grid">
-        <div className="founder-section">
-          <h2><span className="section-icon">🎓</span> Education</h2>
-          <ul>
-            <li className="highlight-item">
-              <div className="year">2024</div>
-              <div className="detail">Fellowship in Neuro-Rehab, UK</div>
-            </li>
-            <li className="highlight-item">
-              <div className="year">2022</div>
-              <div className="detail">Master's in Physiotherapy (MPT) - Orthopedic Rehabilitation<br/>
-              <span className="institution">YBN University, Ranchi</span></div>
-            </li>
-            <li className="highlight-item">
-              <div className="year">2020</div>
-              <div className="detail">Bachelor's in Physiotherapy (BPT)<br/>
-              <span className="institution">VSPM College of Physiotherapy</span></div>
-            </li>
-          </ul>
-        </div>
-        
-        <div className="founder-section">
-          <h2><span className="section-icon">🏆</span> Certifications & Expertise</h2>
-          <div className="skills-grid">
-            <div className="skill-item">Certified Garbh Sankar Educator</div>
-            <div className="skill-item">Certified Autism Therapist</div>
-            <div className="skill-item">Certified ANC/PNC Trainer</div>
-            <div className="skill-item">Yoga & Nutrition Expert</div>
-            <div className="skill-item">Kinesio & Therapeutic Taping</div>
-            <div className="skill-item">CPR/AED Certified</div>
-            <div className="skill-item">Expert in Dry Needling</div>
-            <div className="skill-item">Neuro-OPD Specialist</div>
-          </div>
-        </div>
-        
-        <div className="founder-section experience-section">
-          <h2><span className="section-icon">💼</span> Professional Journey</h2>
-          <div className="timeline">
-            <div className="experience-item">
-              <div className="experience-date">2024 - Present</div>
-              <div className="experience-content">
-                <h3>Founder & Lead Physiotherapist</h3>
-                <p className="company">Physiophy, Nagpur</p>
-              </div>
-            </div>
-            <div className="experience-item">
-              <div className="experience-date">2023</div>
-              <div className="experience-content">
-                <h3>Neuro-Rehabilitation Specialist</h3>
-                <p className="company">Mission Walk, Hyderabad</p>
-              </div>
-            </div>
-            <div className="experience-item">
-              <div className="experience-date">2023</div>
-              <div className="experience-content">
-                <h3>Senior Physiotherapist</h3>
-                <p className="company">Nanavati Super Speciality Hospital, Mumbai</p>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        
-      {/* </div>
-      <div className="mvv-section">
-        <div className="mvv-container">
-          <div className="mvv-card">
-            <div className="mvv-icon">🎯</div>
-            <h3>Our Mission</h3>
-            <p>To provide exceptional physiotherapy care that empowers individuals to achieve optimal physical well-being and live life to its fullest potential.</p>
-          </div>
-          <div className="mvv-card">
-            <div className="mvv-icon">👁️</div>
-            <h3>Our Vision</h3>
-            <p>To be the leading physiotherapy center known for innovative treatment approaches, personalized care, and transformative patient outcomes.</p>
-          </div>
-          <div className="mvv-card">
-            <div className="mvv-icon">⭐</div>
-            <h3>Our Values</h3>
-            <ul className="values-list">
-              <li>Excellence in Patient Care</li>
-              <li>Continuous Innovation</li>
-              <li>Compassion & Empathy</li>
-              <li>Integrity & Trust</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div> */}
-    <ServicesInfo/>
-    <div className="about-hero"><h1>Real People, Real Recoveries</h1></div>
-
-      {/* Testimonials Section */}
-      <section className="physio-testimonials">
-        
-        {/* <h2 className="section-title">Real people real recoveries</h2> */}
-        <div className="physio-testimonials-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          <div className="physio-nav-btn left" onClick={prevReview}>
-            <ArrowLeft />
-          </div>
-          <div className="physio-testimonials-slider" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-            {reviewsData.map((review, index) => (
-              <div key={index} className={`physio-testimonial-card ${index === currentIndex ? "active" : ""}`}>
-                <div className="physio-testimonial-header">
-                <img 
-                    src={review.image || `https://api.dicebear.com/7.x/initials/svg?seed=${review.name}`} 
-                    alt={`https://api.dicebear.com/7.x/initials/svg?seed=${review.name}`} 
-                    className="physio-testimonial-image"
-                  />
-                  <div className="physio-testimonial-info">
-                    <h3 className="physio-testimonial-author">{review.name}</h3>
-                    <p className="physio-testimonial-time">{review.time}</p>
+              <div className="physio-testimonials-slider" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+                {reviewsData.map((review, index) => (
+                  <div key={index} className={`physio-testimonial-card ${index === currentIndex ? "active" : ""}`}>
+                    <div className="physio-testimonial-header">
+                      <img
+                        src={review.image || `https://api.dicebear.com/7.x/initials/svg?seed=${review.name}`}
+                        alt={`${review.name}'s avatar`}
+                        className="physio-testimonial-image"
+                      />
+                      <div className="physio-testimonial-info">
+                        <h3 className="physio-testimonial-author">{review.name}</h3>
+                        <p className="physio-testimonial-time">{review.date}</p>
+                      </div>
+                    </div>
+                    <p className="physio-testimonial-text">{review.text}</p>
+                    <div className="physio-testimonial-rating">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="physio-star-icon" fill="currentColor" />
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <p className="physio-testimonial-text">{review.text}</p>
-                <div className="physio-testimonial-rating">
-                  {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="physio-star-icon" fill="currentColor" />
-                  ))}
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="physio-nav-btn right" onClick={nextReview}>
-            <ArrowRightt/>
-          </div>
-          <div className="physio-testimonial-dots">
-            {reviewsData.map((_, index) => (
-              <button key={index} className={`physio-dot ${index === currentIndex ? "active" : ""}`} onClick={() => handleDotClick(index)} />
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* <section className="videos-section">
-        <h2 className="section-title">From Pain to Power: Watch How Physiophy Changes Lives</h2>
-        <div className="videos-grid">
-          {successStories.map((story) => (
-            <div key={story.id} className="video-card">
-              <div 
-                className="video-thumbnail"
-                onClick={() => handleVideoClick(story.videoUrl)}
-              >
-                <img src={story.thumbnail || "/placeholder.svg"} alt={story.title} />
-                <div className="play-overlay">
-                  <Play className="play-icon" />
-                </div>
+              <div className="physio-nav-btn right" onClick={nextReview}>
+                <ArrowRightt />
               </div>
-              <h3 className="video-title">{story.title}</h3>
-              <p className="video-description">{story.description}</p>
+              <div className="physio-testimonial-dots">
+                {reviewsData.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`physio-dot ${index === currentIndex ? "active" : ""}`}
+                    onClick={() => handleDotClick(index)}
+                  />
+                ))}
+              </div>
             </div>
-          ))}
+          </section>
+          <div className="about-hero">
+            <h1 className="head">From Pain to Power: Watch How Physiophy Changes Lives</h1>
+          </div>
+          {showPopup && (
+            <div className="popup-overlay">
+              <div className="popup-box">
+                <h2>Sign In Required</h2>
+                <p>You need to sign in to book an appointment.</p>
+                <div className="button-group">
+                  <RouterLink to="/signIn" onClick={onLogin} className="login-btn">
+                    Sign In
+                  </RouterLink>
+                  <button onClick={closePopup} className="close-button">
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </section> */}
-      {/* <HomeTest/> */}
-
-      <div className="about-hero">
-        <h1 className="head">From Pain to Power: Watch How Physiophy Changes Lives</h1>
-        
       </div>
-      {/* <PatientVideos/> */}
-
-
-        {/* Popup Modal */}
-        {showPopup && (
-  <div className="popup-overlay">
-    <div className="popup-box">
-      <h2>Sign In Required</h2>
-      <p>You need to sign in to book an appointment.</p>
-      <div className="button-group">
-        <RouterLink to="signIn" onClick={onLogin} className="login-btn">Sign In</RouterLink>
-        <button onClick={closePopup} className="close-button">Close</button>
-      </div>
-    </div>
-  </div>
-)}
-     </div>
-    </div>
     </div>
   );
 };

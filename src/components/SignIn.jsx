@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Lock, LogIn, ArrowRight, X } from 'lucide-react';
 import './Auth.css';
 import Logo from './Logo.png';
 import supabase from './SupabaseClient';
-import { Link as RouterLink, useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SignIn = ({ onClose, onSignUp, onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -14,6 +12,21 @@ const SignIn = ({ onClose, onSignUp, onSuccess }) => {
     rememberMe: false,
   });
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // 🔥 Prevent continuous reloading by using sessionStorage
+  useEffect(() => {
+    if (location.pathname === "/signIn") {
+      const hasReloaded = sessionStorage.getItem("signInReloaded");
+
+      if (!hasReloaded) {
+        sessionStorage.setItem("signInReloaded", "true");
+        window.location.reload();
+      }
+    }
+  }, [location.pathname]);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -21,12 +34,12 @@ const SignIn = ({ onClose, onSignUp, onSuccess }) => {
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
-const navigate = useNavigate();
-const closePopup = () => {
-  navigate("/#Home"); 
-  window.location.reload();// Redirect to home page without reloading
-};
 
+  const closePopup = () => {
+    sessionStorage.removeItem("signInReloaded"); // Reset flag when closing
+    navigate("/#Home");
+    window.location.reload();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +54,7 @@ const closePopup = () => {
         alert('Error signing in: ' + error.message);
       } else {
         console.log('User signed in successfully:', data.user);
-        // onSuccess();
+        closePopup();
       }
     } catch (error) {
       console.error('Unexpected error:', error);
@@ -135,13 +148,6 @@ const closePopup = () => {
             <span>Create Account</span>
             <ArrowRight size={16} />
           </button>
-          {/* <p className="demo-credentials">
-            <strong>Admin demo credentials:</strong>
-            <br />
-            Email: admin@example.com
-            <br />
-            Password: admin
-          </p> */}
         </div>
       </div>
     </div>
