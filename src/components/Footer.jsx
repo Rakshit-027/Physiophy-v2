@@ -42,8 +42,9 @@ Gate no 1 , shrikrishna nagar , kharbi , nagpur , Maharashtra 440024
             </li>
             <li>
               <i className="footer-icon phone"></i>
-              +919970127641
+              +919970127641  +917020427614
             </li>
+            
             <li>
               <i className="footer-icon email"></i>
               contact@physiophy.com

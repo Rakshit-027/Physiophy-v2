@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Contact.css';
-import { Youtube,Instagram,Facebook,Linkedin } from 'lucide-react'
+import { Youtube,Instagram,Facebook,Linkedin,SeparatorVertical } from 'lucide-react'
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -53,7 +53,12 @@ const Contact = () => {
             </p>
             <p className="xai-contact-phone">
               <span className="xai-icon">📞</span> 
-              +91 9970127614
+              +91 9970127614 
+            </p>
+            {/* <span>OR</span> */}
+            <p className="xai-contact-phone">
+              <span className="xai-icon">📞</span> 
+              +91 70204 27614
             </p>
           </div>
 
