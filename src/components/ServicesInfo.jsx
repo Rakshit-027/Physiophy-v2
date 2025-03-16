@@ -53,7 +53,7 @@ const ServicesInfo = () => {
       </section>
 
       <section className="service-section" ref={el => sectionRefs.current[1] = el}>
-        <h2>👥 Adult & Geriatric Rehabilitation</h2>
+        <h2>👥 Adult [Neuro & Ortho] & Geriatric Rehabilitation</h2>
         <div className="services-grid">
           <div className="service-box">Bell's Palsy</div>
           <div className="service-box">Cervical & Lumbar Spondylosis</div>

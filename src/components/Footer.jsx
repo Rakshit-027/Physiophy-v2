@@ -34,6 +34,13 @@ const Footer = () => {
               Ground Floor, Hyatt Medicare, Besides Get Wel Hospital, Dhantoli, Nagpur - 440012.
             </li>
             <li>
+              <i className="footer-icon location"></i>
+              
+
+              Pl no 83 , beside Bhavan’s school 
+Gate no 1 , shrikrishna nagar , kharbi , nagpur , Maharashtra 440024
+            </li>
+            <li>
               <i className="footer-icon phone"></i>
               +919970127641
             </li>

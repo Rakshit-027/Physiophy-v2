@@ -42,6 +42,11 @@ const Contact = () => {
               Ground Floor, Hyatt Medicare, Besides Get Well Hospital, 
               Dhantoli, Nagpur - 440012
             </p>
+            <p className="xai-contact-location">
+              <span className="xai-icon">📍</span> 
+              Pl no 83 , beside Bhavan’s school 
+              Gate no 1 , shrikrishna nagar , kharbi , nagpur , Maharashtra 440024
+            </p>
             <p className="xai-contact-email">
               <span className="xai-icon">📧</span> 
               contact@physiophy.com

@@ -42,7 +42,7 @@ const Founder = () => {
     <div className="founder-container">
       <div className="content-wrapper">
         <div className="story-section">
-          <h2 className="story-title">The story of founder from passion to practice</h2>
+          <h2 className="story-title">The Story Of Founder From Passion To Practice</h2>
           
           <div className="story-content">
             <div className="text-section">

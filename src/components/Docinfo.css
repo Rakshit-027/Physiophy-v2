@@ -1,0 +1,246 @@
+.docinfo-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.docinfo-header {
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.docinfo-subtitle-accent {
+    color: #8b5cf6;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.docinfo-title {
+    color: #1a1a1a;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 20px;
+    letter-spacing: 1px;
+}
+
+.docinfo-decorative-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 auto;
+}
+
+.docinfo-line-left,
+.docinfo-line-right {
+    height: 2px;
+    width: 50px;
+    background: linear-gradient(to right, transparent, #8b5cf6);
+}
+
+.docinfo-line-right {
+    background: linear-gradient(to left, transparent, #8b5cf6);
+}
+
+.docinfo-diamond {
+    width: 8px;
+    height: 8px;
+    background-color: #8b5cf6;
+    transform: rotate(45deg);
+}
+
+/* 🌟 Grid Layout for Two Cards per Row */
+.docinfo-cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+    gap: 80px;
+    padding: 20px;
+    max-width: 719px; /* Adjusted to fit two cards properly */
+    margin: 0 auto;
+}
+
+.docinfo-card {
+    background: inherit;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+    position: relative;
+    width: 300px;
+    min-width: 216px;
+}
+
+.docinfo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(139, 92, 246, 0.12);
+}
+
+.docinfo-image-wrapper {
+    position: relative;
+    padding: 16px;
+}
+
+.docinfo-image-container {
+    position: relative;
+    width: 180px;
+    height: 179px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid gray;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.docinfo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.docinfo-card:hover .docinfo-image {
+    transform: scale(1.08);
+}
+
+.docinfo-content {
+    padding: 24px;
+    text-align: center;
+    margin-top: -1rem;
+}
+
+.docinfo-doctor-name {
+    color: #1a1a1a;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+
+.docinfo-doctor-role {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    min-height: 40px;
+}
+
+.docinfo-specialties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.docinfo-specialty-tag {
+    background-color: #f3f4f6;
+    color: #6366f1;
+    padding: 5px 10px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.docinfo-view-more {
+    background: linear-gradient(45deg, #8b5cf6, #6366f1);
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 auto;
+}
+
+.docinfo-view-more:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+}
+
+.docinfo-arrow {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.docinfo-view-more:hover .docinfo-arrow {
+    transform: translateX(4px);
+}
+
+/* 🔹 Responsive Design: Improved Mobile Layout */
+@media (max-width: 768px) {
+    .docinfo-container {
+        max-width: 95%; /* Increase width for mobile screens */
+        padding: 40px 20px; /* Adjust padding */
+    }
+
+    .docinfo-title {
+        font-size: 28px;
+    }
+
+    .docinfo-cards-container {
+        grid-template-columns: 1fr; /* One column on smaller screens */
+        gap: 25px;
+        padding: 20px;
+    }
+
+    .docinfo-card {
+        width: 100%;
+        max-width: 260px; /* Increase card width for mobile */
+        margin: 0 auto;
+    }
+
+    .docinfo-image-container {
+        width: 150px;
+        height: 150px;
+    }
+
+    .docinfo-doctor-name {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .docinfo-container {
+        max-width: 100%; /* Allow full width on very small screens */
+        padding: 30px 15px;
+    }
+
+    .docinfo-title {
+        font-size: 24px;
+    }
+
+    .docinfo-cards-container {
+        padding: 15px;
+    }
+
+    .docinfo-card {
+        max-width: 280px; /* Allow cards to be slightly bigger */
+    }
+}
+
+/* Logo Styling */
+.docinfo-content img {
+    /* padding: 24px; */
+    /* text-align: center; */
+    width: 140px;
+    /* justify-content: center; */
+    display: block;
+    /* align-items: center; */
+    margin: 0 auto;
+
+;
+}

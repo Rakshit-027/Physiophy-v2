@@ -16,6 +16,7 @@ import Founder from "./Founder";
 import PatientVideos from "./PatientVideos";
 import Helmet from "react-helmet";
 import ServicesInfo from "./ServicesInfo";
+import Docinfo from "./Docinfo";
 
 // Data Definitions
 const reviewsData = [
@@ -293,11 +294,12 @@ const Home = ({ onLogin }) => {
           <ChevronRight size={24} />
         </button>
       </div>
-      <div className="about-hero">
+      {/* <div className="about-hero">
         <h1 className="main-title">Your bridge between disability to ability</h1>
         <div className="decorative-line"></div>
-      </div>
+        </div> */}
       <Founder />
+        <Docinfo />
       <div className="physio-cont">
         <div className="physio-container">
           <ServicesInfo />

@@ -7,7 +7,7 @@
   }
   
   .scroll-reveal-text {
-    font-size: clamp(1.125rem, 4vw, 1.5rem);
+    font-size: clamp(1.125rem, 4vw, 1.32rem);
     font-family: 'Playfair Display', serif;
     line-height: 1.5;
     font-weight: 600;

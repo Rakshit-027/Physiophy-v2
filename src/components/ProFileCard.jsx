@@ -35,7 +35,7 @@ const ProfileList = () => {
     {
       name: "Dr. Tanvi Katariya",
       role: "Founder",
-      image: FounderImage,
+      image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/docs/IMG_2805%20(1).JPG",
       description: "Which is worse, that everyone has his price, or that the price is always so low.",
       socialLinks: [
         { url: "#", icon: "ion-social-reddit" },

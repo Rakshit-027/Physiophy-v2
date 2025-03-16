@@ -161,7 +161,7 @@ const Navbar = ({ isLoggedIn, onLogin, onLogout, userProfile }) => {
             <li>{renderNavLink("contact", "Contact", Phone)}</li>
             <li>{renderNavLink("faq", "FAQs", HelpCircle)}</li>
             <li>
-              <RouterLink to="/media" className="nav-link" onClick={closeMenu}>
+              <RouterLink to="/ClinicsPhotos" className="nav-link" onClick={closeMenu}>
                 <Image className="nav-icon" size={18} />
                 Media
               </RouterLink>
