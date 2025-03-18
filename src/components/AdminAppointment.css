@@ -128,7 +128,7 @@
   }
   
   button:first-child {
-    background-color: white;
+    background-color: inherit;
     color: black;
   }
   
