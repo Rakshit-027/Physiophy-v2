@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Contact.css';
 import { Youtube, Instagram, Facebook, Linkedin } from 'lucide-react';
+import Buttonnn from './Butonnn';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -117,9 +118,12 @@ const Contact = () => {
                 placeholder="Tell us how we can assist you..."
                 required
               />
-              <button type="submit" className="xai-form-button">
+              {/* <button type="submit" className="xai-form-button">
                 Send Message
-              </button>
+              </button> */}
+              <div className='Buttonnn'>
+              <Buttonnn/>
+              </div>
             </form>
           </div>
         </div>
