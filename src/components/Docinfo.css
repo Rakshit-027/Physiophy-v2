@@ -62,7 +62,7 @@
     grid-template-columns: repeat(2, 1fr); /* Two cards per row */
     gap: 80px;
     padding: 20px;
-    max-width: 719px; /* Adjusted to fit two cards properly */
+    max-width: 838px; /* Adjusted to fit two cards properly */
     margin: 0 auto;
 }
 
@@ -110,6 +110,7 @@
 }
 
 .docinfo-content {
+    margin-top: -20px;
     padding: 24px;
     text-align: center;
     margin-top: -1rem;

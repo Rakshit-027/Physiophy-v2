@@ -14,7 +14,7 @@ const DocInfo = () => {
     {
       id: 2,
       name: "DR. GEET KATARIYA",
-      role: "CONSULTANT RADIOLOGY,CHAIRMAN ,PHYSIOPHY",
+      role: "CONSULTANT RADIOLOGIST,CHAIRMAN ,PHYSIOPHY",
       image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/docs/cropped_image%20(3).png",
       specialties: ["Dermatology", "Hair Treatment", "Laser Therapy"]
     },
@@ -62,10 +62,10 @@ const DocInfo = () => {
                 </div>
                 <div className="docinfo-content">
                 {/* <div className="docinfo-logo-circle"> */}
-                    <img 
+                    {/* <img 
                       src="https://physiophy.com/assets/Logo-Ch1nNKpq.png" 
                       alt="Physiophy Logo" 
-                    />
+                    /> */}
                   {/* </div> */}
                   <h4 className="docinfo-doctor-name">{doctor.name}</h4>
                   <p className="docinfo-doctor-role">{doctor.role}</p>
@@ -88,8 +88,8 @@ const DocInfo = () => {
 const StyledWrapper = styled.div`
   .card {
     position: relative;
-    width: 300px;
-    height: 470px;
+    width: 358px;
+    height: 421px;
     border-radius: 14px;
     z-index: 1111;
     overflow: hidden;
@@ -104,8 +104,8 @@ const StyledWrapper = styled.div`
     position: absolute;
     top: 5px;
     left: 5px;
-    width: 290px;
-    height: 460px;
+    width: 350px;
+    height: 410px;
     z-index: 2;
     background:#dddafe;
     backdrop-filter: blur(24px);
@@ -193,6 +193,7 @@ const StyledWrapper = styled.div`
   // }
 
   .docinfo-content {
+    margin-top: -39px;
     padding: 1rem;
     text-align: center;
     // flex-grow: 1;
