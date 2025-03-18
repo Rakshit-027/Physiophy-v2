@@ -62,7 +62,7 @@ const Contact = () => {
             </div>
             <div className="xai-social-links">
               <p className="xai-social-text">Connect with us:</p>
-              <div className="social-linksss">
+              <div className="social-linkssss">
                 <a href="https://www.facebook.com/PhysioPhyPhysiotherapyCentre/" target="_blank" rel="noopener noreferrer" className="xai-social-icon">
                   <Facebook size={20} /> {/* Reduced icon size */}
                 </a>

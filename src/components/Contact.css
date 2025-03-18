@@ -1,14 +1,48 @@
 /* Base Section Styling */
 .xai-contact-section {
-  min-height: auto; /* Changed from 100vh to auto */
+  min-height: auto; /* Keeps flexibility */
   margin-top: 2.5rem;
-  /* background: linear-gradient(135deg, #dddafe 0%, #b8b2ff 100%); */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px; /* Reduced padding */
+  padding: 5vw; /* Adjusts padding dynamically */
   overflow: hidden;
   position: relative;
+  flex-direction: column; /* Ensures content stacks properly on smaller screens */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .xai-contact-section {
+    padding: 4vw; /* Reduce padding on smaller screens */
+    flex-direction: column;
+    text-align: center; /* Center-align content */
+  }
+}
+
+@media (max-width: 480px) {
+  .xai-contact-section {
+    padding: 0vw; 
+
+  }
+  .xai-contact-email{
+    align-items: center;
+    justify-content: center;
+    /* display: inline; */
+    text-align: center;
+    margin: 0 auto;
+  }
+  .xai-contact-phone{
+    align-items: center;
+    justify-content: center;
+
+  }
+  .social-linkssss{
+     align-items: center; 
+    justify-content: center;
+
+  }
+  
 }
 
 .xai-contact-headerr {
@@ -103,7 +137,7 @@
   font-size: 1rem; /* Reduced size */
 }
 
-.social-linksss {
+.social-linkssss {
   display: flex;
   gap: 15px; /* Reduced gap */
   flex-wrap: wrap;
@@ -262,6 +296,8 @@
   .xai-form-button {
     padding: 10px 18px; /* Reduced padding */
     font-size: 0.9rem; /* Reduced size */
+    align-items: center;
+    justify-content: center;
   }
 
   .xai-social-icon {

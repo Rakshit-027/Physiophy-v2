@@ -33,7 +33,8 @@ import Footer from './components/Footer.jsx';
 import PatientVideos from './components/PatientVideos.jsx';
 import "./App.css"
 import InfiniteCardSlider from './components/InfiniteCardSlider.jsx';
-
+import TermsAndConditions from './components/TermsAndConditions.jsx';
+import PrivacyPolicy from './components/PrivacyPolicy.jsx';
 function App() {
   return (
     <Router>
@@ -179,7 +180,8 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="media" element={<MediaGallery/>}/>
           <Route path="ClinicsPhotos" element={<ClinicPhotos/>}/>
           <Route path="ClinicVideos" element={<ClinicVideos/>}/>
-
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>}/>
+          <Route path="/TermsAndConditions" element={<TermsAndConditions/>}/>
         </Routes>
       </motion.div>
     </AnimatePresence>

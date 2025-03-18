@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import {Facebook, Twitter, Instagram, Linkedin, Youtube,MapPin} from 'lucide-react'
+import { Link } from 'react-router-dom';
 import Insta from '../assets/My_Instagram_QR_Code.svg'
 const Footer = () => {
   return (
@@ -84,8 +85,8 @@ Gate no 1 , shrikrishna nagar , kharbi , nagpur , Maharashtra 440024
       <div className="footer-bottom">
         <p>&copy; 2024 Physiophy. All rights reserved.</p>
         <div className="footer-bottom-links">
-          <a href="/privacy">Privacy Policy</a>
-          <a href="/terms">Terms of Service</a>
+          <Link to="/PrivacyPolicy">Privacy Policy</Link>
+          <Link to="/TermsAndConditions">Terms of Service</Link>
         </div>
       </div>
     </footer>
