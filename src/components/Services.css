@@ -90,7 +90,7 @@
 
 /* Service card */
 .rehab-service-card {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -153,13 +153,14 @@
 }
 
 .rehab-cta-content {
-  background-color:lightblue;
+  background-color: rgba(106, 94, 160, 0.8); /* Last value (0.9) controls transparency */
   border-radius: 1rem;
   padding: 3rem 2rem;
   text-align: center;
   color: white;
   backdrop-filter: blur(10px);
 }
+
 
 .rehab-cta-content h3 {
   font-size: 2rem;
