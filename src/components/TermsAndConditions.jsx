@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const Container = styled.div`
   max-width: 100%;
   margin: 40px auto;
+//   margin-top:5.7rem;
   padding-top: 30px;
   margin-top: 5rem;
   background: linear-gradient(135deg, #f9f9f9 0%, #e8f0fe 100%);
@@ -22,6 +23,7 @@ const Container = styled.div`
   @media (max-width: 480px) {
     margin: 10px;
     padding: 15px;
+    margin-top:5.7rem;
   }
 `;
 
@@ -161,7 +163,7 @@ const TermsAndConditions = () => {
       </Section>
       <Link
         to="/contact"
-        style={{ textDecoration: "none", backgroundColor: "#2596be" }}
+        style={{ textDecoration: "none", backgroundColor: "rgba(221,219,255,0.4)" }}
       >
         <ContactButton>Contact Us for Clarifications</ContactButton>
       </Link>

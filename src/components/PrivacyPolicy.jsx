@@ -7,7 +7,8 @@ const Container = styled.div`
   max-width: 100%;
   padding: 30px;
   margin-top: 3rem;
-  background: linear-gradient(135deg, #f9f9f9 0%, #e8f0fe 100%);
+//   background: linear-gradient(135deg, #f9f9f9 0%, #e8f0fe 100%);
+  background:#dddbff;
   border-radius: 15px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   font-family: "Poppins", Arial, sans-serif;
@@ -19,7 +20,8 @@ const Container = styled.div`
   }
 
   @media (max-width: 480px) {
-    margin: 10px;
+    margin: 30px;
+    margin-top: 5.8rem;
     padding: 15px;
   }
 `;
@@ -166,7 +168,7 @@ const PrivacyPolicy = () => {
       </Section>
       <Link
         to="/contact"
-        style={{ textDecoration: "none", backgroundColor: "#2596be" }}
+        style={{ textDecoration: "none", backgroundColor: "rgba(221,219,255,0.4)" }}
       >
         <ContactButton>Contact Us for Questions</ContactButton>
       </Link>
