@@ -17,6 +17,7 @@ import PatientVideos from "./PatientVideos";
 import Helmet from "react-helmet";
 import ServicesInfo from "./ServicesInfo";
 import Docinfo from "./Docinfo";
+import TestimonialSlider from "./TestimonialSlider";
 
 // Data Definitions
 const reviewsData = [
@@ -303,54 +304,71 @@ const Home = ({ onLogin }) => {
       <div className="physio-cont">
         <div className="physio-container">
           <ServicesInfo />
-          <div className="about-hero">
-            <h1>Real People, Real Recoveries</h1>
-          </div>
+          <div className="recovery-stories-hero">
+  <h1>Real People, Real Recoveries</h1>
+</div>
           <section className="physio-testimonials">
-            <div className="physio-testimonials-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-              <div className="physio-nav-btn left" onClick={prevReview}>
-                <ArrowLeft />
-              </div>
-              <div className="physio-testimonials-slider" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-                {reviewsData.map((review, index) => (
-                  <div key={index} className={`physio-testimonial-card ${index === currentIndex ? "active" : ""}`}>
-                    <div className="physio-testimonial-header">
-                      <img
-                        src={review.image || `https://api.dicebear.com/7.x/initials/svg?seed=${review.name}`}
-                        alt={`${review.name}'s avatar`}
-                        className="physio-testimonial-image"
-                      />
-                      <div className="physio-testimonial-info">
-                        <h3 className="physio-testimonial-author">{review.name}</h3>
-                        <p className="physio-testimonial-time">{review.date}</p>
-                      </div>
-                    </div>
-                    <p className="physio-testimonial-text">{review.text}</p>
-                    <div className="physio-testimonial-rating">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="physio-star-icon" fill="currentColor" />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="physio-nav-btn right" onClick={nextReview}>
-                <ArrowRightt />
-              </div>
-              <div className="physio-testimonial-dots">
-                {reviewsData.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`physio-dot ${index === currentIndex ? "active" : ""}`}
-                    onClick={() => handleDotClick(index)}
-                  />
-                ))}
-              </div>
+  <div className="physio-testimonials-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className="physio-nav-btn left" onClick={prevReview} aria-label="Previous Testimonial">
+      <ArrowLeft />
+    </div>
+    <div
+      className="physio-testimonials-slider"
+      style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      // Add touch support for mobile
+      onTouchStart={(e) => {
+        const touchStartX = e.touches[0].clientX;
+        const handleTouchMove = (moveEvent) => {
+          const touchEndX = moveEvent.touches[0].clientX;
+          if (touchStartX - touchEndX > 50) nextReview(); // Swipe left
+          if (touchEndX - touchStartX > 50) prevReview(); // Swipe right
+          document.removeEventListener("touchmove", handleTouchMove);
+        };
+        document.addEventListener("touchmove", handleTouchMove);
+        document.addEventListener("touchend", () => document.removeEventListener("touchmove", handleTouchMove), { once: true });
+      }}
+    >
+      {reviewsData.map((review, index) => (
+        <div key={index} className={`physio-testimonial-card ${index === currentIndex ? "active" : ""}`}>
+          <div className="physio-testimonial-header">
+            <img
+              src={review.image || `https://api.dicebear.com/7.x/initials/svg?seed=${review.name}`}
+              alt={`${review.name}'s avatar`}
+              className="physio-testimonial-image"
+            />
+            <div className="physio-testimonial-info">
+              <h3 className="physio-testimonial-author">{review.name}</h3>
+              <p className="physio-testimonial-time">{review.date}</p>
             </div>
-          </section>
-          <div className="about-hero">
-            <h1 className="head">From Pain to Power: Watch How Physiophy Changes Lives</h1>
           </div>
+          <p className="physio-testimonial-text">{review.text}</p>
+          <div className="physio-testimonial-rating">
+            {[...Array(review.rating)].map((_, i) => (
+              <Star key={i} className="physio-star-icon" fill="currentColor" />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    <div className="physio-nav-btn right" onClick={nextReview} aria-label="Next Testimonial">
+      <ArrowRightt />
+    </div>
+    <div className="physio-testimonial-dots">
+      {reviewsData.map((_, index) => (
+        <button
+          key={index}
+          className={`physio-dot ${index === currentIndex ? "active" : ""}`}
+          onClick={() => handleDotClick(index)}
+          aria-label={`Go to testimonial ${index + 1}`}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+{/* <TestimonialSlider/> */}
+          <div className="pain-to-power-hero">
+  <h1 className="head">From Pain to Power: Watch How Physiotherapy Changes Lives</h1>
+</div>
           {showPopup && (
             <div className="popup-overlay">
               <div className="popup-box">

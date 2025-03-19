@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@600&display=swap');
 /* Base Styles */
 :root {
   --primary-color: #22C55E;
@@ -1093,5 +1094,112 @@
   
   .slider-btn.next {
     right: 1rem;
+  }
+}
+/* Import Google Fonts */
+
+
+.recovery-stories-hero {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f3f0ff 0%, #e6e3ff 100%); /* Lavender gradient */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin: 20px 0;
+}
+
+.recovery-stories-hero h1 {
+  font-family: 'Poppins', 'Montserrat', Arial, sans-serif; /* Modern font */
+  font-size: 2.8rem; /* Larger for impact */
+  font-weight: 700; /* Bold for emphasis */
+  color: #1a3c5e; /* Deep navy blue for a professional look */
+  letter-spacing: 1.5px; /* Increased spacing for elegance */
+  text-transform: uppercase; /* Uppercase for a strong look */
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for better contrast */
+  animation: scaleIn 0.8s ease-in-out; /* Animation unchanged */
+}
+
+.recovery-stories-hero h1::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background-color: #4a90e2; /* Lighter blue to complement the navy text */
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  transition: width 0.3s ease; /* Smooth animation for the underline */
+}
+
+/* Hover effect for interactivity */
+.recovery-stories-hero h1:hover::after {
+  width: 100px; /* Expands the underline on hover */
+}
+
+/* Animation (unchanged) */
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.pain-to-power-hero {
+  text-align: center;
+  padding: 30px 20px; /* Slightly less padding to differentiate from the previous section */
+  background: linear-gradient(135deg, #f3f0ff 0%, #e6e3ff 100%); /* Same lavender gradient as the previous section */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin: 20px 0;
+}
+
+.pain-to-power-hero h1.head {
+  font-family: 'Poppins', 'Montserrat', Arial, sans-serif; /* Same modern font for consistency */
+  font-size: 2.5rem; /* Slightly smaller than the previous heading to create hierarchy */
+  font-weight: 700; /* Bold for emphasis */
+  color: #1a3c5e; /* Deep navy blue for a professional look */
+  letter-spacing: 1.2px; /* Slightly less spacing than the previous section for variety */
+  text-transform: uppercase; /* Uppercase for a strong look */
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15); /* Same shadow for depth */
+  animation: scaleIn 0.8s ease-in-out; /* Same animation for consistency */
+}
+
+.pain-to-power-hero h1.head::after {
+  content: '';
+  width: 80px; /* Slightly wider underline to differentiate */
+  height: 4px;
+  background-color: #4a90e2; /* Same lighter blue to match the previous section */
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  transition: width 0.3s ease; /* Smooth animation for the underline */
+}
+
+/* Hover effect for interactivity */
+.pain-to-power-hero h1.head:hover::after {
+  width: 120px; /* Expands the underline on hover, slightly more than the previous section */
+}
+
+/* Animation (same as before) */
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
