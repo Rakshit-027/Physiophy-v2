@@ -39,6 +39,8 @@ import DrTanviViewMore from './components/DrTanviViewMore/DrTanviViewMore.jsx';
 import DrGeetViewMore from './components/DrGeetViewMore/DrGeetViewMore.jsx';
 import DrUrvashiViewMore from './components/DrUrvashiViewMore/DrUrvashiViewMore.jsx';
 import DrVageshViewMore from './components/DrVageshViewMore/DrVageshViewMore.jsx';
+import DrMeghalanViewMore from './components/DrMeghalanViewMore/DrMeghalanViewMore.jsx';
+import DrSagarViewmore from './components/DrSagarViewmore/DrSagarViewmore.jsx';
 function App() {
   return (
     <Router>
@@ -190,6 +192,8 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="/doctors/geet-katariya" element={<DrGeetViewMore />} />
           <Route path="/doctors/urvashi-gahukar" element={<DrUrvashiViewMore />} />
           <Route path="/doctors/vagish-katariya" element={<DrVageshViewMore />} />
+          <Route path="/doctors/meghalan-Zewar" element={<DrMeghalanViewMore />} />
+          <Route path="/doctors/sagar-Salwani" element={<DrSagarViewmore />} />
         </Routes>
       </motion.div>
     </AnimatePresence>

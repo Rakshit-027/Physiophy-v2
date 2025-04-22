@@ -37,6 +37,22 @@ const DocInfo = () => {
       specialties: ["Trichology", "Hair Transplant", "Dermatology"],
       slug: "urvashi-gahukar",
     },
+    {
+      id: 5,
+      name: "DR. MEGHALAN ZEWAR",
+      role: "CONSULTANT NEUROPHYSIOTHERAPIST,PHYSIOPHY",
+      image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/docs/meghna-croped.png",
+      specialties: [""],
+      slug: "meghalan-Zewar",
+    },
+    {
+      id: 6,
+      name: "DR. SAGAR SALWANI",
+      role: "CONSULTANT PHYSIOTHERAPIST,PHYSIOPHY",
+      image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/docs/sagar-crop.png",
+      specialties: [""],
+      slug: "sagar-Salwani",
+    },
   ];
 
   return (
