@@ -1,0 +1,375 @@
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.05); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0.7; }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .tanvi-profile-container {
+    background: linear-gradient(135deg, #f5f7ff 0%, #e8eeff 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+  }
+  
+  .tanvi-profile-container.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+    margin-top: 4.5rem;
+  }
+  
+  .tanvi-decorative-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(107, 99, 255, 0.1), rgba(163, 191, 250, 0.1));
+    z-index: 0;
+  }
+  
+  .tanvi-circle-1 {
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    left: -100px;
+    animation: pulse 10s infinite ease-in-out;
+  }
+  
+  .tanvi-circle-2 {
+    width: 300px;
+    height: 300px;
+    bottom: -150px;
+    right: -50px;
+    animation: pulse 14s infinite ease-in-out;
+  }
+  
+  .tanvi-circle-3 {
+    width: 200px;
+    height: 200px;
+    bottom: 20%;
+    left: 10%;
+    animation: pulse 12s infinite ease-in-out;
+  }
+  
+  .tanvi-profile-card {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(41, 50, 126, 0.12), 0 10px 25px rgba(0, 0, 80, 0.06);
+    max-width: 900px;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+  }
+  
+  .tanvi-profile-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 70px rgba(41, 50, 126, 0.15), 0 15px 35px rgba(0, 0, 80, 0.08);
+  }
+  
+  .tanvi-card-header {
+    display: flex;
+    padding: 3rem;
+    background: linear-gradient(120deg, #eaebff 0%, #f4f6ff 100%);
+    border-bottom: 1px solid rgba(107, 99, 255, 0.1);
+  }
+  
+  .tanvi-profile-image-container {
+    position: relative;
+    margin-right: 3rem;
+    flex-shrink: 0;
+  }
+  
+  .tanvi-profile-image-wrapper {
+    width: 200px;
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(107, 99, 255, 0.2);
+    position: relative;
+    transform: rotate(-2deg);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    animation: fadeIn 0.7s forwards ease-out;
+  }
+  
+  .tanvi-profile-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(107, 99, 255, 0.2) 0%, rgba(163, 191, 250, 0) 100%);
+    z-index: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .tanvi-profile-image-wrapper:hover {
+    transform: rotate(0deg) scale(1.03);
+  }
+  
+  .tanvi-profile-image-wrapper:hover::before {
+    opacity: 0;
+  }
+  
+  .tanvi-profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .tanvi-profile-image-wrapper:hover .tanvi-profile-image {
+    transform: scale(1.08);
+  }
+  
+  .tanvi-profile-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .tanvi-profile-name {
+    font-size: 2.5rem;
+    color: #2d3958;
+    margin: 0 0 0.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards ease-out;
+    animation-delay: 0.1s;
+  }
+  
+  .tanvi-profile-title {
+    font-size: 1.25rem;
+    color: #6b63ff;
+    margin: 0 0 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards ease-out;
+    animation-delay: 0.2s;
+  }
+  
+  .tanvi-achievements-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  
+  .tanvi-achievement-badge {
+    display: flex;
+    align-items: center;
+    background: rgba(107, 99, 255, 0.08);
+    border-radius: 100px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    color: #5049c0;
+    font-weight: 500;
+    box-shadow: 0 3px 10px rgba(107, 99, 255, 0.08);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: slideInRight 0.5s forwards ease-out;
+  }
+  
+  .tanvi-achievement-badge:hover {
+    background: rgba(107, 99, 255, 0.12);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(107, 99, 255, 0.15);
+  }
+  
+  .tanvi-achievement-badge svg {
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+  
+  .tanvi-profile-content {
+    padding: 3rem;
+  }
+  
+  .tanvi-bio-section {
+    margin-bottom: 2.5rem;
+  }
+  
+  .tanvi-profile-bio {
+    font-size: 1.05rem;
+    color: #465173;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+    animation-delay: 0.3s;
+  }
+  
+  .tanvi-profile-bio:last-child {
+    margin-bottom: 0;
+  }
+  
+  .tanvi-action-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(107, 99, 255, 0.1);
+    padding-top: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .tanvi-social-links {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 1rem;
+  }
+  
+  .tanvi-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: #f4f6ff;
+    color: #6b63ff;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(107, 99, 255, 0.1);
+  }
+  
+  .tanvi-social-link:hover {
+    background: #6b63ff;
+    color: white;
+    transform: translateY(-5px) rotate(8deg);
+    box-shadow: 0 8px 20px rgba(107, 99, 255, 0.3);
+  }
+  
+  .tanvi-cta-button {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #6b63ff 0%, #a3bffa 100%);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 100px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 25px rgba(107, 99, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards ease-out;
+    animation-delay: 0.9s;
+  }
+  
+  .tanvi-cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+  
+  .tanvi-cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(107, 99, 255, 0.4);
+    background: linear-gradient(135deg, #5b53e2 0%, #8894fa 100%);
+  }
+  
+  .tanvi-cta-button:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .tanvi-cta-icon {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .tanvi-cta-button:hover .tanvi-cta-icon {
+    transform: translateX(4px);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .tanvi-card-header { padding: 2rem; }
+    .tanvi-profile-content { padding: 2rem; }
+    .tanvi-profile-image-wrapper {
+      width: 180px;
+      height: 180px;
+    }
+    .tanvi-profile-name { font-size: 2.2rem; }
+  }
+  
+  @media (max-width: 768px) {
+    .tanvi-card-header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .tanvi-profile-image-container {
+      margin-right: 0;
+      margin-bottom: 2rem;
+    }
+    .tanvi-achievements-container { justify-content: center; }
+    .tanvi-action-section {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .tanvi-profile-container { padding: 1rem; }
+    .tanvi-card-header,
+    .tanvi-profile-content { padding: 1.5rem; }
+    .tanvi-profile-image-wrapper {
+      width: 150px;
+      height: 150px;
+    }
+    .tanvi-profile-name { font-size: 1.8rem; }
+    .tanvi-profile-title { font-size: 1.1rem; }
+    .tanvi-achievement-badge {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+    }
+    .tanvi-profile-bio { font-size: 0.95rem; }
+    .tanvi-cta-button {
+      width: 100%;
+      justify-content: center;
+      font-size: 1rem;
+      padding: 10px 24px;
+    }
+  }
+  

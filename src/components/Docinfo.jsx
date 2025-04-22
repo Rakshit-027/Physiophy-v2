@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link for navigation
 import styled from 'styled-components';
 import './Docinfo.css';
 
@@ -9,29 +10,33 @@ const DocInfo = () => {
       name: "DR. VAGISH KATARIYA",
       role: "CONSULTANT PEDIATRIAN AND DIRECTOR,PHYSIOPHY",
       image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/docs/cropped_image%20(4).png",
-      specialties: ["Dermatology", "Cosmetic Surgery", "Skin Care"]
+      specialties: ["Dermatology", "Cosmetic Surgery", "Skin Care"],
+      slug: "vagish-katariya", // Unique slug for URL
     },
     {
       id: 2,
       name: "DR. GEET KATARIYA",
       role: "CONSULTANT RADIOLOGIST,CHAIRMAN ,PHYSIOPHY",
       image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/docs/cropped_image%20(3).png",
-      specialties: ["Dermatology", "Hair Treatment", "Laser Therapy"]
+      specialties: ["Dermatology", "Hair Treatment", "Laser Therapy"],
+      slug: "geet-katariya",
     },
     {
       id: 3,
       name: "DR. TANVI KATARIYA",
       role: "FOUNDER AND SENIOR NEURO CONSULTANT PHYSIOTHERAPIST ,PHYSIOPHY",
       image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/docs/cropped_image%20(1).png",
-      specialties: ["Trichology", "Hair Transplant", "Dermatology"]
+      specialties: ["Trichology", "Hair Transplant", "Dermatology"],
+      slug: "tanvi-katariya",
     },
     {
       id: 4,
       name: "DR. URVASHI GAHUKAR",
       role: "BRANCH INCHARGE AND ORTHO CONSULTANT PHYSIOTHERAPIST,PHYSIOPHY",
       image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/docs/cropped_image%20(2).png",
-      specialties: ["Trichology", "Hair Transplant", "Dermatology"]
-    }
+      specialties: ["Trichology", "Hair Transplant", "Dermatology"],
+      slug: "urvashi-gahukar",
+    },
   ];
 
   return (
@@ -46,35 +51,28 @@ const DocInfo = () => {
             <span className="docinfo-line-right"></span>
           </div>
         </div>
-        
+
         <div className="docinfo-cards-container">
-          {doctors.map(doctor => (
+          {doctors.map((doctor) => (
             <div key={doctor.id} className="docinfo-card card">
               <div className="blob" />
               <div className="bg" />
               <div className="card-content">
                 <div className="docinfo-image-wrapper">
-                  
                   <div className="docinfo-image-container">
                     <img src={doctor.image} alt={doctor.name} className="docinfo-image" />
                     <div className="docinfo-image-overlay"></div>
                   </div>
                 </div>
                 <div className="docinfo-content">
-                {/* <div className="docinfo-logo-circle"> */}
-                    {/* <img 
-                      src="https://physiophy.com/assets/Logo-Ch1nNKpq.png" 
-                      alt="Physiophy Logo" 
-                    /> */}
-                  {/* </div> */}
                   <h4 className="docinfo-doctor-name">{doctor.name}</h4>
                   <p className="docinfo-doctor-role">{doctor.role}</p>
-                  <button className="docinfo-view-more">
+                  <Link to={`/doctors/${doctor.slug}`} className="docinfo-view-more">
                     <span>VIEW MORE</span>
                     <svg className="docinfo-arrow" viewBox="0 0 24 24">
-                      <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
+                      <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
                     </svg>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -84,6 +82,8 @@ const DocInfo = () => {
     </StyledWrapper>
   );
 };
+
+
 
 const StyledWrapper = styled.div`
   .card {

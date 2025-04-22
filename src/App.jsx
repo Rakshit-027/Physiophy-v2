@@ -35,6 +35,10 @@ import "./App.css"
 import InfiniteCardSlider from './components/InfiniteCardSlider.jsx';
 import TermsAndConditions from './components/TermsAndConditions.jsx';
 import PrivacyPolicy from './components/PrivacyPolicy.jsx';
+import DrTanviViewMore from './components/DrTanviViewMore/DrTanviViewMore.jsx';
+import DrGeetViewMore from './components/DrGeetViewMore/DrGeetViewMore.jsx';
+import DrUrvashiViewMore from './components/DrUrvashiViewMore/DrUrvashiViewMore.jsx';
+import DrVageshViewMore from './components/DrVageshViewMore/DrVageshViewMore.jsx';
 function App() {
   return (
     <Router>
@@ -182,6 +186,10 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="ClinicVideos" element={<ClinicVideos/>}/>
           <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>}/>
           <Route path="/TermsAndConditions" element={<TermsAndConditions/>}/>
+          <Route path="/doctors/tanvi-katariya" element={<DrTanviViewMore />} />
+          <Route path="/doctors/geet-katariya" element={<DrGeetViewMore />} />
+          <Route path="/doctors/urvashi-gahukar" element={<DrUrvashiViewMore />} />
+          <Route path="/doctors/vagish-katariya" element={<DrVageshViewMore />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
@@ -189,3 +197,4 @@ function ScrollContent({ isLoggedIn }) {
 }
 
 export default App;
+
