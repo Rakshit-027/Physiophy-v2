@@ -39,11 +39,11 @@ const DocInfo = () => {
     },
     {
       id: 5,
-      name: "DR. MEGHALAN ZEWAR",
+      name: "DR. MEGHA LANJEWAR",
       role: "CONSULTANT NEUROPHYSIOTHERAPIST,PHYSIOPHY",
       image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/docs/meghna-croped.png",
       specialties: [""],
-      slug: "meghalan-Zewar",
+      slug: "megha-lanjewar",
     },
     {
       id: 6,
