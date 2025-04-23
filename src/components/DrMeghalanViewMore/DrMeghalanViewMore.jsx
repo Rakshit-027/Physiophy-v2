@@ -60,7 +60,7 @@ const DrMeghalanViewMore = () => {
           </div>
 
           <div className="tanvi-profile-intro">
-            <h1 className="tanvi-profile-name">Dr. Meghalan Zewar</h1>
+            <h1 className="tanvi-profile-name">Dr. Megha Lanjewar</h1>
             <p className="tanvi-profile-title">MPTH Neuro | Consultant Neurophysiotherapist</p>
           </div>
         </div>
@@ -68,10 +68,10 @@ const DrMeghalanViewMore = () => {
         <div className="tanvi-profile-content">
           <div className="tanvi-bio-section">
             <p className="tanvi-profile-bio">
-            An alumna of Lata Mangeshkar College, Nagpur, Dr. Meghalan Zewar specializes in neurological rehabilitation with an emphasis on functional recovery. Her strengths lie in assessing and treating complex neurological cases — including stroke, Parkinson’s, and traumatic brain injuries — with a goal to restore independence in daily life.
+            An alumna of Lata Mangeshkar College, Nagpur, Dr. Megha Lanjewar specializes in neurological rehabilitation with an emphasis on functional recovery. Her strengths lie in assessing and treating complex neurological cases — including stroke, Parkinson’s, and traumatic brain injuries — with a goal to restore independence in daily life.
             </p>
             <p className="tanvi-profile-bio">
-            Dr. Meghalan is known for her patient-centric approach and detailed evaluations, often uncovering subtle deficits that significantly influence therapy outcomes. Her calm demeanor and analytical skills contribute immensely to the multidisciplinary strength of PhysioPhy.
+            Dr. Megha is known for her patient-centric approach and detailed evaluations, often uncovering subtle deficits that significantly influence therapy outcomes. Her calm demeanor and analytical skills contribute immensely to the multidisciplinary strength of PhysioPhy.
             </p>
           </div>
 

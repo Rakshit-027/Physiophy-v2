@@ -192,7 +192,7 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="/doctors/geet-katariya" element={<DrGeetViewMore />} />
           <Route path="/doctors/urvashi-gahukar" element={<DrUrvashiViewMore />} />
           <Route path="/doctors/vagish-katariya" element={<DrVageshViewMore />} />
-          <Route path="/doctors/meghalan-Zewar" element={<DrMeghalanViewMore />} />
+          <Route path="/doctors/megha-lanjewar" element={<DrMeghalanViewMore />} />
           <Route path="/doctors/sagar-Salwani" element={<DrSagarViewmore />} />
         </Routes>
       </motion.div>
