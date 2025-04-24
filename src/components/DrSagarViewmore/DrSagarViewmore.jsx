@@ -60,7 +60,7 @@ const DrSagarViewmore = () => {
           </div>
 
           <div className="tanvi-profile-intro">
-            <h1 className="tanvi-profile-name">Dr. Sagar Salwani</h1>
+            <h1 className="tanvi-profile-name">Dr. Sagar Sawlani</h1>
             <p className="tanvi-profile-title">BPTH | Consultant Physiotherapist</p>
           </div>
         </div>
@@ -68,7 +68,7 @@ const DrSagarViewmore = () => {
         <div className="tanvi-profile-content">
           <div className="tanvi-bio-section">
             <p className="tanvi-profile-bio">
-            Dr. Sagar Salwani, a graduate of Lata Mangeshkar College, Nagpur, is a dedicated physiotherapy practitioner with a keen interest in functional rehabilitation. His hands-on techniques, personalized care strategies, and empathetic patient handling make him an integral part of the team.
+            Dr. Sagar Sawlani, a graduate of Lata Mangeshkar College, Nagpur, is a dedicated physiotherapy practitioner with a keen interest in functional rehabilitation. His hands-on techniques, personalized care strategies, and empathetic patient handling make him an integral part of the team.
             </p>
             <p className="tanvi-profile-bio">
             With a strong commitment to lifelong learning, Dr. Sagar brings energy and adaptability to PhysioPhy. His willingness to engage with every patient’s journey — from acute injury to recovery — underscores his passion for clinical excellence and community health.

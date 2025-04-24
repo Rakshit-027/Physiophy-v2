@@ -47,11 +47,11 @@ const DocInfo = () => {
     },
     {
       id: 6,
-      name: "DR. SAGAR SALWANI",
+      name: "DR. SAGAR SAWLANI",
       role: "CONSULTANT PHYSIOTHERAPIST,PHYSIOPHY",
       image: "https://zlmsmdibvnnhxthvdhhf.supabase.co/storage/v1/object/public/ScrollSlider/docs/sagar-crop.png",
       specialties: [""],
-      slug: "sagar-Salwani",
+      slug: "sagar-Sawlani",
     },
   ];
 

@@ -193,7 +193,7 @@ function ScrollContent({ isLoggedIn }) {
           <Route path="/doctors/urvashi-gahukar" element={<DrUrvashiViewMore />} />
           <Route path="/doctors/vagish-katariya" element={<DrVageshViewMore />} />
           <Route path="/doctors/megha-lanjewar" element={<DrMeghalanViewMore />} />
-          <Route path="/doctors/sagar-Salwani" element={<DrSagarViewmore />} />
+          <Route path="/doctors/sagar-Sawlani" element={<DrSagarViewmore />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
